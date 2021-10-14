@@ -56,6 +56,10 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'main_domain' => env('MAIN_DOMAIN', 'localhost'),
+
+    'subdomain_admin' => env('SUBDOMAIN_ADMIN', 'admin.localhost'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -67,7 +71,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,6 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
 
     ],
 
