@@ -2,17 +2,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">{{__('admin_label.common.confirm_modal.title')}}</h5>
+                <h5 class="modal-title">Thông báo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{__('admin_label.common.confirm_modal.body')}}</p>
+                <p>Bạn có chắc chắn điều này?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="modal-confirm-btn-cancel">{{__('admin_label.common.confirm_modal.cancel_button')}}</button>
-                <button type="button" class="btn btn-primary" id="modal-confirm-btn-ok">{{__('admin_label.common.confirm_modal.ok_button')}}</button>
+                <button type="button" class="btn btn-secondary" id="modal-confirm-btn-cancel">Bỏ qua</button>
+                <button type="button" class="btn btn-primary" id="modal-confirm-btn-ok">Đồng ý</button>
             </div>
         </div>
     </div>

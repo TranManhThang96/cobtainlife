@@ -16,7 +16,7 @@ class AuthController extends Controller
     {
         if ($request->method() === 'POST') {
             $credentials = $request->only('email', 'password');
-            if (Auth::guard('admin')->attempt($credentials, (bool)$request->remember)) {
+            if (Auth::guard('admin')->attempt($credentials, !empty($request->remember))) {
                 return redirect()->intended();
             }
         } else {

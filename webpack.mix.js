@@ -10,8 +10,10 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+ mix.js('resources/js/admin/app.js', 'public/js/admin')
+ mix.sass('resources/sass/admin/app.scss', 'public/css/admin');
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+// [categories]
+mix.js('resources/js/admin/categories/index', 'public/js/admin/categories');
+mix.js('resources/js/admin/categories/add', 'public/js/admin/categories');
+mix.sass('resources/sass/admin/categories/add.scss', 'public/css/admin/categories');

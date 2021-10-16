@@ -27,7 +27,7 @@
                                aria-label="Password" aria-describedby="basic-addon2" required="required" name="password">
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input mt-1" type="checkbox" value="1" id="remember-me" name="remember_me">
+                        <input class="form-check-input mt-1" type="checkbox" value="1" id="remember-me" name="remember[]">
                         <label class="form-check-label ml-1 text-light" for="remember-me">
                             Remember me
                         </label>
