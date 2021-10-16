@@ -21,6 +21,7 @@ class CreateShopProductsTable extends Migration
             $table->string('keyword')->nullable();
             $table->text('description')->nullable();
             $table->string('sku')->nullable();
+            $table->integer('category_id')->nullable();
             $table->integer('brand_id')->nullable();
             $table->integer('supplier_id')->nullable();
             $table->integer('price')->default(0)->comment('giá công khai');
