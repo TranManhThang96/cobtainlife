@@ -3,17 +3,17 @@
 use Illuminate\Support\Str;
 
 if (!function_exists('showCategories')) {
-    function showCategories($categories, &$result = [], $parent_id = \App\Enums\DBConstant::NO_PARENT, $char = '')
+    function showCategories($categories, &$result = [], $parent = \App\Enums\DBConstant::NO_PARENT, $char = '')
     {
         foreach ($categories as $key => $item) {
             // Nếu là chuyên mục con thì hiển thị
-            if ($item->parent_id == $parent_id) {
+            if ($item->parent == $parent) {
                 $countSymbol = count(explode('/', $char));
                 $result[] = array_merge(
                     $item->toArray(),
                     [
-                        'full_path' => $char . Str::slug($item->name),
-                        'label' => str_pad($item->name, strlen($item->name) + ($countSymbol - 1) * 4, "--- ", STR_PAD_LEFT),
+                        'full_path' => $char . Str::slug($item->title),
+                        'label' => str_pad($item->title, strlen($item->title) + ($countSymbol - 1) * 4, "--- ", STR_PAD_LEFT),
                         'level' => $countSymbol,
                     ]
                 );
@@ -22,7 +22,7 @@ if (!function_exists('showCategories')) {
                 unset($categories[$key]);
 
                 // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
-                showCategories($categories, $result, $item['id'], $char . Str::slug($item->name) . ' / ');
+                showCategories($categories, $result, $item['id'], $char . Str::slug($item->title) . ' / ');
             }
         }
     }

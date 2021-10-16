@@ -19,6 +19,8 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
     Route::post('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
     Route::middleware('admin.auth')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index']);
+        Route::get('/categories/search', [\App\Http\Controllers\Admin\ShopCategoryController::class, 'search'])->name('categories.search');
+        Route::resource('/categories', ShopCategoryController::class);
     });
 });
 

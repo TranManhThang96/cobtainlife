@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Repositories\Category;
+namespace App\Repositories\ShopCategory;
 
 use App\Enums\Constant;
 use App\Repositories\RepositoryAbstract;
 use Carbon\Carbon;
 use App\Enums\DBConstant;
 
-class CategoryRepository extends RepositoryAbstract implements CategoryRepositoryInterface
+class ShopCategoryRepository extends RepositoryAbstract implements ShopCategoryRepositoryInterface
 {
     /**
      * get model
@@ -17,12 +17,21 @@ class CategoryRepository extends RepositoryAbstract implements CategoryRepositor
      */
     public function getModel()
     {
-        return \App\Models\Category::class;
+        return \App\Models\ShopCategory::class;
     }
 
-    public function getCountSlugLikeName($slug, $id)
+    public function checkAliasExist($alias, $id)
     {
-        return $this->model::where('slug', 'LIKE', $slug . '%')
+        $count = $this->model::where('alias', $alias)
+            ->when($id, function ($query, $id) {
+                return $query->where('id', '<>', $id);
+            })->count();
+        return $count > 0;    
+    }
+
+    public function getCountAliasLikeName($alias, $id)
+    {
+        return $this->model::where('alias', 'LIKE', $alias . '%')
             ->when($id, function ($query, $id) {
                 return $query->where('id', '<>', $id);
             })->count();
@@ -36,9 +45,10 @@ class CategoryRepository extends RepositoryAbstract implements CategoryRepositor
         $perPage = $request->per_page ?? Constant::DEFAULT_PER_PAGE;
 
         return $this->model
-            ->withCount('articles')
+            ->withCount('products')
+            ->with('parents')
             ->when($q, function ($query, $q) {
-                return $query->where('name', 'like', "%$q%");
+                return $query->where('title', 'like', "%$q%");
             })->orderBy($sortBy, $orderBy)
             ->paginate($perPage);
     }
@@ -47,12 +57,12 @@ class CategoryRepository extends RepositoryAbstract implements CategoryRepositor
     {
         $sortBy = $request->sort_by ?? 'id';
         $orderBy = $request->order_by ?? 'DESC';
-        return $this->model::withCount('articles')->orderBy($sortBy, $orderBy)->get();
+        return $this->model::withCount('products')->orderBy($sortBy, $orderBy)->get();
     }
 
     public function find($id)
     {
-        return $this->model::withCount('articles')->withCount('categories')->find($id);
+        return $this->model::withCount('products')->withCount('categories')->find($id);
     }
 
 }
