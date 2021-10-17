@@ -38,17 +38,7 @@ class Constant extends BaseEnum
     const NO_PARENT = 'ROOT';
 
     
-    // [articles status]
-    const ARTICLE_PUBLISH_LABEL = 'Publish';
-    const ARTICLE_DRAFT_LABEL = 'Draft';
-    const ARTICLE_PENDING_LABEL = 'Pending';
-    const ARTICLE_STATUS_LABEL_DATA = ['', 'Publish', 'Draft', 'Pending'];
-
-    // [articles type]
-    const ARTICLE_LABEL = 'Article';
-    const LEARN_LABEL = 'Learn';
-    const TIP_LABEL = 'Tip';
-    const COPY_LABEL = 'Copy';
-    const ARTICLE_TYPE_LABEL_DATA = ['', 'Article', 'Learn', 'Tip', 'Copy'];
+    // product
+    const NO_CATEGORY = 'Chọn danh mục';
 
 }

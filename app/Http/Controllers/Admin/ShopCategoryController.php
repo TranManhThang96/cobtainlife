@@ -29,7 +29,7 @@ class ShopCategoryController extends Controller
         return view('admin.pages.categories.index', compact('categories'));
     }
 
-     /**
+    /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */

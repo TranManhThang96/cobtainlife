@@ -11,7 +11,7 @@
                         <li class="sidebar-item"><a href="{{route('admin.categories.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-outline"></i><span
                                     class="hide-menu">Danh mục</span></a></li>
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                        <li class="sidebar-item"><a href="{{route('admin.products.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Sản Phẩm </span></a></li>
                     </ul>

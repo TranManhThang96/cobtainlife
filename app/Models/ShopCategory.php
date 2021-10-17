@@ -42,7 +42,7 @@ class ShopCategory extends Model
            $user = Auth::guard('admin')->user();
            $model->updated_by = $user->id;
        });
-   }
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {
