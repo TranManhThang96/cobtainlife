@@ -31,7 +31,7 @@
         <tr>
             <td scope="row">{{($categories->currentPage() - 1) * $categories->perPage() + $loop->iteration}}</td>
             <td>
-            <img src="{{$category['image']}}" alt="{{$category['title']}}"
+            <img src="{{asset('storage'.$category['image'])}}" alt="{{$category['title']}}"
                      onerror="this.src='https://admin.cobtainlife.tk/assets/images/no-image.png'" style="max-width: 100px">
             </td>
             <td>{{$category['title']}}</td>

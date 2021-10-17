@@ -78,3 +78,13 @@ if (!function_exists('renderCategoryName')) {
         echo '<div class="px-1 py-1 text-white float-right" style="background-color: ' . \App\Enums\Constant::LEVEL_COLORS[$level] . '; width: calc(100% - ' . $distance . 'px)">' . $name . '</div>';
     }
 }
+
+if (!function_exists('convertDateToDateTime')) {
+    function convertDateToDateTime($value, $format = '!d/m/Y')
+    {
+        if (!empty($value)) {
+            return \DateTime::createFromFormat($format, $value, new \DateTimeZone('UTC'));
+        }
+        return null;
+    }
+}

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\ShopLengthClass;
+use App\Models\ShopWeightClass;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +19,10 @@ class DatabaseSeeder extends Seeder
             UserManagersTableSeeder::class,
             ShopAttributeGroupTableSeeder::class,
             ShopBannerTypeTableSeeder::class,
+            ShopBrandTableSeeder::class,
+            ShopSupplierTableSeeder::class,
+            ShopLengthClassTableSeeder::class,
+            ShopWeightClassTableSeeder::class
         ]);
     }
 }

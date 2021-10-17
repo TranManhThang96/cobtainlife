@@ -17,18 +17,20 @@ $(document).ready(function () {
   })
 
   $('#image-preview').click(function () {
-    var route_prefix = '/filemanager';
-    var target_input = document.getElementById('image-input');
-    var target_preview = document.getElementById('image-preview');
+    let route_prefix = '/filemanager';
+    let target_input = document.getElementById('image-input');
+    let target_preview = document.getElementById('image-preview');
 
     window.open(route_prefix + '?type=' + 'image' || 'file', 'FileManager', 'width=900,height=600');
     window.SetUrl = function (items) {
-      var file_path = items.map(function (item) {
+      let file_path = items.map(function (item) {
         return item.url;
       }).join(',');
-      
+
+      let file_path_short = file_path.split('storage');
+
       // set the value of the desired input to image url
-      target_input.value = file_path;
+      target_input.value = file_path_short[1];
       target_input.dispatchEvent(new Event('change'));
 
       // clear previous preview

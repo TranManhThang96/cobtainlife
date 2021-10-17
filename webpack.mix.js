@@ -17,3 +17,10 @@ const mix = require('laravel-mix');
 mix.js('resources/js/admin/categories/index', 'public/js/admin/categories');
 mix.js('resources/js/admin/categories/add', 'public/js/admin/categories');
 mix.sass('resources/sass/admin/categories/add.scss', 'public/css/admin/categories');
+
+// [products]
+mix.js('resources/js/admin/products/index', 'public/js/admin/products');
+mix.js('resources/js/admin/products/add', 'public/js/admin/products');
+mix.js('resources/js/admin/products/tinymce', 'public/js/admin/products');
+mix.sass('resources/sass/admin/products/add.scss', 'public/css/admin/products');
+mix.sass('resources/sass/admin/products/index.scss', 'public/css/admin/products');
