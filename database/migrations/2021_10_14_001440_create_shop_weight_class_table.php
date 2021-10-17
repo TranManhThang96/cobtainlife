@@ -15,7 +15,7 @@ class CreateShopWeightClassTable extends Migration
     {
         Schema::create('shop_weight_class', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('description');
             $table->timestamps();
         });
