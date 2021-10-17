@@ -14,7 +14,7 @@
             </a>
         </div>
     </div>
-    <div class="row mt-2">
+    <div class="row mt-3">
         <div class="col-md-6 col-lg-6">
             <div class="d-flex align-items-center">
                 <span>Hiển thị</span>
@@ -43,7 +43,7 @@
             </form>
         </div>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-3">
         <div class="col-12">
             <div class="card">
                 <div class="card-body p-0">

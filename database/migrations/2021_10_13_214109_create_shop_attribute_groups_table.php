@@ -18,7 +18,7 @@ class CreateShopAttributeGroupsTable extends Migration
             $table->string('name')->comment('color, size, ....');
             $table->tinyInteger('status')->default(1)->comment('1: on, 0: off');
             $table->tinyInteger('sort')->default(1)->comment('thứ tự');
-            $table->enum('type', ['radio', 'select', 'checkbox'])->comment('radio, select, checkbox');
+            $table->enum('type', ['radio', 'select', 'checkbox'])->nullable()->comment('radio, select, checkbox');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->softDeletes();

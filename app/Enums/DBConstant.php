@@ -10,7 +10,7 @@ class DBConstant extends BaseEnum
     // [categories]
     const NO_PARENT = 0;
 
-    // [articles]
+    // [products]
     const NO_CATEGORY = 0;
 
     // [articles status]
