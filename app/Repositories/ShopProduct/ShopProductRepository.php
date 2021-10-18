@@ -60,7 +60,7 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
     {
         $sortBy = $request->sort_by ?? 'id';
         $orderBy = $request->order_by ?? 'DESC';
-        return $this->model::withCount('products')->orderBy($sortBy, $orderBy)->get();
+        return $this->model::with('attributes')->orderBy($sortBy, $orderBy)->get();
     }
 
     public function find($id)

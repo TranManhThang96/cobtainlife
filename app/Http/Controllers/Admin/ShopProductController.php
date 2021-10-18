@@ -148,7 +148,15 @@ class ShopProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = $this->shopProductService->find($id);
+        if ($product) {
+            if (!empty($product['promotion'])) {
+                $isValid = $this->checkValidPromotion($product['promotion'], $product['price']);
+                $product['promotionValid'] = $isValid;
+            }
+            return $this->apiSendSuccess($product, Response::HTTP_OK, 'Tìm sản phẩm thành công');
+        }
+        return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Tìm phẩm thất bại');
     }
 
     /**
@@ -259,5 +267,37 @@ class ShopProductController extends Controller
             return $this->apiSendSuccess($isDeleted, Response::HTTP_OK, 'Sản phẩm đã được xóa');
         }
         return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Xóa sản phẩm bị lỗi');
+    }
+
+    private function checkValidPromotion($promotion, $productPrice) 
+    {
+        $isValid = true;
+        $startDb = $promotion['start'];
+        $endDb = $promotion['end'];
+        $nowUTC = convertDateToDateTime(date('d/m/Y'));
+        $now = $nowUTC->getTimestamp();
+
+        if ($promotion['price_promotion'] > $productPrice) {
+            return false;
+        }
+
+        if (!empty($startDb)) {
+            $startDb = convertDateToDateTime($startDb, 'Y-m-d H:i:s');
+            $startDbTimeStamp = $startDb->getTimestamp();
+            if ($startDbTimeStamp > $now) {
+                $isValid = false;
+                return $isValid;
+            }
+        }
+
+        if (!empty($endDb)) {
+            $endDb = convertDateToDateTime($endDb, 'Y-m-d H:i:s');
+            $endDbTimeStamp = $endDb->getTimestamp() + 86400;
+            if ($endDbTimeStamp < $now) {
+                $isValid = false;
+                return $isValid;
+            }
+        }
+        return $isValid;
     }
 }
