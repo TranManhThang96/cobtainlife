@@ -65,7 +65,15 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
 
     public function find($id)
     {
-        return $this->model::with('category')->with('promotion')->with('images')->with('attributes')->with('orders')->find($id);
+        return $this->model::with('category')
+        ->with('promotion')
+        ->with('images')
+        ->with(['attributes' => function($query) {
+            $query->select('id','name', 'code', 'attribute_group_id', 'product_id', 'add_price')
+            ->with(['shopAttributeGroup' => function($q) {
+                $q->select('id', 'name');
+            }]);
+        }])->with('orders')->find($id);
     }
 
 }

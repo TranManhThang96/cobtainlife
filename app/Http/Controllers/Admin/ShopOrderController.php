@@ -13,6 +13,7 @@ use App\Services\ShopOrderStatusService;
 use App\Services\ShopPaymentStatusService;
 use App\Services\ShopProductService;
 use App\Services\ShopShippingStatusService;
+use App\Services\ShopTaxService;
 use App\Services\WardService;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,8 @@ class ShopOrderController extends Controller
         ShopOrderStatusService $shopOrderStatusService,
         ShopPaymentStatusService $shopPaymentStatusService,
         ShopShippingStatusService $shopShippingStatusService,
-        ShopProductService $shopProductService
+        ShopProductService $shopProductService,
+        ShopTaxService $shopTaxService
     )
     {
         $this->districtService = $districtService;
@@ -40,6 +42,7 @@ class ShopOrderController extends Controller
         $this->shopPaymentStatusService = $shopPaymentStatusService;
         $this->shopShippingStatusService = $shopShippingStatusService;
         $this->shopProductService = $shopProductService;
+        $this->shopTaxService = $shopTaxService;
     }
 
     /**
@@ -64,6 +67,7 @@ class ShopOrderController extends Controller
         $listPaymentStatus = $this->shopPaymentStatusService->all();
         $listShippingStatus = $this->shopShippingStatusService->all();
         $products = $this->shopProductService->all();
+        $listTax = $this->shopTaxService->all();
         $paymentMethods = [
             [
                 'value' => Constant::PAYMENT_CASH_VALUE,
@@ -95,7 +99,8 @@ class ShopOrderController extends Controller
             'listPaymentStatus',
             'listShippingStatus',
             'paymentMethods',
-            'shippingMethods'
+            'shippingMethods',
+            'listTax'
         ));
     }
 
@@ -107,7 +112,7 @@ class ShopOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
