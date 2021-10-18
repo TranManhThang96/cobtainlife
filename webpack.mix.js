@@ -24,3 +24,10 @@ mix.js('resources/js/admin/products/add', 'public/js/admin/products');
 mix.js('resources/js/admin/products/tinymce', 'public/js/admin/products');
 mix.sass('resources/sass/admin/products/add.scss', 'public/css/admin/products');
 mix.sass('resources/sass/admin/products/index.scss', 'public/css/admin/products');
+
+// [orders]
+mix.js('resources/js/admin/orders/index', 'public/js/admin/orders');
+mix.js('resources/js/admin/orders/add', 'public/js/admin/orders');
+mix.js('resources/js/admin/orders/products', 'public/js/admin/orders');
+// mix.sass('resources/sass/admin/orders/add.scss', 'public/css/admin/orders');
+// mix.sass('resources/sass/admin/orders/index.scss', 'public/css/admin/orders');

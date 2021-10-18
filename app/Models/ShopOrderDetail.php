@@ -15,6 +15,18 @@ class ShopOrderDetail extends Model
 
     protected $table = 'shop_order_details';
 
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'product_name',
+        'product_sku',
+        'price',
+        'qty',
+        'product_attribute_id',
+        'product_attribute_add_pice',
+        'attribute'
+    ];
+
     public static function boot()
     {
        parent::boot();

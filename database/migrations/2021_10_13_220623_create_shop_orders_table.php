@@ -30,7 +30,8 @@ class CreateShopOrdersTable extends Migration
             $table->integer('ward_id')->nullable();
             $table->text('address')->nullable();
             $table->string('country')->nullable()->default('VN');
-            $table->string('email');
+            $table->string('customer_name');
+            $table->string('email')->nullable();
             $table->string('phone');
             $table->string('comment')->nullable();
             $table->string('payment_method')->nullable()->comment('phương thức thanh toán: tiền mặt');

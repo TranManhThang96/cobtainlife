@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ShopOrderStatus extends Model
 {
     use HasFactory;
+
+    protected $table = 'shop_order_status';
+
+    protected $fillable = [
+        'name',
+    ];
 }
