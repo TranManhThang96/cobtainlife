@@ -154,6 +154,12 @@ class ShopProductController extends Controller
                 $isValid = $this->checkValidPromotion($product['promotion'], $product['price']);
                 $product['promotionValid'] = $isValid;
             }
+
+            if (!empty($product['attributes'])) {
+                $product['attributes_groups'] = collect($product['attributes'])->groupBy('attribute_group_id')->toArray();
+                $view = view('admin.pages.product_attributes.components.attribute-options', ['attributeGroups' => $product['attributes_groups']])->render();
+                $product['attributes_groups_view'] = $view;
+            }
             return $this->apiSendSuccess($product, Response::HTTP_OK, 'Tìm sản phẩm thành công');
         }
         return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Tìm phẩm thất bại');

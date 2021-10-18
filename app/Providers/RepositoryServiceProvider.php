@@ -108,6 +108,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Ward\WardRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\ShopTax\ShopTaxRepositoryInterface::class,
+            \App\Repositories\ShopTax\ShopTaxRepository::class
+        );
+
     }
 
     /**

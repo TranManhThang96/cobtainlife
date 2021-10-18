@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
             ShopWeightClassTableSeeder::class,
             ShopOrderStatusTableSeeder::class,
             ShopPaymentStatusTableSeeder::class,
-            ShopShippingStatusTableSeeder::class
+            ShopShippingStatusTableSeeder::class,
+            ShopTaxTableSeeder::class,
         ]);
     }
 }

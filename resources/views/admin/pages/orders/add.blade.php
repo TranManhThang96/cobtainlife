@@ -206,6 +206,23 @@
                             <x-custom-error field="payment_method" />
                         </div>
                     </div>
+
+
+                    <div class="form-group row">
+                        <label for="order-tax-option" class="col-sm-4 text-right font-weight-bold">
+                            Tiền thuế (tính theo đơn hàng)
+                        </label>
+                        <div class="col-sm-8">
+                            <select class="custom-select mr-sm-2 select-status" name="tax_option" id="order-tax-option">
+                                @if(isset($listTax)) 
+                                    @foreach($listTax as $tax)
+                                        <option value="{{$tax['id']}}" data-value="{{$tax['value']}}" {{old('tax_option') == $tax['id'] ? 'selected' : ''}}>{{$tax['name']}}</option>
+                                    @endforeach 
+                                @endif
+                            </select>
+                            <x-custom-error field="tax_option" />
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -236,24 +253,25 @@
                                                     @endforeach 
                                                 @endif
                                             </select>
+                                            <div class="product-attributes"></div>
                                         </td>
                                         <td>
-                                            <input type="text" disabled="" class="sku form-control" name="product_sku[$index]" value="">
-                                            <input type="hidden" class="form-control" value="" name="product_id[$index]">
-                                            <input type="hidden" class="form-control" value="" name="product_name[$index]">
+                                            <input type="text" readonly="" class="sku form-control" name="product_sku[#index]" value="">
+                                            <input type="hidden" class="form-control" value="" name="product_id[#index]">
+                                            <input type="hidden" class="form-control" value="" name="product_name[#index]">
                                         </td>
                                         <td>
-                                            <input type="number" min="0" class="order-detail-price form-control" name="price[$index]" value="0">
+                                            <input min="0" class="order-detail-price form-control text-right" name="price[#index]" value="0" data-type='currency'>
                                         </td>
                                         <td>
-                                            <input type="hidden" class="form-control" value="" name="product_attribute_id[$index]">
-                                            <input type="number" min="0" disabled class="product-attribute-add-pice form-control" name="product_attribute_add_pice[$index]" value="0">
+                                            <input type="hidden" class="form-control" value="" name="product_attribute_id[#index]">
+                                            <input min="0" readonly class="product-attribute-add-pice form-control text-right" name="product_attribute_add_pice[#index]" value="0">
                                         </td>
                                         <td>
-                                            <input type="number" min="1" class="order-detail-qty form-control" name="qty[$index]" value="1">
+                                            <input type="number" min="1" class="order-detail-qty form-control" name="qty[#index]" value="1">
                                         </td>
                                         <td>
-                                            <input type="number" min="0" disabled class="product_total form-control" value="0">
+                                            <input min="0" readonly class="product_total form-control text-right" value="0">
                                         </td>
                                         <td>
                                             <button class="btn btn-danger btn-md btn-flat btn-delete-order-detail" data-title="Delete">
@@ -272,6 +290,69 @@
                 <button type="button" class="btn btn-flat btn-success" id="add-product-order" title="Thêm mới">
                     <i class="fa fa-plus"></i> Thêm mới
                 </button>
+            </div>
+
+            <div class="row mx-0 mt-5">
+                <div class="col-6">
+                    <b>Thanh toán</b>
+                    <div class="card collapsed-card">
+                        <div class="table-responsive">
+                            <table class="table table-hover box-body text-wrap table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>Tiền hàng</td>
+                                        <td>
+                                            <input type="text" readonly class="form-control text-right" name="subtotal" value="0" id="order-subtotal" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thuế</td>
+                                        <td>
+                                            <input type="text" class="form-control text-right" name="tax" value="0" id="order-tax" data-type='currency'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phí vận chuyển</td>
+                                        <td>
+                                            <input type="text" class="form-control text-right" name="shipping" value="0" id="order-shipping" data-type='currency'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Giảm giá</td>
+                                        <td>
+                                            <input type="text" class="form-control text-right" name="discount" value="0" id="order-discount" data-type='currency'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Tổng tiền</td>
+                                        <td>
+                                            <input type="text" readonly class="form-control text-right" name="total" value="0" id="order-total" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Đã nhận</td>
+                                        <td>
+                                            <input type="text" class="form-control text-right" name="received" value="0" id="order-received" data-type='currency'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-weight-bold">Còn lại</td>
+                                        <td>
+                                            <input type="text" readonly class="form-control text-right" name="balance" value="0" id="order-balance" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <b>Ghi chú</b>
+                    <div class="card collapsed-card">
+                        <textarea class="form-control" placeholder="Nhập vào ghi chú" rows="20" name="comment"></textarea>
+                    </div>
+                </div>
             </div>
 
             <div class="row justify-content-center mt-5">

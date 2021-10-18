@@ -37,4 +37,9 @@ class ShopProductAttribute extends Model
            $model->updated_by = $user->id;
        });
     }
+
+    public function shopAttributeGroup()
+    {
+        return $this->belongsTo(\App\Models\ShopAttributeGroup::class, 'attribute_group_id', 'id');
+    }
 }
