@@ -50,4 +50,9 @@ class ShopOrderDetailService extends BaseService
     {
         return $this->shopOrderDetailRepository->delete($id);
     }
+
+    public function insert($listOrderDetail)
+    {
+        return $this->shopOrderDetailRepository->insert($listOrderDetail);
+    }
 }

@@ -45,4 +45,10 @@ $(document).ready(function () {
       }
     });
   });
+
+  $(document).on("click", "#btn-add-order", function(e){
+    e.preventDefault();
+    $('#order-detail-hidden').remove();
+    $('#orders-frm').submit();
+  });
 })

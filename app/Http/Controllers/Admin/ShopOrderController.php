@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\Constant;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ShopOrderRequest;
 use App\Services\DistrictService;
 use App\Services\ProvinceService;
 use App\Services\ShopCustomerService;
@@ -15,7 +16,10 @@ use App\Services\ShopProductService;
 use App\Services\ShopShippingStatusService;
 use App\Services\ShopTaxService;
 use App\Services\WardService;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ShopOrderController extends Controller
 {
@@ -110,9 +114,45 @@ class ShopOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ShopOrderRequest $request)
     {
-        dd($request->all());
+        DB::beginTransaction();
+        try {
+            $params = $request->all();
+            // insert order
+            $orderInserted = $this->shopOrderService->store($params);
+            // insert order detail
+            foreach($params['product_id'] as $key=>$productId) {
+                if (!empty($productId)) {
+                    $orderProducts[] = [
+                        'order_id' => $orderInserted->id,
+                        'product_id' => $productId,
+                        'product_name' => $params['product_name'][$key],
+                        'product_sku' => $params['product_sku'][$key],
+                        'price' => convertStringToNumber($params['product_price'][$key]),
+                        'qty' => convertStringToNumber($params['product_qty'][$key]),
+                        'attribute' => $params['product_attribute'][$key],
+                        'created_at' => new \DateTime(),
+                        'updated_at' => new \DateTime(),
+                    ];
+                }
+            }
+            $this->shopOrderDetailService->insert($orderProducts);
+            DB::commit();
+            if (true) {
+                toastr()->success('Thêm đơn hàng thành công!', '', [
+                    'positionClass' => 'toast-top-center',
+                ]);
+                return redirect()->route('admin.products.index');
+            } 
+        } catch(Exception $e) {
+            Log::error($e->getMessage());
+            toastr()->error('Thêm đơn hàng thất bại!', '', [
+                'positionClass' => 'toast-top-center',
+            ]);
+            return redirect()->back()->withInput();
+            DB::rollBack();
+        }
     }
 
     /**

@@ -42,6 +42,11 @@ $(document).ready(function () {
     handleUpdateTotalProduct(uuid);
   })
 
+  $(document).on('keyup', '.order-detail-qty', function() {
+    const uuid = $(this).parent().parent().data('uuid');
+    handleUpdateTotalProduct(uuid);
+  })
+
   $(document).on('keyup', '.order-detail-price', function() {
     const uuid = $(this).parent().parent().data('uuid');
     handleUpdateTotalProduct(uuid);
@@ -80,12 +85,18 @@ $(document).ready(function () {
 
 function updateAddPrice(uuid) {
   let addPrice = 0;
+  let attributes = {};
   $(`#order-detail-${uuid} .attribute-group-options`).each(function(index, item) {
-    let attributeCheckedPrice = $(item).find(`input:radio.attribute-option-item:checked`).data('add-price');
+    let attributeChecked = $(item).find(`input:radio.attribute-option-item:checked`);
+    let attributeCheckedPrice = attributeChecked.data('add-price');
+    let attributeCheckedVal = attributeChecked.val();
+    let attributeCheckedJson = attributeChecked.data('attribute-json');
     if (typeof attributeCheckedPrice !== 'undefined') {
       addPrice += parseInt(attributeCheckedPrice);
+      attributes[attributeCheckedVal] = attributeCheckedJson;
     }
   })
+  $(`#order-detail-${uuid} input[name="product_attribute[]"]`).val(JSON.stringify(attributes));
   $(`#order-detail-${uuid} input[name="product_attribute_add_pice[]"]`).val(formatNumber(addPrice));
 }
 
@@ -93,13 +104,13 @@ function handleSelectProduct(uuid, product) {
   $(`#order-detail-${uuid} input[name="product_sku[]"]`).val(product.sku);
   $(`#order-detail-${uuid} input[name="product_id[]"]`).val(product.id);
   $(`#order-detail-${uuid} input[name="product_name[]"]`).val(product.name);
-  $(`#order-detail-${uuid} input[name="qty[]"]`).val(1);
+  $(`#order-detail-${uuid} input[name="product_qty[]"]`).val(1);
   let finalPrice = 0;
   if (product.promotionValid) {
-    $(`#order-detail-${uuid} input[name="price[]"]`).val(formatNumber(product.promotion.price_promotion));
+    $(`#order-detail-${uuid} input[name="product_price[]"]`).val(formatNumber(product.promotion.price_promotion));
     finalPrice = product.promotion.price_promotion;
   } else {
-    $(`#order-detail-${uuid} input[name="price[]"]`).val(formatNumber(product.price));
+    $(`#order-detail-${uuid} input[name="product_price[]"]`).val(formatNumber(product.price));
     finalPrice = product.price
   }
   $(`#order-detail-${uuid} .product_total`).val(formatNumber(finalPrice));
@@ -107,13 +118,15 @@ function handleSelectProduct(uuid, product) {
   const regex = /\#index/g;
   attributes_groups_view = attributes_groups_view.replace(regex, uuid);
   $(`#order-detail-${uuid} .product-attributes`).empty().append(attributes_groups_view);
+  updateAddPrice(uuid);
+  handleUpdateTotalProduct(uuid);
   updateSubTotal();
 }
 
 function handleUpdateTotalProduct(uuid) {
   try {
-    let qty = parseInt($(`#order-detail-${uuid} input[name="qty[]"]`).val());
-    let productPrice = convertStringToNumber($(`#order-detail-${uuid} input[name="price[]"]`).val());
+    let qty = parseInt($(`#order-detail-${uuid} input[name="product_qty[]"]`).val());
+    let productPrice = convertStringToNumber($(`#order-detail-${uuid} input[name="product_price[]"]`).val());
     let addPrice = convertStringToNumber($(`#order-detail-${uuid} input[name="product_attribute_add_pice[]"]`).val());
     $(`#order-detail-${uuid} .product_total`).val(formatNumber(qty * (productPrice + addPrice)));
     updateSubTotal();
@@ -136,7 +149,6 @@ function updateSubTotal() {
 function updateTax() {
   const subTotal = convertStringToNumber($(`#order-subtotal`).val());
   const tax = parseInt(taxPercent * subTotal / 100);
-  console.log(taxPercent);
   $(`#order-tax`).val(formatNumber(tax));
   updateTotal();
   updateBalanceTotal();

@@ -99,4 +99,39 @@ class ShopOrder extends Model
     {
         return $this->belongsTo(\App\Models\ShopOrderStatus::class, 'status', 'id');
     }
+
+    public function setSubtotalAttribute($value)
+    {
+        $this->attributes['subtotal'] = convertStringToNumber($value);
+    }
+
+    public function setShippingAttribute($value)
+    {
+        $this->attributes['shipping'] = convertStringToNumber($value);
+    }
+
+    public function setTaxAttribute($value)
+    {
+        $this->attributes['tax'] = convertStringToNumber($value);
+    }
+
+    public function setDiscountAttribute($value)
+    {
+        $this->attributes['discount'] = convertStringToNumber($value);
+    }
+
+    public function setReceivedAttribute($value)
+    {
+        $this->attributes['received'] = convertStringToNumber($value);
+    }
+
+    public function setBalanceAttribute($value)
+    {
+        $this->attributes['balance'] = convertStringToNumber($value);
+    }
+
+    public function setTotalAttribute($value)
+    {
+        $this->attributes['total'] = convertStringToNumber($value);
+    }
 }
