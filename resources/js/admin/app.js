@@ -73,6 +73,7 @@ function formatCurrency(input, blur) {
 
   // don't validate empty input
   if (input_val === "") {
+    input.val(0);
     return;
   }
 
@@ -131,6 +132,9 @@ function formatCurrency(input, blur) {
 
   // send updated string to input
   input.val(input_val);
+  if (input_val === "") {
+    input.val(0);
+  }
 
   // put caret back in the right position
   var updated_len = input_val.length;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\ShopOrderDetail;
 use App\Repositories\RepositoryAbstract;
-
+use Illuminate\Support\Facades\DB;
 class ShopOrderDetailRepository extends RepositoryAbstract implements ShopOrderDetailRepositoryInterface
 {
     /**
@@ -26,6 +26,11 @@ class ShopOrderDetailRepository extends RepositoryAbstract implements ShopOrderD
     public function find($id)
     {
         return $this->model::find($id);
+    }
+
+    public function insert($listOrderDetail)
+    {
+        DB::table('shop_order_details')->insert($listOrderDetail);
     }
 
 }

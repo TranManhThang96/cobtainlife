@@ -52,7 +52,7 @@
 
                     <div class="form-group row">
                         <label for="order-email" class="col-sm-4 text-right font-weight-bold">
-                            Email <span class="text-danger">(*)</span>
+                            Email
                         </label>
                         <div class="col-sm-8">
                             <div class="input-group">
@@ -76,7 +76,7 @@
                                 <option value="">Select a option</option>
                                 @if(isset($provinces)) 
                                     @foreach($provinces as $province)
-                                        <option value="{{$province['id']}}" {{old('province_id') == $province['id'] ? 'selected' : ''}}>{{$province['name']}}</option>
+                                        <option value="{{$province['id']}}">{{$province['name']}}</option>
                                     @endforeach 
                                 @endif
                             </select>
@@ -102,7 +102,7 @@
                         <div class="col-sm-8">
                             <select class="custom-select custom-select-2 mr-sm-2 select-district" name="ward_id" id="ward-id">
                             </select>
-                            <x-custom-error field="name" />
+                            <x-custom-error field="ward_id" />
                         </div>
                     </div>
 
@@ -261,14 +261,14 @@
                                             <input type="hidden" class="form-control" value="" name="product_name[#index]">
                                         </td>
                                         <td>
-                                            <input min="0" class="order-detail-price form-control text-right" name="price[#index]" value="0" data-type='currency'>
+                                            <input min="0" class="order-detail-price form-control text-right" name="product_price[#index]" value="0" data-type='currency'>
                                         </td>
                                         <td>
-                                            <input type="hidden" class="form-control" value="" name="product_attribute_id[#index]">
+                                            <input type="hidden" class="form-control text-right" name="product_attribute[#index]">
                                             <input min="0" readonly class="product-attribute-add-pice form-control text-right" name="product_attribute_add_pice[#index]" value="0">
                                         </td>
                                         <td>
-                                            <input type="number" min="1" class="order-detail-qty form-control" name="qty[#index]" value="1">
+                                            <input type="number" min="1" class="order-detail-qty form-control" name="product_qty[#index]" value="1">
                                         </td>
                                         <td>
                                             <input min="0" readonly class="product_total form-control text-right" value="0">
@@ -282,6 +282,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <x-custom-error field="product_id" />
                     </div>
                 </div>
             </div>
@@ -357,7 +358,7 @@
 
             <div class="row justify-content-center mt-5">
                 <a type="submit" class="btn btn-info mr-2" href="{{route('admin.orders.index')}}">Thoát</a>
-                <button type="submit" class="btn btn-success">Lưu</button>
+                <button type="submit" class="btn btn-success" id="btn-add-order">Lưu</button>
             </div>
         </div>
     </div>

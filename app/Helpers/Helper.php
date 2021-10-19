@@ -88,3 +88,14 @@ if (!function_exists('convertDateToDateTime')) {
         return null;
     }
 }
+
+if (!function_exists('convertStringToNumber')) {
+    function convertStringToNumber($stringNumber)
+    {
+        if (is_string($stringNumber)) {
+            $number = floatval(str_replace(',', '', $stringNumber));
+            return $number;
+        }
+        return 0;
+    }
+}
