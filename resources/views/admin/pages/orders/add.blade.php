@@ -265,6 +265,7 @@
                                         </td>
                                         <td>
                                             <input type="hidden" class="form-control text-right" name="product_attribute[#index]">
+                                            <input type="hidden" class="form-control" value="" name="product_attribute_full_id[#index]">
                                             <input min="0" readonly class="product-attribute-add-pice form-control text-right" name="product_attribute_add_pice[#index]" value="0">
                                         </td>
                                         <td>
@@ -283,6 +284,13 @@
                             </table>
                         </div>
                         <x-custom-error field="product_id" />
+                        @if ($errors->has('product_attribute_full_id.*'))
+                            @foreach ($errors->get('product_attribute_full_id.*') as $error)
+                                <div class="invalid-feedback">
+                                    {{ $error[0] }}
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

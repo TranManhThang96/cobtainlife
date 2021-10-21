@@ -54,9 +54,11 @@ class ShopOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.pages.orders.index');
+        $orders = $this->shopOrderService->index($request);
+        $listOrderStatus = $this->shopOrderStatusService->all();
+        return view('admin.pages.orders.index', compact('orders', 'listOrderStatus'));
     }
 
     /**

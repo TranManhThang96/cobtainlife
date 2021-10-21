@@ -31,14 +31,14 @@
         <div class="col-md-8 col-lg-8">
             <form class="form-inline justify-content-end" id="frm-search">
                 <div class="form-group mb-2">
-                    <label for="order-category">Trạng thái</label>
-                    <div id="orders-categories-options" class="ml-2 search-options">
-                        <select class="custom-select custom-select-2 mr-sm-2 select-category-option" name="category_id">
-                            <option value="">Chọn danh mục</option>
-                            @if(isset($categories))
-                                @foreach($categories as $category)
+                    <label for="order-status">Trạng thái</label>
+                    <div id="order-status-options" class="ml-2 search-options">
+                        <select class="custom-select mr-sm-2 select-order-status" name="status">
+                            <option value="">Chọn trạng thái</option>
+                            @if(isset($listOrderStatus))
+                                @foreach($listOrderStatus as $orderStatus)
                                     <option
-                                        value="{{$category['id']}}" {{request()->category_id == $category['id'] ? 'selected' : ''}}>{{$category['title']}}</option>
+                                        value="{{$orderStatus['id']}}" {{request()->status == $orderStatus['id'] ? 'selected' : ''}}>{{$orderStatus['name']}}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -63,7 +63,7 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive" id="data-table">
-
+                        @include('admin.pages.orders.list')
                     </div>
                 </div>
             </div>
