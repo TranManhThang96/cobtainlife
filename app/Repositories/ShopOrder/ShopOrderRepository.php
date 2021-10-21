@@ -32,9 +32,11 @@ class ShopOrderRepository extends RepositoryAbstract implements ShopOrderReposit
                 return $query->where('status', $status);
             })
             ->when($q, function ($query, $q) {
-                return $query->where('customer_name', 'like', "%$q%")
-                ->orWhere('phone', 'like', "%$q%")
-                ->orWhere('email', 'like', "%$q%");
+                return $query->where(function ($qr) use ($q) {
+                    $qr->where('customer_name', 'like', "%$q%")
+                        ->orWhere('phone', 'like', "%$q%")
+                        ->orWhere('email', 'like', "%$q%");
+                });
             })
             ->orderBy($sortBy, $orderBy)
             ->paginate($perPage);
@@ -49,7 +51,16 @@ class ShopOrderRepository extends RepositoryAbstract implements ShopOrderReposit
 
     public function find($id)
     {
-        return $this->model::find($id);
+        return $this->model::with('province')
+            ->with('district')
+            ->with('ward')
+            ->with('paymentStatus')
+            ->with('shippingStatus')
+            ->with('orderStatus', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('orders')
+            ->find($id);
     }
 
 }

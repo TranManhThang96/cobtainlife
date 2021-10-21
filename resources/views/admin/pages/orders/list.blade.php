@@ -36,10 +36,13 @@
             <td>{{date('d/m/Y H:i:s', strtotime($order['created_at']))}}</td>
             <td>
                 <a class="btn btn-cyan btn-sm"
+                        href="{{route('admin.orders.show', ['order' => $order['id']])}}">Xem
+                </a>
+                <a class="btn btn-cyan btn-sm"
                         href="{{route('admin.orders.edit', ['order' => $order['id']])}}">Sửa
                 </a>
-                <button type="button" class="btn btn-danger btn-sm btn-delete-order"
-                        data-order-id="{{$order['id']}}">Xóa</button>
+                <button type="button" class="btn btn-danger btn-sm btn-cancel-order"
+                        data-order-id="{{$order['id']}}">Hủy</button>
             </td>
         </tr>
     @empty

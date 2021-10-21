@@ -74,30 +74,8 @@ class ShopOrderController extends Controller
         $listShippingStatus = $this->shopShippingStatusService->all();
         $products = $this->shopProductService->all();
         $listTax = $this->shopTaxService->all();
-        $paymentMethods = [
-            [
-                'value' => Constant::PAYMENT_CASH_VALUE,
-                'label' => Constant::PAYMENT_CASH_VALUE 
-            ],
-            // [
-            //     'value' => Constant::PAYMENT_VNPAY_BASIC_VALUE,
-            //     'label' => Constant::PAYMENT_VNPAY_BASIC_LABEL 
-            // ],
-            // [
-            //     'value' => Constant::PAYMENT_PAYPAL_EXPRESS_VALUE,
-            //     'label' => Constant::PAYMENT_PAYPAL_EXPRESS_LABEL 
-            // ],
-            // [
-            //     'value' => Constant::PAYMENT_MOMO_BASIC_VALUE,
-            //     'label' => Constant::PAYMENT_MOMO_BASIC_LABEL 
-            // ]
-        ];
-        $shippingMethods = [
-            [
-                'value' => Constant::SHIPPING_STANDARD_VALUE,
-                'label' => Constant::SHIPPING_STANDARD_LABEL 
-            ],
-        ];    
+        $paymentMethods = $this->getPaymentMethods();
+        $shippingMethods = $this->getShippingMethods();
         return view('admin.pages.orders.add', compact(
             'provinces',
             'products',
@@ -165,7 +143,14 @@ class ShopOrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = $this->shopOrderService->find($id);
+        $paymentMethods = $this->getPaymentMethods();
+        $shippingMethods = $this->getShippingMethods();
+        return view('admin.pages.orders.show', compact(
+            'order',
+            'paymentMethods',
+            'shippingMethods',
+        ));
     }
 
     /**
@@ -200,5 +185,37 @@ class ShopOrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function getShippingMethods()
+    {
+        return [
+            [
+                'value' => Constant::SHIPPING_STANDARD_VALUE,
+                'label' => Constant::SHIPPING_STANDARD_LABEL 
+            ],
+        ];    
+    }
+
+    private function getPaymentMethods()
+    {
+        return [
+            [
+                'value' => Constant::PAYMENT_CASH_VALUE,
+                'label' => Constant::PAYMENT_CASH_VALUE 
+            ],
+            // [
+            //     'value' => Constant::PAYMENT_VNPAY_BASIC_VALUE,
+            //     'label' => Constant::PAYMENT_VNPAY_BASIC_LABEL 
+            // ],
+            // [
+            //     'value' => Constant::PAYMENT_PAYPAL_EXPRESS_VALUE,
+            //     'label' => Constant::PAYMENT_PAYPAL_EXPRESS_LABEL 
+            // ],
+            // [
+            //     'value' => Constant::PAYMENT_MOMO_BASIC_VALUE,
+            //     'label' => Constant::PAYMENT_MOMO_BASIC_LABEL 
+            // ]
+        ];
     }
 }
