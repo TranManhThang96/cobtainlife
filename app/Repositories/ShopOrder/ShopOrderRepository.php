@@ -24,11 +24,19 @@ class ShopOrderRepository extends RepositoryAbstract implements ShopOrderReposit
         $sortBy = $request->sort_by ?? 'id';
         $orderBy = $request->order_by ?? 'DESC';
         $perPage = $request->per_page ?? Constant::DEFAULT_PER_PAGE;
+        $status = $request->status ?? '';
 
         return $this->model
+            ->with('orderStatus')
+            ->when($status, function ($query, $status) {
+                return $query->where('status', $status);
+            })
             ->when($q, function ($query, $q) {
-                return $query->where('title', 'like', "%$q%");
-            })->orderBy($sortBy, $orderBy)
+                return $query->where('customer_name', 'like', "%$q%")
+                ->orWhere('phone', 'like', "%$q%")
+                ->orWhere('email', 'like', "%$q%");
+            })
+            ->orderBy($sortBy, $orderBy)
             ->paginate($perPage);
     }
 

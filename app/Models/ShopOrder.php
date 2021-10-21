@@ -95,7 +95,7 @@ class ShopOrder extends Model
         return $this->hasMany(\App\Models\ShopOrderDetail::class, 'order_id', 'id');
     }
 
-    public function status()
+    public function orderStatus()
     {
         return $this->belongsTo(\App\Models\ShopOrderStatus::class, 'status', 'id');
     }

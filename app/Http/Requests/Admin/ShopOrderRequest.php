@@ -39,7 +39,8 @@ class ShopOrderRequest extends FormRequest
                     'district_id' => 'required|numeric',
                     'ward_id' => 'required|numeric',
                     'address' => 'required|string',
-                    'product_id' => [new ShopOrderProducts]
+                    'product_id' => [new ShopOrderProducts],
+                    'product_attribute_full_id.*' => 'distinct'
                 ];
             case 'PUT':
                 return [

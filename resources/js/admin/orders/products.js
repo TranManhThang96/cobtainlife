@@ -86,6 +86,7 @@ $(document).ready(function () {
 function updateAddPrice(uuid) {
   let addPrice = 0;
   let attributes = {};
+  let productAttributeFullId = '';
   $(`#order-detail-${uuid} .attribute-group-options`).each(function(index, item) {
     let attributeChecked = $(item).find(`input:radio.attribute-option-item:checked`);
     let attributeCheckedPrice = attributeChecked.data('add-price');
@@ -94,8 +95,14 @@ function updateAddPrice(uuid) {
     if (typeof attributeCheckedPrice !== 'undefined') {
       addPrice += parseInt(attributeCheckedPrice);
       attributes[attributeCheckedVal] = attributeCheckedJson;
+      if (productAttributeFullId === '') {
+        productAttributeFullId = attributeCheckedVal;
+      } else {
+        productAttributeFullId =  productAttributeFullId + '-' + attributeCheckedVal;
+      }
     }
   })
+  $(`#order-detail-${uuid} input[name="product_attribute_full_id[]"]`).val(productAttributeFullId);
   $(`#order-detail-${uuid} input[name="product_attribute[]"]`).val(JSON.stringify(attributes));
   $(`#order-detail-${uuid} input[name="product_attribute_add_pice[]"]`).val(formatNumber(addPrice));
 }
@@ -118,6 +125,7 @@ function handleSelectProduct(uuid, product) {
   const regex = /\#index/g;
   attributes_groups_view = attributes_groups_view.replace(regex, uuid);
   $(`#order-detail-${uuid} .product-attributes`).empty().append(attributes_groups_view);
+  $(`#order-detail-${uuid} input[name="product_attribute_full_id[]"]`).val(product.id);
   updateAddPrice(uuid);
   handleUpdateTotalProduct(uuid);
   updateSubTotal();
