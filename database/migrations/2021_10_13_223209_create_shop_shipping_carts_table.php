@@ -19,7 +19,7 @@ class CreateShopShippingCartsTable extends Migration
             $table->id();
             $table->enum('instance', ['compare', 'default'])->default('default')->comment('default la don hang, compare la so sanh');
             $table->integer('customer_id');
-            $table->json('content');
+            $table->text('content');
             $table->timestamps();
         });
     }
