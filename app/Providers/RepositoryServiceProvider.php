@@ -63,6 +63,56 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ShopProductPromotion\ShopProductPromotionRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\Province\ProvinceRepositoryInterface::class,
+            \App\Repositories\Province\ProvinceRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\District\DistrictRepositoryInterface::class,
+            \App\Repositories\District\DistrictRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ShopCustomer\ShopCustomerRepositoryInterface::class,
+            \App\Repositories\ShopCustomer\ShopCustomerRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ShopOrder\ShopOrderRepositoryInterface::class,
+            \App\Repositories\ShopOrder\ShopOrderRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ShopOrderDetail\ShopOrderDetailRepositoryInterface::class,
+            \App\Repositories\ShopOrderDetail\ShopOrderDetailRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ShopOrderStatus\ShopOrderStatusRepositoryInterface::class,
+            \App\Repositories\ShopOrderStatus\ShopOrderStatusRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ShopPaymentStatus\ShopPaymentStatusRepositoryInterface::class,
+            \App\Repositories\ShopPaymentStatus\ShopPaymentStatusRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ShopShippingStatus\ShopShippingStatusRepositoryInterface::class,
+            \App\Repositories\ShopShippingStatus\ShopShippingStatusRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Ward\WardRepositoryInterface::class,
+            \App\Repositories\Ward\WardRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\ShopTax\ShopTaxRepositoryInterface::class,
+            \App\Repositories\ShopTax\ShopTaxRepository::class
+        );
+
     }
 
     /**

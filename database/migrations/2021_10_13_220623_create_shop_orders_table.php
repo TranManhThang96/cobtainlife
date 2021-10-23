@@ -15,7 +15,7 @@ class CreateShopOrdersTable extends Migration
     {
         Schema::create('shop_orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
+            $table->integer('customer_id')->nullable();
             $table->integer('subtotal')->default(0)->comment('tiền hàng');
             $table->integer('shipping')->default(0)->comment('vận chuyển cơ bản');
             $table->integer('discount')->default(0)->comment('giảm giá');
@@ -30,7 +30,8 @@ class CreateShopOrdersTable extends Migration
             $table->integer('ward_id')->nullable();
             $table->text('address')->nullable();
             $table->string('country')->nullable()->default('VN');
-            $table->string('email');
+            $table->string('customer_name');
+            $table->string('email')->nullable();
             $table->string('phone');
             $table->string('comment')->nullable();
             $table->string('payment_method')->nullable()->comment('phương thức thanh toán: tiền mặt');

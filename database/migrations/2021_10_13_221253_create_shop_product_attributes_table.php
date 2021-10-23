@@ -16,6 +16,7 @@ class CreateShopProductAttributesTable extends Migration
         Schema::create('shop_product_attributes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('code');
             $table->integer('attribute_group_id');
             $table->integer('product_id');
             $table->integer('add_price')->default(0)->comment('cộng thêm giá');

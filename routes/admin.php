@@ -23,6 +23,10 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/categories', ShopCategoryController::class);
         Route::get('/products/search', [\App\Http\Controllers\Admin\ShopProductController::class, 'search'])->name('products.search');
         Route::resource('/products', ShopProductController::class);
+        Route::get('/orders/search', [\App\Http\Controllers\Admin\ShopOrderController::class, 'search'])->name('orders.search');
+        Route::resource('/orders', ShopOrderController::class);
+        Route::resource('/provinces', ProvinceController::class);
+        Route::resource('/districts', DistrictController::class);
     });
 });
 
