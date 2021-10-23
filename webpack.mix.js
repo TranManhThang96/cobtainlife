@@ -29,3 +29,8 @@ mix.sass('resources/sass/admin/products/index.scss', 'public/css/admin/products'
 mix.js('resources/js/admin/orders/index', 'public/js/admin/orders');
 mix.js('resources/js/admin/orders/add', 'public/js/admin/orders');
 mix.js('resources/js/admin/orders/products', 'public/js/admin/orders');
+
+// [order-status]
+mix.js('resources/js/admin/order_status/index', 'public/js/admin/order_status');
+mix.js('resources/js/admin/order_status/add', 'public/js/admin/order_status');
+mix.js('resources/js/admin/order_status/edit', 'public/js/admin/order_status');

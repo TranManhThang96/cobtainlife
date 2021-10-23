@@ -7,19 +7,20 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
                 <!-- Logo icon -->
                 <b class="logo-icon p-l-10">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="{{asset('assets/images/logo-icon.png')}}" alt="homepage" class="light-logo"/>
+                    <!-- <img src="{{asset('assets/images/logo-icon.png')}}" alt="homepage" class="light-logo"/> -->
 
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text -->
-                <span class="logo-text">
+                <span class="logo-text brand-name text-uppercase">
                              <!-- dark Logo text -->
-                             <img src="{{asset('assets/images/logo-text.png')}}" alt="homepage" class="light-logo"/>
+                             <!-- <img src="{{asset('assets/images/logo-text.png')}}" alt="homepage" class="light-logo"/> -->
+                             Cobtainlife
 
                         </span>
                 <!-- Logo icon -->
@@ -56,27 +57,12 @@
                 <!-- create new -->
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
-                        <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
-                    </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
-                <!-- ============================================================== -->
-                <!-- Search -->
-                <!-- ============================================================== -->
-                <li class="nav-item search-box"><a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i
-                            class="ti-search"></i></a>
-                    <form class="app-search position-absolute">
-                        <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i
-                                class="ti-close"></i></a>
-                    </form>
                 </li>
             </ul>
             <!-- ============================================================== -->

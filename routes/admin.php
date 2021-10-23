@@ -27,6 +27,8 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/orders', ShopOrderController::class);
         Route::resource('/provinces', ProvinceController::class);
         Route::resource('/districts', DistrictController::class);
+        Route::get('/order-status/search', [\App\Http\Controllers\Admin\ShopOrderStatusController::class, 'search'])->name('order_status.search');
+        Route::resource('/order-status', ShopOrderStatusController::class);
     });
 });
 
