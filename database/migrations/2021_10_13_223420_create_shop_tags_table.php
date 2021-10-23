@@ -15,7 +15,7 @@ class CreateShopTagsTable extends Migration
     {
         Schema::create('shop_tags', function (Blueprint $table) {
             $table->id();
-            $table->string('label', 255)->unique();
+            $table->string('label')->unique();
             $table->string('alias')->unique();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
