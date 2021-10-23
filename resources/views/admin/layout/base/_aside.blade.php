@@ -53,7 +53,7 @@
                         <li class="sidebar-item"><a href="{{route('admin.weight-class.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Khối lượng</span></a></li>
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                        <li class="sidebar-item"><a href="{{route('admin.length-class.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Kích thước</span></a></li>
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i
