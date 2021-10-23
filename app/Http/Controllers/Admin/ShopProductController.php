@@ -134,8 +134,18 @@ class ShopProductController extends Controller
                 }
             }
             DB::commit();
+            if ($product) {
+                toastr()->success('Thêm sản phẩm thành công!', '', [
+                    'positionClass' => 'toast-top-center',
+                ]);
+                return redirect()->route('admin.products.index');
+            } 
         } catch(Exception $e) {
             Log::error($e->getMessage());
+            toastr()->error('Thêm sản phẩm thất bại!', '', [
+                'positionClass' => 'toast-top-center',
+            ]);
+            return redirect()->back()->withInput();
             DB::rollBack();
         }
     }
@@ -232,6 +242,7 @@ class ShopProductController extends Controller
                 } else {
                     $this->shopProductAttributeService->deleteAttributesByProduct($productId);
                 }
+                
                 // insert image product
                 if (isset($params['sub_images'])) {
                     $this->shopProductImageService->updateMultiple($params['sub_images'], $productId);
