@@ -8,19 +8,19 @@
     </tr>
     </thead>
     <tbody>
-    @forelse ($listShippingStatus as $shippingStatus)
+    @forelse ($listPaymentStatus as $paymentStatus)
         <tr>
             <td scope="row">{{$loop->iteration}}</td>
-            <td>{{$shippingStatus['name']}}</td>
+            <td>{{$paymentStatus['name']}}</td>
             <td>
-                {{$shippingStatus['orders_count']}}
+                {{$paymentStatus['orders_count']}}
             </td>
             <td>
-                <button class="btn btn-cyan btn-sm btn-edit-shipping-status"
-                    data-shipping-status-id="{{$shippingStatus['id']}}">Sửa
+                <button class="btn btn-cyan btn-sm btn-edit-payment-status"
+                    data-payment-status-id="{{$paymentStatus['id']}}">Sửa
                 </button>
-                <button type="button" class="btn btn-danger btn-sm btn-delete-shipping-status"
-                data-shipping-status-id="{{$shippingStatus['id']}}">Xóa</button>
+                <button type="button" class="btn btn-danger btn-sm btn-delete-payment-status"
+                data-payment-status-id="{{$paymentStatus['id']}}">Xóa</button>
             </td>
         </tr>
     @empty

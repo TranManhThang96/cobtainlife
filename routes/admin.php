@@ -31,6 +31,8 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/order-status', ShopOrderStatusController::class);
         Route::get('/shipping-status/search', [\App\Http\Controllers\Admin\ShopShippingStatusController::class, 'search'])->name('shipping_status.search');
         Route::resource('/shipping-status', ShopShippingStatusController::class);
+        Route::get('/payment-status/search', [\App\Http\Controllers\Admin\ShopPaymentStatusController::class, 'search'])->name('payment_status.search');
+        Route::resource('/payment-status', ShopPaymentStatusController::class);
     });
 });
 
