@@ -43,7 +43,7 @@ php artisan view:cache
 yarn install --frozen-lockfile
 
 # Build assets using Laravel Mix
-# npm run production
+npm run production
 
 # Turn off maintenance mode
 php artisan up
