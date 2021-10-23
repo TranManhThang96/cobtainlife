@@ -6,7 +6,6 @@ use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
 
 class ShopOrderDetail extends Model
 {
@@ -20,7 +19,7 @@ class ShopOrderDetail extends Model
         'attribute' => 'json',
     ];
 
-    protected $appends = ['total_add_price'];
+    protected $appends = ['total_add_price', 'product_full_id'];
 
     protected $fillable = [
         'order_id',
@@ -34,22 +33,6 @@ class ShopOrderDetail extends Model
         'attribute'
     ];
 
-    public static function boot()
-    {
-       parent::boot();
-       static::creating(function($model)
-       {
-           $user = Auth::guard('admin')->user();
-           $model->created_by = $user->id;
-           $model->updated_by = $user->id;
-       });
-       static::updating(function($model)
-       {
-           $user = Auth::guard('admin')->user();
-           $model->updated_by = $user->id;
-       });
-    }
-
     public function getTotalAddPriceAttribute()
     {
         try {
@@ -57,6 +40,20 @@ class ShopOrderDetail extends Model
             return collect($attributes)->sum('add_price');
         } catch(Exception $e) {
             return 0;
+        }
+    }
+    
+
+    public function getProductFullIdAttribute()
+    {
+        try {
+            $attributes = json_decode($this->attributes['attribute'], true);
+            if (count($attributes) > 0) {
+                return implode("-", array_keys($attributes));
+            }
+            return '';
+        } catch(Exception $e) {
+            return '';
         }
     }
 }

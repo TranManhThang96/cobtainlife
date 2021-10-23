@@ -20,6 +20,7 @@ $(document).ready(function () {
       loading: true,
       success: function (response) {
         $('#district-id').html(response.data['district-options']);
+        $('#ward-id').html('');
       },
       error: function (jqXHR, textStatus, errorThrown) {
         

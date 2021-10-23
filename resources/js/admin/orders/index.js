@@ -51,4 +51,24 @@ $(document).ready(function () {
     $('#frm-search input[name="order_by"]').val(order_by);
     getLists('/products/search');
   })
+
+  // set default dates
+  var start = new Date();
+
+  // set datepicker
+  $('body').on('focus', ".datepicker", function () {
+    $(this).datepicker({
+      autoclose: true,
+    });
+  });
+
+  // $('#created-at-from').on('changeDate', function(){
+  //   // set the "fromDate" end to not be later than "toDate" starts:
+  //   $('#created-at-to').datepicker('setStartDate', new Date($(this).val()));
+  // });
+
+  // $('#created-at-to').on('changeDate', function(){
+  //   // set the "fromDate" end to not be later than "toDate" starts:
+  //   $('#created-at-from').datepicker('setEndDate', new Date($(this).val()));
+  // });
 })
