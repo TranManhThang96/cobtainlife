@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Repositories\ShopProductAttribute\ShopProductAttributeRepositoryInterface;
 use App\Services\BaseService;
+use Illuminate\Support\Str;
 
 class ShopProductAttributeService extends BaseService
 {
@@ -61,9 +62,10 @@ class ShopProductAttributeService extends BaseService
                 $arrAddPrice = $productAttribute['add_price'];
                 foreach($arrName as $k=>$name) {
                     if (!empty($name) && !in_array($name, $arrCheck)) {
-                        $arrCheck[] = $name;
+                        $arrCheck[] = ucwords(strtolower($name));
                         $productAttributesInsert[] = [
                             'name' => $name,
+                            'code' => Str::slug($name, '-'),
                             'attribute_group_id' => $attributeGroupId,
                             'product_id' => $productId,
                             'add_price' =>$arrAddPrice[$k] ?? 0,

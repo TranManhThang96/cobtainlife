@@ -10,8 +10,8 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
- mix.js('resources/js/admin/app.js', 'public/js/admin')
- mix.sass('resources/sass/admin/app.scss', 'public/css/admin');
+mix.js('resources/js/admin/app.js', 'public/js/admin')
+mix.sass('resources/sass/admin/app.scss', 'public/css/admin');
 
 // [categories]
 mix.js('resources/js/admin/categories/index', 'public/js/admin/categories');
@@ -24,3 +24,8 @@ mix.js('resources/js/admin/products/add', 'public/js/admin/products');
 mix.js('resources/js/admin/products/tinymce', 'public/js/admin/products');
 mix.sass('resources/sass/admin/products/add.scss', 'public/css/admin/products');
 mix.sass('resources/sass/admin/products/index.scss', 'public/css/admin/products');
+
+// [orders]
+mix.js('resources/js/admin/orders/index', 'public/js/admin/orders');
+mix.js('resources/js/admin/orders/add', 'public/js/admin/orders');
+mix.js('resources/js/admin/orders/products', 'public/js/admin/orders');
