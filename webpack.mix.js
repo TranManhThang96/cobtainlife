@@ -50,3 +50,8 @@ mix.js('resources/js/admin/payment_status/edit', 'public/js/admin/payment_status
 mix.js('resources/js/admin/weight_class/index', 'public/js/admin/weight_class');
 mix.js('resources/js/admin/weight_class/add', 'public/js/admin/weight_class');
 mix.js('resources/js/admin/weight_class/edit', 'public/js/admin/weight_class');
+
+// [length class]
+mix.js('resources/js/admin/length_class/index', 'public/js/admin/length_class');
+mix.js('resources/js/admin/length_class/add', 'public/js/admin/length_class');
+mix.js('resources/js/admin/length_class/edit', 'public/js/admin/length_class');

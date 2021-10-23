@@ -35,6 +35,8 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/payment-status', ShopPaymentStatusController::class);
         Route::get('/weight-class/search', [\App\Http\Controllers\Admin\ShopWeightClassController::class, 'search'])->name('weight_class.search');
         Route::resource('/weight-class', ShopWeightClassController::class);
+        Route::get('/length-class/search', [\App\Http\Controllers\Admin\ShopLengthClassController::class, 'search'])->name('length_class.search');
+        Route::resource('/length-class', ShopLengthClassController::class);
     });
 });
 
