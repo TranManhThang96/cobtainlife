@@ -14,4 +14,9 @@ class ShopShippingStatus extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(\App\Models\ShopOrder::class, 'shipping_status', 'id');
+    }
 }
