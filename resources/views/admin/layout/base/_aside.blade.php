@@ -38,7 +38,7 @@
                         <li class="sidebar-item"><a href="{{route('admin.order-status.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-outline"></i><span
                                     class="hide-menu">Trạng thái đơn hàng</span></a></li>
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                        <li class="sidebar-item"><a href="{{route('admin.shipping-status.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Trạng thái vận chuyển</span></a></li>
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i

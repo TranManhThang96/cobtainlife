@@ -34,3 +34,8 @@ mix.js('resources/js/admin/orders/products', 'public/js/admin/orders');
 mix.js('resources/js/admin/order_status/index', 'public/js/admin/order_status');
 mix.js('resources/js/admin/order_status/add', 'public/js/admin/order_status');
 mix.js('resources/js/admin/order_status/edit', 'public/js/admin/order_status');
+
+// [shipping-status]
+mix.js('resources/js/admin/shipping_status/index', 'public/js/admin/shipping_status');
+mix.js('resources/js/admin/shipping_status/add', 'public/js/admin/shipping_status');
+mix.js('resources/js/admin/shipping_status/edit', 'public/js/admin/shipping_status');
