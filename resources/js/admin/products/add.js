@@ -76,7 +76,7 @@ $(document).ready(function () {
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
         </div>
-        <input type="number" id="price-promotion" name="price_promotion" value="0" class="form-control input-sm price" placeholder="" />
+        <input id="price-promotion" name="price_promotion" value="0" class="form-control input-sm price" placeholder="" data-type='currency'/>
         <span title="Remove" class="btn btn-flat btn-danger remove-promotion" id="remove-product-promotion">
           <i class="fa fa-times"></i>
         </span>

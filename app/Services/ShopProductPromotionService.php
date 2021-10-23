@@ -19,7 +19,7 @@ class ShopProductPromotionService extends BaseService
     public function store($productId, $price, $start, $end)
     {
         $attributes['product_id'] = $productId;
-        $attributes['price_promotion'] = $price;
+        $attributes['price_promotion'] = convertStringToNumber($price);
         $attributes['start'] = convertDateToDateTime($start);
         $attributes['end'] = convertDateToDateTime($end);
         return $this->productPromotionRepository->create($attributes);
@@ -29,7 +29,7 @@ class ShopProductPromotionService extends BaseService
     {
         $promotion = $this->productPromotionRepository->findPromotionByProduct($productId);
         $attributes['product_id'] = $productId;
-        $attributes['price_promotion'] = $price;
+        $attributes['price_promotion'] = convertStringToNumber($price);
         $attributes['start'] = convertDateToDateTime($start);
         $attributes['end'] = convertDateToDateTime($end);
         if ($promotion) {
