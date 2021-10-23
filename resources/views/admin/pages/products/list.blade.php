@@ -35,15 +35,15 @@
                 </p>
             </td>
             <td>
-                {{$product['price']}}
+                {{number_format($product['price'], 0)}}
             </td>
             <td>
-                <span>{{$product['promotion']['price_promotion'] ?? $product['price']}}</span>
+                <span>{{number_format($product['promotion']['price_promotion'] ?? $product['price'], 0)}}</span>
                 @if(isset($product['promotion']['start']) && isset($product['promotion']['end']))
                     <p class="pt-2">
-                        <span>{{date('d/m/Y H:i:s', strtotime($product['promotion']['start']))}}</span>
+                        <span>{{date('d/m/Y', strtotime($product['promotion']['start']))}}</span>
                         <span> - </span>
-                        <span>{{date('d/m/Y H:i:s', strtotime($product['promotion']['end']))}}</span>
+                        <span>{{date('d/m/Y', strtotime($product['promotion']['end']))}}</span>
                     </p>
                 @endif
             </td>
@@ -65,7 +65,7 @@
         </tr>
     @empty
         <tr>
-            <td colspan="8" class="text-center font-weight-bold py-5">Không có dữ liệu!</td>
+            <td colspan="9" class="text-center font-weight-bold py-5">Không có dữ liệu!</td>
         </tr>
     @endforelse
     </tbody>

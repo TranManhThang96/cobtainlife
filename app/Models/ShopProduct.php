@@ -100,4 +100,14 @@ class ShopProduct extends Model
     {
         return auth('admin')->user() ? $value : htmlspecialchars_decode($value);
     }
+
+    public function setCostAttribute($value)
+    {
+        $this->attributes['cost'] = convertStringToNumber($value);
+    }
+
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = convertStringToNumber($value);
+    }
 }

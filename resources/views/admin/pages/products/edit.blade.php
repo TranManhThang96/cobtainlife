@@ -170,7 +170,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="cost" type="number" value="{{old('cost') ?? $product->cost}}" class="form-control {{$errors->has('cost') ? 'is-invalid' : ''}}" id="product-cost" />
+                        <input name="cost" value="{{old('cost') ?? number_format($product->cost, 0)}}" class="form-control {{$errors->has('cost') ? 'is-invalid' : ''}}" id="product-cost" data-type='currency'/>
                         <x-custom-error field="cost" />
                     </div>
                 </div>
@@ -186,7 +186,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="price" type="number" value="{{old('price') ?? $product->price}}" class="form-control {{$errors->has('price') ? 'is-invalid' : ''}}" id="product-price" />
+                        <input name="price" value="{{old('price') ?? number_format($product->price, 0)}}" class="form-control {{$errors->has('price') ? 'is-invalid' : ''}}" id="product-price" data-type='currency'/>
                         <x-custom-error field="price" />
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                             </div>
-                            <input type="number" id="price-promotion" name="price_promotion" value="{{$product['promotion']['price_promotion']}}" class="form-control input-sm price" placeholder="" />
+                            <input id="price-promotion" name="price_promotion" value="{{number_format($product['promotion']['price_promotion'], 0)}}" class="form-control input-sm price" placeholder="" data-type='currency'/>
                             <span title="Remove" class="btn btn-flat btn-danger remove-promotion" id="remove-product-promotion">
                                 <i class="fa fa-times"></i>
                             </span>

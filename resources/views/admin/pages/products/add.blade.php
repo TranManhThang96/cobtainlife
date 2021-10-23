@@ -100,7 +100,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="sku" type="text" value="{{old('sku') ?? 0}}" class="form-control {{$errors->has('sku') ? 'is-invalid' : ''}}" id="product-sku" />
+                        <input name="sku" type="text" value="{{old('sku') ?? ''}}" class="form-control {{$errors->has('sku') ? 'is-invalid' : ''}}" id="product-sku" />
                         <x-custom-error field="sku" />
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="cost" type="number" value="{{old('cost') ?? 0}}" class="form-control {{$errors->has('cost') ? 'is-invalid' : ''}}" id="product-cost" />
+                        <input name="cost" value="{{old('cost') ?? 0}}" class="form-control {{$errors->has('cost') ? 'is-invalid' : ''}}" id="product-cost" data-type='currency'/>
                         <x-custom-error field="cost" />
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="price" type="number" value="{{old('price') ?? 0}}" class="form-control {{$errors->has('price') ? 'is-invalid' : ''}}" id="product-price" />
+                        <input name="price" value="{{old('price') ?? 0}}" class="form-control {{$errors->has('price') ? 'is-invalid' : ''}}" id="product-price" data-type='currency'/>
                         <x-custom-error field="price" />
                     </div>
                 </div>
