@@ -45,3 +45,8 @@ mix.js('resources/js/admin/shipping_status/edit', 'public/js/admin/shipping_stat
 mix.js('resources/js/admin/payment_status/index', 'public/js/admin/payment_status');
 mix.js('resources/js/admin/payment_status/add', 'public/js/admin/payment_status');
 mix.js('resources/js/admin/payment_status/edit', 'public/js/admin/payment_status');
+
+// [weight class]
+mix.js('resources/js/admin/weight_class/index', 'public/js/admin/weight_class');
+mix.js('resources/js/admin/weight_class/add', 'public/js/admin/weight_class');
+mix.js('resources/js/admin/weight_class/edit', 'public/js/admin/weight_class');
