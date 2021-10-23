@@ -30,6 +30,34 @@
         </div>
         <div class="col-md-8 col-lg-8">
             <form class="form-inline justify-content-end" id="frm-search">
+                <div class="form-group mb-2 mr-2">
+                    <label class="mr-2">Ngày bắt đầu</label>
+                    <input
+                        type="text"
+                        style="width: 150px;"
+                        id="created-at-from"
+                        name="created_at_from"
+                        value="{{request()->created_at_from ?? ''}}"
+                        class="form-control input-sm created-at-range date-time datepicker"
+                        data-date-format="dd/mm/yyyy"
+                        placeholder="dd/mm/yyyy"
+                        auto-close="true"
+                    />
+                </div>
+                <div class="form-group mb-2 mr-2">
+                    <label class="mr-2">Ngày kết thúc</label>
+                    <input
+                        type="text"
+                        style="width: 150px;"
+                        id="created-to"
+                        name="created_at_to"
+                        value="{{request()->created_at_to ?? ''}}"
+                        class="form-control input-sm created-at-range date-time datepicker"
+                        data-date-format="dd/mm/yyyy"
+                        placeholder="dd/mm/yyyy"
+                        auto-close="true"
+                    />
+                </div>
                 <div class="form-group mb-2">
                     <label for="order-status">Trạng thái</label>
                     <div id="order-status-options" class="ml-2 search-options">
@@ -72,11 +100,13 @@
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="{{asset('js/admin/orders/index.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/libs/select2/dist/js/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/admin/orders/index.js')}}"></script>
 @endsection
 
 @section('css')
     <link href="{{asset('assets/libs/select2/dist/css/select2.min.css')}}" rel="stylesheet"></link>
+    <link href="{{asset('assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" />
     <link type="text/css" href="{{asset('css/admin/orders/index.css')}}" rel="stylesheet" />
 @endsection

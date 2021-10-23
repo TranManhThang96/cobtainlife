@@ -33,4 +33,9 @@ class ShopOrderDetailRepository extends RepositoryAbstract implements ShopOrderD
         DB::table('shop_order_details')->insert($listOrderDetail);
     }
 
+    public function deleteMultipleOrderDetail($orderIds)
+    {
+        DB::table('shop_order_details')->whereIn('id', $orderIds)->update(['deleted_at' => new \DateTime()]);
+    }
+
 }

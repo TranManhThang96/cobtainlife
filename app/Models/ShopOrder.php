@@ -134,4 +134,16 @@ class ShopOrder extends Model
     {
         $this->attributes['total'] = convertStringToNumber($value);
     }
+
+    public function scopeOrderFrom($query, $createdAtFrom)
+    {
+        $startDate = convertDateToDateTime($createdAtFrom);
+        return $query->where('created_at', '>=', $startDate);
+    }
+
+    public function scopeOrderTo($query, $createdAtTo)
+    {
+        $endDate = date('Y-m-d', strtotime(convertDateToDateTime($createdAtTo) . ' +1 day'));
+        return $query->where('created_at', '<=', $endDate);
+    }
 }

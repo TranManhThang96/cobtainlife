@@ -55,4 +55,9 @@ class ShopOrderDetailService extends BaseService
     {
         return $this->shopOrderDetailRepository->insert($listOrderDetail);
     }
+
+    public function deleteMultipleOrderDetail($orderIds = [])
+    {
+        return $this->shopOrderDetailRepository->deleteMultipleOrderDetail($orderIds);
+    }
 }

@@ -123,7 +123,7 @@ class ShopOrderController extends Controller
                 toastr()->success('Thêm đơn hàng thành công!', '', [
                     'positionClass' => 'toast-top-center',
                 ]);
-                return redirect()->route('admin.products.index');
+                return redirect()->route('admin.orders.index');
             } 
         } catch(Exception $e) {
             Log::error($e->getMessage());
@@ -161,19 +161,114 @@ class ShopOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = $this->shopOrderService->find($id);
+        $provinces = $this->provinceService->all();
+        $currentProvince = $this->provinceService->find($order['province_id']);
+        $districts = [];
+        $wards = [];
+        if ($currentProvince) {
+            $districts = $currentProvince->districts;
+            $currentDistrict = $this->districtService->find($order['district_id']);
+            $wards = $currentDistrict->wards;
+        }
+        $listOrderStatus = $this->shopOrderStatusService->all();
+        $listPaymentStatus = $this->shopPaymentStatusService->all();
+        $listShippingStatus = $this->shopShippingStatusService->all();
+        $products = $this->shopProductService->all();
+        $listTax = $this->shopTaxService->all();
+        $paymentMethods = $this->getPaymentMethods();
+        $shippingMethods = $this->getShippingMethods();
+        return view('admin.pages.orders.edit', compact(
+            'provinces',
+            'districts',
+            'wards',
+            'order',
+            'listOrderStatus',
+            'listPaymentStatus',
+            'listShippingStatus',
+            'products',
+            'listTax',
+            'paymentMethods',
+            'shippingMethods',
+        ));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Admin\ShopOrderRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ShopOrderRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $params = $request->all();
+
+            // update order
+            $updated = $this->shopOrderService->update($id, $params);
+            if (!$updated) {
+                throw new Exception('order update failed!');
+            }
+            
+            // insert or update or delete order detail
+            $order = $this->shopOrderService->find($id);
+            $orderDetailIdInserted = $order->orders->pluck('id')->toArray();
+            $orderDetailIdDelete = array_diff($orderDetailIdInserted, $params['order_detail_id']);
+
+            $orderProducts = [];
+            foreach($params['order_detail_id'] as $key=>$orderDetailId) {
+                if (!empty($orderDetailId)) {
+                    $orderUpdateProduct = [
+                        'order_id' => $id,
+                        'product_id' => $params['product_id'][$key],
+                        'product_name' => $params['product_name'][$key],
+                        'product_sku' => $params['product_sku'][$key],
+                        'price' => convertStringToNumber($params['product_price'][$key]),
+                        'qty' => convertStringToNumber($params['product_qty'][$key]),
+                        'attribute' => json_decode($params['product_attribute'][$key], true),
+                        'updated_at' => new \DateTime(),
+                    ];
+                    $this->shopOrderDetailService->update($orderDetailId, $orderUpdateProduct);
+                } else if (empty($orderDetailId) && $key !== '#index') {
+                    $orderProducts[] = [
+                        'order_id' => $id,
+                        'product_id' => $params['product_id'][$key],
+                        'product_name' => $params['product_name'][$key],
+                        'product_sku' => $params['product_sku'][$key],
+                        'price' => convertStringToNumber($params['product_price'][$key]),
+                        'qty' => convertStringToNumber($params['product_qty'][$key]),
+                        'attribute' => $params['product_attribute'][$key],
+                        'created_at' => new \DateTime(),
+                        'updated_at' => new \DateTime(),
+                    ];
+                }
+            }
+            
+            if (count($orderProducts) > 0) {
+                $this->shopOrderDetailService->insert($orderProducts);
+            }
+
+            if (count($orderDetailIdDelete) > 0) {
+                $this->shopOrderDetailService->deleteMultipleOrderDetail($orderDetailIdDelete);
+            }
+            
+            DB::commit();
+            if (true) {
+                toastr()->success('Sửa đơn hàng thành công!', '', [
+                    'positionClass' => 'toast-top-center',
+                ]);
+                return redirect()->route('admin.orders.index');
+            } 
+        } catch(Exception $e) {
+            Log::error($e->getMessage());
+            toastr()->error('Sửa đơn hàng thất bại!', '', [
+                'positionClass' => 'toast-top-center',
+            ]);
+            return redirect()->back()->withInput();
+            DB::rollBack();
+        }
     }
 
     /**
