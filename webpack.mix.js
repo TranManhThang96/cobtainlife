@@ -55,3 +55,8 @@ mix.js('resources/js/admin/weight_class/edit', 'public/js/admin/weight_class');
 mix.js('resources/js/admin/length_class/index', 'public/js/admin/length_class');
 mix.js('resources/js/admin/length_class/add', 'public/js/admin/length_class');
 mix.js('resources/js/admin/length_class/edit', 'public/js/admin/length_class');
+
+// [tax]
+mix.js('resources/js/admin/tax/index', 'public/js/admin/tax');
+mix.js('resources/js/admin/tax/add', 'public/js/admin/tax');
+mix.js('resources/js/admin/tax/edit', 'public/js/admin/tax');
