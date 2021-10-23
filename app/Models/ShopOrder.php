@@ -143,7 +143,7 @@ class ShopOrder extends Model
 
     public function scopeOrderTo($query, $createdAtTo)
     {
-        $endDate = date('Y-m-d', strtotime(convertDateToDateTime($createdAtTo) . ' +1 day'));
+        $endDate = date('Y-m-d', strtotime(convertDateToDateTime($createdAtTo)->format('Y-m-d') . ' +1 day'));
         return $query->where('created_at', '<=', $endDate);
     }
 }
