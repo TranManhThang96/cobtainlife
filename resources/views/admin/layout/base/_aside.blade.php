@@ -59,7 +59,7 @@
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Nhóm thuộc tính</span></a></li>
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                        <li class="sidebar-item"><a href="{{route('admin.tax.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Thuế</span></a></li>
 

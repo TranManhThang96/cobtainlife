@@ -28,9 +28,8 @@ class ShopTaxRepository extends RepositoryAbstract implements ShopTaxRepositoryI
         $perPage = $request->per_page ?? Constant::DEFAULT_PER_PAGE;
 
         return $this->model
-            ->with('category')
             ->when($q, function ($query, $q) {
-                return $query->where('title', 'like', "%$q%");
+                return $query->where('name', 'like', "%$q%");
             })->orderBy($sortBy, $orderBy)
             ->paginate($perPage);
     }
