@@ -18,6 +18,9 @@ composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 # Run database migrations
 php artisan migrate --force
 
+# Run database seed
+# php artisan db:seed
+
 # Clear caches
 php artisan cache:clear
 
