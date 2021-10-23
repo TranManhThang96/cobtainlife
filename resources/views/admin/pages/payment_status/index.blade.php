@@ -3,14 +3,14 @@
 @section('title', 'Danh sách trạng thái')
 
 @section('breadcrumb')
-    {{renderBreadcrumb('Danh sách trạng thái vận chuyển', [['name' => 'Trang chủ', 'link' => '/']])}}
+    {{renderBreadcrumb('Danh sách trạng thái thanh toán', [['name' => 'Trang chủ', 'link' => '/']])}}
 @endsection
 
 @section('content')
     <div class="row mt-3">
         <div class="col-md-6 col-lg-6">
             <div class="d-flex align-items-center">
-            <button type="button" class="btn btn-success" id="btn-add-shipping-status">
+            <button type="button" class="btn btn-success" id="btn-add-payment-status">
                 {{'Thêm trạng thái'}}
             </button>
             </div>
@@ -35,27 +35,27 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive" id="data-table">
-                        @include('admin.pages.shipping_status.list')
+                        @include('admin.pages.payment_status.list')
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modal-add-shipping-status" tabindex="-1" aria-labelledby="modal-add-shipping-status"
+    <div class="modal fade" id="modal-add-payment-status" tabindex="-1" aria-labelledby="modal-add-payment-status"
          aria-hidden="true">
-        @include('admin.pages.shipping_status.add')
+        @include('admin.pages.payment_status.add')
     </div>
 
-    <div class="modal fade" id="modal-edit-shipping-status" tabindex="-1" aria-labelledby="modal-edit-shipping-status"
+    <div class="modal fade" id="modal-edit-payment-status" tabindex="-1" aria-labelledby="modal-edit-payment-status"
          aria-hidden="true">
     </div>
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="{{asset('js/admin/shipping_status/index.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/admin/shipping_status/add.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/admin/shipping_status/edit.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/admin/payment_status/index.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/admin/payment_status/add.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/admin/payment_status/edit.js')}}"></script>
 @endsection
 
 @section('css')

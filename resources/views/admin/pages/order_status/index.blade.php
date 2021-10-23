@@ -3,7 +3,7 @@
 @section('title', 'Danh sách trạng thái')
 
 @section('breadcrumb')
-    {{renderBreadcrumb('Danh sách trạng thái', [['name' => 'Trang chủ', 'link' => '/']])}}
+    {{renderBreadcrumb('Danh sách trạng thái đơn hàng', [['name' => 'Trang chủ', 'link' => '/']])}}
 @endsection
 
 @section('content')
