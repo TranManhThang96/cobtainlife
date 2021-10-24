@@ -29,3 +29,39 @@ mix.sass('resources/sass/admin/products/index.scss', 'public/css/admin/products'
 mix.js('resources/js/admin/orders/index', 'public/js/admin/orders');
 mix.js('resources/js/admin/orders/add', 'public/js/admin/orders');
 mix.js('resources/js/admin/orders/products', 'public/js/admin/orders');
+
+// [order-status]
+mix.js('resources/js/admin/order_status/index', 'public/js/admin/order_status');
+mix.js('resources/js/admin/order_status/add', 'public/js/admin/order_status');
+mix.js('resources/js/admin/order_status/edit', 'public/js/admin/order_status');
+
+// [shipping-status]
+mix.js('resources/js/admin/shipping_status/index', 'public/js/admin/shipping_status');
+mix.js('resources/js/admin/shipping_status/add', 'public/js/admin/shipping_status');
+mix.js('resources/js/admin/shipping_status/edit', 'public/js/admin/shipping_status');
+
+
+// [payment-status]
+mix.js('resources/js/admin/payment_status/index', 'public/js/admin/payment_status');
+mix.js('resources/js/admin/payment_status/add', 'public/js/admin/payment_status');
+mix.js('resources/js/admin/payment_status/edit', 'public/js/admin/payment_status');
+
+// [weight class]
+mix.js('resources/js/admin/weight_class/index', 'public/js/admin/weight_class');
+mix.js('resources/js/admin/weight_class/add', 'public/js/admin/weight_class');
+mix.js('resources/js/admin/weight_class/edit', 'public/js/admin/weight_class');
+
+// [length class]
+mix.js('resources/js/admin/length_class/index', 'public/js/admin/length_class');
+mix.js('resources/js/admin/length_class/add', 'public/js/admin/length_class');
+mix.js('resources/js/admin/length_class/edit', 'public/js/admin/length_class');
+
+// [tax]
+mix.js('resources/js/admin/tax/index', 'public/js/admin/tax');
+mix.js('resources/js/admin/tax/add', 'public/js/admin/tax');
+mix.js('resources/js/admin/tax/edit', 'public/js/admin/tax');
+
+// [attribute group]
+mix.js('resources/js/admin/attribute_group/index', 'public/js/admin/attribute_group');
+mix.js('resources/js/admin/attribute_group/add', 'public/js/admin/attribute_group');
+mix.js('resources/js/admin/attribute_group/edit', 'public/js/admin/attribute_group');

@@ -27,6 +27,20 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/orders', ShopOrderController::class);
         Route::resource('/provinces', ProvinceController::class);
         Route::resource('/districts', DistrictController::class);
+        Route::get('/order-status/search', [\App\Http\Controllers\Admin\ShopOrderStatusController::class, 'search'])->name('order_status.search');
+        Route::resource('/order-status', ShopOrderStatusController::class);
+        Route::get('/shipping-status/search', [\App\Http\Controllers\Admin\ShopShippingStatusController::class, 'search'])->name('shipping_status.search');
+        Route::resource('/shipping-status', ShopShippingStatusController::class);
+        Route::get('/payment-status/search', [\App\Http\Controllers\Admin\ShopPaymentStatusController::class, 'search'])->name('payment_status.search');
+        Route::resource('/payment-status', ShopPaymentStatusController::class);
+        Route::get('/weight-class/search', [\App\Http\Controllers\Admin\ShopWeightClassController::class, 'search'])->name('weight_class.search');
+        Route::resource('/weight-class', ShopWeightClassController::class);
+        Route::get('/length-class/search', [\App\Http\Controllers\Admin\ShopLengthClassController::class, 'search'])->name('length_class.search');
+        Route::resource('/length-class', ShopLengthClassController::class);
+        Route::get('/tax/search', [\App\Http\Controllers\Admin\ShopTaxController::class, 'search'])->name('tax.search');
+        Route::resource('/tax', ShopTaxController::class);
+        Route::get('/attribute-group/search', [\App\Http\Controllers\Admin\ShopAttributeGroupController::class, 'search'])->name('group_attribute.search');
+        Route::resource('/attribute-group', ShopAttributeGroupController::class);
     });
 });
 

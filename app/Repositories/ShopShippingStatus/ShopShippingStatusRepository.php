@@ -21,15 +21,11 @@ class ShopShippingStatusRepository extends RepositoryAbstract implements ShopShi
     public function index($request)
     {
         $q = $request->q ?? '';
-        $sortBy = $request->sort_by ?? 'id';
-        $orderBy = $request->order_by ?? 'DESC';
-        $perPage = $request->per_page ?? Constant::DEFAULT_PER_PAGE;
-
         return $this->model
+            ->withCount('orders')
             ->when($q, function ($query, $q) {
-                return $query->where('title', 'like', "%$q%");
-            })->orderBy($sortBy, $orderBy)
-            ->paginate($perPage);
+                return $query->where('name', 'like', "%$q%");
+            })->get();
     }
 
     public function all()
@@ -39,7 +35,6 @@ class ShopShippingStatusRepository extends RepositoryAbstract implements ShopShi
 
     public function find($id)
     {
-        return $this->model::find($id);
+        return $this->model::withCount('orders')->find($id);
     }
-
 }

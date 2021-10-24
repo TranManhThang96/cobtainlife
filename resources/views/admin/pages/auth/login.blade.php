@@ -3,7 +3,8 @@
 @section('content')
     <div id="loginform">
         <div class="text-center p-t-20 p-b-20">
-            <span class="db"><img src="{{asset('assets/images/logo.png')}}" alt="logo"/></span>
+            <!-- <span class="db"><img src="{{asset('assets/images/logo.png')}}" alt="logo"/></span> -->
+            <h2 class="text-light">Cobtainlife Admin</h2>
         </div>
         <!-- Form -->
         <form class="form-horizontal m-t-20" id="loginform" method="post">
@@ -26,21 +27,21 @@
                         <input type="password" class="form-control form-control-lg" placeholder="Password"
                                aria-label="Password" aria-describedby="basic-addon2" required="required" name="password">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input mt-1" type="checkbox" value="1" id="remember-me" name="remember[]">
-                        <label class="form-check-label ml-1 text-light" for="remember-me">
-                            Remember me
-                        </label>
-                    </div>
                 </div>
             </div>
             <div class="row border-top border-secondary">
                 <div class="col-12">
                     <div class="form-group">
-                        <div class="p-t-20">
-                            <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i>
+                        <div class="p-t-20 d-flex justify-content-between align-items-center">
+                            <!-- <button class="btn btn-info" id="to-recover" type="button"><i class="fa fa-lock m-r-5"></i>
                                 Lost password?
-                            </button>
+                            </button> -->
+                            <div class="form-check">
+                                <input class="form-check-input mt-1" type="checkbox" value="1" id="remember-me" name="remember[]">
+                                <label class="form-check-label ml-1 text-light" for="remember-me">
+                                    Remember me
+                                </label>
+                            </div>
                             <button class="btn btn-success float-right" type="submit">Login</button>
                         </div>
                     </div>

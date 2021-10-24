@@ -16,6 +16,16 @@ class ShopOrderStatusRepository extends RepositoryAbstract implements ShopOrderS
         return \App\Models\ShopOrderStatus::class;
     }
 
+    public function index($params)
+    {
+        $q = $params->q ?? '';
+        return $this->model
+            ->withCount('orders')
+            ->when($q, function ($query, $q) {
+                return $query->where('name', 'like', "%$q%");
+            })->get();
+    }
+
     public function all()
     {
 
@@ -24,7 +34,7 @@ class ShopOrderStatusRepository extends RepositoryAbstract implements ShopOrderS
 
     public function find($id)
     {
-        return $this->model::find($id);
+        return $this->model::withCount('orders')->find($id);
     }
 
 }
