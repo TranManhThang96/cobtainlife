@@ -15,4 +15,9 @@ class ShopPaymentStatus extends Model
         'name',
     ];
 
+    public function orders()
+    {
+        return $this->hasMany(\App\Models\ShopOrder::class, 'payment_status', 'id');
+    }
+
 }
