@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-12 col-sm-4">
                     <!-- langListII -->
-                    <ul class="nav nav-tabs langListII justify-content-end border-bottom-0">
+                    <!-- <ul class="nav nav-tabs langListII justify-content-end border-bottom-0">
                         <li class="dropdown">
                             <span>Currency: </span>
                             <a class="d-inline dropdown-toggle text-uppercase" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">USD</a>
@@ -30,7 +30,7 @@
                                 <a class="dropdown-item" href="javascript:void(0);">French</a>
                             </div>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <div class="col-6 col-sm-2">
                 <!-- mainLogo -->
                 <div class="logo">
-                    <a href="home.html"><img src="images/logo.png" alt="Botanical" class="img-fluid"></a>
+                    <a href="home.html"><img src="{{asset('dist/images/logo.png')}}" alt="Botanical" class="img-fluid"></a>
                 </div>
             </div>
             <div class="col-6 col-sm-7 col-lg-8 static-block">
@@ -56,39 +56,26 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav mx-auto text-uppercase d-inline-block">
-                                <li class="nav-item dropdown">
-                                    <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">home</a>
-                                    <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
-                                        <li class="d-block mx-0"><a href="home.html">Home 1</a></li>
-                                        <li class="d-block mx-0"><a href="home2.html">Home 2</a></li>
-                                        <li class="d-block mx-0"><a href="home3.html">Home 3</a></li>
-                                    </ul>
+                                <li class="nav-item {{request()->route()->getName() == 'web.home' ? 'active' : ''}}">
+                                    <a class="d-block" href="{{route('web.home')}}">Home</a>
                                 </li>
-                                <li class="nav-item active dropdown">
-                                    <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Store</a>
-                                    <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
-                                        <li class="d-block mx-0"><a href="shop.html">Shop Left Sidebar</a></li>
-                                        <li class="d-block mx-0"><a href="shop-detail.html">Single Product</a></li>
-                                    </ul>
+                                <li class="nav-item {{request()->route()->getName() == 'web.products.index' ? 'active' : ''}}">
+                                    <a class="d-block" href="{{route('web.products.index')}}">Store</a>
+                                </li>
+                                <li class="nav-item {{request()->route()->getName() == 'web.about-us' ? 'active' : ''}}">
+                                    <a class="d-block" href="{{route('web.about-us')}}">About</a>
+                                </li>
+                                <li class="nav-item {{request()->route()->getName() == 'web.blog.index' ? 'active' : ''}}">
+                                    <a class="d-block" href="{{route('web.blog.index')}}">Blog</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="d-block" href="about-us.html">About</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
-                                    <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
-                                        <li class="d-block mx-0"><a href="blog.html">Blog Left Sidebar</a></li>
-                                        <li class="d-block mx-0"><a href="blog-detail.html">Blog Detail</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
                                     <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                                     <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
                                         <li class="d-block mx-0"><a href="cart-page.html">Cart Page</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="d-block" href="contact-us.html">contact</a>
+                                <li class="nav-item {{request()->route()->getName() == 'web.contact-us' ? 'active' : ''}}">
+                                    <a class="d-block" href="{{route('web.contact-us')}}">contact</a>
                                 </li>
                             </ul>
                         </div>
