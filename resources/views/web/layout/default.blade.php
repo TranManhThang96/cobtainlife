@@ -22,6 +22,8 @@
 	<link href="{{asset('dist/css/color.css')}}" rel="stylesheet"/>
 	<!-- include theme responsive setting stylesheet -->
 	<link href="{{asset('dist/css/responsive.css')}}" rel="stylesheet"/>
+
+	@yield('css')
 </head>
 <body>
 	<!-- pageWrapper -->
@@ -48,5 +50,7 @@
 	<script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 	<!-- include custom JavaScript -->
 	<script src="{{asset('dist/js/jqueryCustome.js')}}"></script>
+
+	@yield('script')
 </body>
 </html>

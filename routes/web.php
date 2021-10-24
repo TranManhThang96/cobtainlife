@@ -22,6 +22,7 @@ Route::domain(config('app.main_domain'))->name('web.')->group(function () {
     Route::get('/blog.html', [\App\Http\Controllers\Web\BlogController::class, 'index'])->name('blog.index');
     Route::resource('/blog', BlogController::class);
     Route::get('/products.html', [\App\Http\Controllers\Web\ProductController::class, 'index'])->name('products.index');
+    Route::get('/products/search',[\App\Http\Controllers\Web\ProductController::class, 'search'])->name('products.search');
     Route::resource('/products', ProductController::class);
 });
 
