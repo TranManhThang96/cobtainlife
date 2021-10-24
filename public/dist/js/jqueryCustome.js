@@ -16887,16 +16887,25 @@ $(function() {
     $( "#slider-range" ).slider({
         range: true,
         min: 0,
-        max: 75,
-        values: [ 0, 50 ],
+        max: 5000000,
+        values: [ 0, 500000 ],
         slide: function( event, ui ) {
-            $( "#amount" ).html( "Price : $" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-    $( "#amount1" ).val(ui.values[ 0 ]);
-    $( "#amount2" ).val(ui.values[ 1 ]);
+            $( "#amount" ).html(formatNumber(ui.values[ 0 ]) + " - " + formatNumber(ui.values[ 1 ]) );
+            $( "#amount1" ).val(formatNumber(ui.values[ 0 ]));
+            $( "#amount2" ).val(formatNumber(ui.values[ 1 ]));
         }
     });
-    $( "#amount" ).html( "Price : $" + $( "#slider-range" ).slider( "values", 0 ) +
-    " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    var formatNumber = function(n) {
+      // format number 1234567 to 1,234,567
+      try {
+        n = n + '';
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      } catch (e) {
+        return n;
+			}
+    }
+    $( "#amount" ).html(formatNumber($( "#slider-range" ).slider( "values", 0 )) +
+    " - " + formatNumber($( "#slider-range" ).slider( "values", 1 ) ));
 
     $( "#amount1" ).val($( "#slider-range" ).slider( "values", 0 ));
     $( "#amount2" ).val($( "#slider-range" ).slider( "values", 1 ));

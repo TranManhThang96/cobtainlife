@@ -65,3 +65,8 @@ mix.js('resources/js/admin/tax/edit', 'public/js/admin/tax');
 mix.js('resources/js/admin/attribute_group/index', 'public/js/admin/attribute_group');
 mix.js('resources/js/admin/attribute_group/add', 'public/js/admin/attribute_group');
 mix.js('resources/js/admin/attribute_group/edit', 'public/js/admin/attribute_group');
+
+
+// WEB
+mix.sass('resources/sass/web/products/index.scss', 'public/css/web/products');
+mix.js('resources/js/web/products/index.js', 'public/js/web/products');

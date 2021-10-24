@@ -26,6 +26,11 @@ class ShopProductService extends BaseService
         return $this->productRepository->all($request);
     }
 
+    public function getProductsMostViews($request = null)
+    {
+        return $this->productRepository->getProductsMostViews($request);
+    }
+
     public function getAll()
     {
         return $this->productRepository->getAll();
