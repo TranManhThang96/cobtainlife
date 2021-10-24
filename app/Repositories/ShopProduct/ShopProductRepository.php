@@ -44,6 +44,8 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         $orderBy = $request->order_by ?? 'DESC';
         $perPage = $request->per_page ?? Constant::DEFAULT_PER_PAGE;
         $categoryId = $request->category_id ?? '';
+        $priceFrom = $request->price_from ?? null;
+        $priceTo = $request->price_to ?? null;
 
         return $this->model
             ->with('category')
@@ -52,6 +54,11 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
                 return $query->where('name', 'like', "%$q%")->orWhere('sku', 'like', "%$q%");
             })->when($categoryId, function ($query, $categoryId) {
                 return $query->where('category_id', '=', $categoryId);
+            })->when($priceFrom, function ($query, $priceFrom) {
+                return $query->where('price', '>=', $priceFrom);
+            })
+            ->when($priceTo, function ($query, $priceTo) {
+                return $query->where('price', '<=', $priceTo);
             })->orderBy($sortBy, $orderBy)
             ->paginate($perPage);
     }
@@ -61,6 +68,14 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         $sortBy = $request->sort_by ?? 'id';
         $orderBy = $request->order_by ?? 'DESC';
         return $this->model::with('attributes')->orderBy($sortBy, $orderBy)->get();
+    }
+
+    public function getProductsMostViews($request)
+    {
+        $sortBy = $request->sort_by ?? 'view';
+        $orderBy = $request->order_by ?? 'DESC';
+        $limit = $request->limit ?? 5;
+        return $this->model::with('category')->with('promotion')->orderBy($sortBy, $orderBy)->skip(0)->take($limit)->get();
     }
 
     public function find($id)
