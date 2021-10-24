@@ -63,9 +63,9 @@ class ShopTaxController extends Controller
     {
         $tax = $this->shopTaxService->store($request->all());
         if ($tax) {
-            return $this->apiSendSuccess($tax, Response::HTTP_CREATED, 'Thêm đơn vị thành công!');
+            return $this->apiSendSuccess($tax, Response::HTTP_CREATED, 'Thêm thuế thành công!');
         }
-        return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Thêm đơn vị thất bại');
+        return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Thêm thuế thất bại');
     }
 
     /**
@@ -103,9 +103,9 @@ class ShopTaxController extends Controller
     {
         $result = $this->shopTaxService->update($id, $request->all());
         if ($result) {
-            return $this->apiSendSuccess($result, Response::HTTP_OK, 'Cập nhật đơn vị thành công!');
+            return $this->apiSendSuccess($result, Response::HTTP_OK, 'Cập nhật thuế thành công!');
         }
-        return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Cập nhật đơn vị thất bại');
+        return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Cập nhật thuế thất bại');
     }
 
     /**
@@ -118,8 +118,8 @@ class ShopTaxController extends Controller
     {
         $isDeleted = $this->shopTaxService->delete($id);
         if ($isDeleted) {
-            return $this->apiSendSuccess($isDeleted, Response::HTTP_OK, 'Xóa đơn vị thành công');
+            return $this->apiSendSuccess($isDeleted, Response::HTTP_OK, 'Xóa thuế thành công');
         }
-        return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Xóa đơn vị thất bại');
+        return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Xóa thuế thất bại');
     }
 }

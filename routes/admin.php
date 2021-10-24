@@ -39,6 +39,8 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/length-class', ShopLengthClassController::class);
         Route::get('/tax/search', [\App\Http\Controllers\Admin\ShopTaxController::class, 'search'])->name('tax.search');
         Route::resource('/tax', ShopTaxController::class);
+        Route::get('/attribute-group/search', [\App\Http\Controllers\Admin\ShopAttributeGroupController::class, 'search'])->name('group_attribute.search');
+        Route::resource('/attribute-group', ShopAttributeGroupController::class);
     });
 });
 

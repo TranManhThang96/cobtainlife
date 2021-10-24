@@ -60,3 +60,8 @@ mix.js('resources/js/admin/length_class/edit', 'public/js/admin/length_class');
 mix.js('resources/js/admin/tax/index', 'public/js/admin/tax');
 mix.js('resources/js/admin/tax/add', 'public/js/admin/tax');
 mix.js('resources/js/admin/tax/edit', 'public/js/admin/tax');
+
+// [attribute group]
+mix.js('resources/js/admin/attribute_group/index', 'public/js/admin/attribute_group');
+mix.js('resources/js/admin/attribute_group/add', 'public/js/admin/attribute_group');
+mix.js('resources/js/admin/attribute_group/edit', 'public/js/admin/attribute_group');
