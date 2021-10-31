@@ -1,0 +1,27 @@
+.wishlist {
+    .title {
+        a {
+            text-decoration: none;
+            background-color: transparent;
+            color: #707070;
+            transition: color 0.3s ease;
+            &:hover {
+                color: #5ba515;
+            }
+        }
+    }
+
+    .price {
+        del {
+            font-size: 14px;
+            line-height: 16px;
+            color: #bebebe;
+            font-weight: 400;
+        }
+    }
+
+    .remove-wishlist-item {
+        color: #666666;
+        font-weight: 900;
+    }
+}
