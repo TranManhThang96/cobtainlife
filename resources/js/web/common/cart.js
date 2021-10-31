@@ -158,6 +158,26 @@ $(document).ready(function () {
     }
   })
 
+  // handle remove item in compare list
+  $(document).on('click', '.remove-compare-item', function () {
+    const productId = $(this).data('product-id');
+    const index = compareList.indexOf(productId);
+    if (index > -1) {
+      compareList.splice(index, 1);
+      $('#count-compare-list').text(compareList.length);
+      localStorageModel.set('compareList', JSON.stringify(compareList));
+      $(this).closest('.compare-product').remove();
+      toastr.success('Xóa sản phẩm compare thành công');
+    }
+
+    if (compareList.length == 0) {
+      $('#product-render-data').empty().html(`<div class="row mt-5">
+                          <span class="text-danger">Không tìm thấy dữ liệu</span>
+                      </div>`);
+    }
+  })
+
+
   $(document).on('click', '#go-checkout-confirm', function () {
     if (Object.keys(cart).length == 0) {
       toastr.error('Giỏ hàng trống!');

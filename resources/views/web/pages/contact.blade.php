@@ -2,15 +2,15 @@
 
 @section('content')
 <!-- introBannerHolder -->
-<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url(http://placehold.it/1920x300);">
+<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{asset('dist/images/1920x300.png')}});">
     <div class="container">
         <div class="row">
             <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
-                <h1 class="headingIV fwEbold playfair mb-4">Contact</h1>
+                <h1 class="headingIV fwEbold playfair mb-4">Liên Hệ</h1>
                 <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-                    <li class="mr-2"><a href="home.html">Home</a></li>
+                    <li class="mr-2"><a href="{{route('web.home')}}">Trang Chủ</a></li>
                     <li class="mr-2">/</li>
-                    <li class="active">Contact</li>
+                    <li class="active">Liên Hệ</li>
                 </ul>
             </div>
         </div>
