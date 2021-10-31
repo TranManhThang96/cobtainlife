@@ -1,0 +1,11 @@
+.form-control {
+    height: 35px;
+    color: #4F5467 !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    border: 1px solid #e9ecef !important;
+    &:focus {
+        border-color: rgba(0, 0, 0, 0.25) !important;
+        outline: 0 !important;
+    }
+}

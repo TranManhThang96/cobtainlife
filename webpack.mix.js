@@ -68,5 +68,15 @@ mix.js('resources/js/admin/attribute_group/edit', 'public/js/admin/attribute_gro
 
 
 // WEB
+mix.sass('resources/sass/web/app.scss', 'public/css/web');
 mix.sass('resources/sass/web/products/index.scss', 'public/css/web/products');
+mix.sass('resources/sass/web/products/detail.scss', 'public/css/web/products');
 mix.js('resources/js/web/products/index.js', 'public/js/web/products');
+mix.js('resources/js/web/products/detail.js', 'public/js/web/products');
+mix.js('resources/js/web/app.js', 'public/js/web');
+mix.js('resources/js/web/checkout.js', 'public/js/web');
+
+// [WEB] common
+mix.js('resources/js/web/common/local_storage.js', 'public/js/web/common');
+mix.js('resources/js/web/common/cart.js', 'public/js/web/common');
+mix.js('resources/js/web/common/utils.js', 'public/js/web/common');

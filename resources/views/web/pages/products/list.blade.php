@@ -14,7 +14,9 @@
             <div class="d-flex flex-nowrap align-items-center">
                 <strong class="groupTitle mr-2">Lọc theo:</strong>
                 <div class="dropdown">
-                    <button class="dropdown-toggle buttonReset" type="button" id="sortGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Xem nhiều</button>
+                    <button class="dropdown-toggle buttonReset" type="button" id="sortGroup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request()->sort_by == 'price' ? (request()->order_by == 'desc' ? 'Giá giảm dần' : 'Giá tăng dần') : 'Xem nhiều'}}
+                    </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sortGroup">
                         <div data-sort="view-desc" class="sort-option"><a>Xem nhiều</a></div>
                         <div data-sort="price-asc" class="sort-option"><a>Giá tăng dần</a></div>
@@ -33,14 +35,29 @@
                 <div class="imgHolder position-relative w-100 overflow-hidden">
                     <img src="{{asset('storage'.$product->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/270x300.png')}}"' width="270px" height="300px">
                     <ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-                        <li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-                        <li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+                        <li class="mr-2 overflow-hidden add-wishlist" data-product-id="{{$product->id}}"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+                        <li class="mr-2 overflow-hidden">
+                            @if ($product->attributes_count > 0)
+                                <a href="{{route('web.products.show', ['product' => $product->alias])}}" class="icon-cart d-block"></a>
+                            @else
+                                <a href="javascript:void(0);" class="icon-cart d-block add-to-cart" 
+                                data-product-id="{{$product->id}}"
+                                data-product-name="{{$product->name}}"
+                                data-product-link="{{route('web.products.show', ['product' => $product->alias])}}"
+                                data-product-sku="{{$product->sku}}"
+                                data-product-full-id="{{$product->id}}"
+                                data-product-image="{{asset('storage'.$product->image)}}"
+                                data-product-price="{{$product->promotionValid ? $product->promotion->price_promotion : $product->price}}"
+                                >
+                            </a>
+                            @endif
+                        </li>
+                        <li class="mr-2 overflow-hidden"><a href="{{route('web.products.show', ['product' => $product->alias])}}" class="icon-eye d-block"></a></li>
+                        <li class="overflow-hidden add-compare-list" data-product-id="{{$product->id}}"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
                     </ul>
                 </div>
                 <div class="text-center py-5 px-4">
-                    <span class="title d-block mb-2"><a href="shop-detail.html">{{$product->name}}</a></span>
+                    <span class="title d-block mb-2"><a href="{{route('web.products.show', ['product' => $product->alias])}}">{{$product->name}}</a></span>
                     @if($product->promotionValid)
                     <span class="price d-block fwEbold"><del>{{number_format($product->price, 0)}} VND</del>{{number_format($product->promotion->price_promotion, 0)}} VND</span>
                     @else

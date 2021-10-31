@@ -64,7 +64,7 @@ class ShopProductRequest extends FormRequest
                     'content' => 'required',
                     'cost' => 'nullable',
                     'price' => 'nullable',
-                    'price_promotion' => 'numeric|nullable',
+                    'price_promotion' => 'nullable',
                     'stock' => 'numeric|nullable',
                     'weight' => 'numeric|nullable',
                     'length' => 'numeric|nullable',
