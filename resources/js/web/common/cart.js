@@ -32,6 +32,9 @@ $(document).ready(function () {
     }
     if (!currentWishList.includes(productId)) {
       currentWishList.push(productId);
+      toastr.success('Thêm vào wishlist thành công');
+    } else {
+      toastr.error('Sản phẩm đã có trong wishlist!');
     }
     wishList = currentWishList;
     $('#count-wishlist').text(wishList.length);
@@ -49,7 +52,11 @@ $(document).ready(function () {
     }
     if (!currentCompareList.includes(productId)) {
       currentCompareList.push(productId);
+      toastr.success('Thêm vào compare thành công');
+    } else {
+      toastr.error('Sản phẩm đã có trong compare!');
     }
+
     compareList = currentCompareList;
     $('#count-compare-list').text(compareList.length);
     localStorageModel.set('compareList', JSON.stringify(currentCompareList));
@@ -126,14 +133,36 @@ $(document).ready(function () {
     renderCart();
   })
 
-  // handle remote item in cart
+  // handle remove item in cart
   $(document).on('click', '.remove-order-item', function () {
     const fullId = $(this).data('full-id');
     removeOrderItem(fullId);
   })
 
+  // handle remove item in wishlist
+  $(document).on('click', '.remove-wishlist-item', function () {
+    const productId = $(this).data('product-id');
+    const index = wishList.indexOf(productId);
+    if (index > -1) {
+      wishList.splice(index, 1);
+      $('#count-wishlist').text(wishList.length);
+      localStorageModel.set('wishlist', JSON.stringify(wishList));
+      $(this).closest('.row_cart.wishlist').remove();
+      toastr.success('Xóa sản phẩm wishlist thành công');
+    }
+
+    if (wishList.length == 0) {
+      $('#product-render-data').empty().html(`<div class="row mt-5">
+                          <span class="text-danger">Không tìm thấy dữ liệu</span>
+                      </div>`);
+    }
+  })
+
   $(document).on('click', '#go-checkout-confirm', function () {
-    // go to card
+    if (Object.keys(cart).length == 0) {
+      toastr.error('Giỏ hàng trống!');
+      return;
+    }
     window.location.href = '/checkout';
   })
 
@@ -158,7 +187,7 @@ $(document).ready(function () {
   // checkout process
   $(document).on('click', '#button-payment-process', function () {
     if (Object.keys(cart).length == 0) {
-      toastr.error('Đơn hàng trống!');
+      toastr.error('Giỏ hàng trống!');
       return;
     }
     let dataForm = $('#frm-order-info').serializeArray();

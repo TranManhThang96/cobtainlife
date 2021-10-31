@@ -98,7 +98,7 @@
                                 <i class="fa fa-user pr-1"></i>
                                 Đăng nhập
                             </a>
-							<a class="dropdown-item px-2" href="javascript:void(0);">
+							<a class="dropdown-item px-2" href="{{route('web.wishlist')}}">
                                 <i class="fas fa-heart pr-1"></i>
                                 Yêu thích (<span id="count-wishlist">0</span>)
                             </a>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,8 @@ Route::domain(config('app.main_domain'))->name('web.')->group(function () {
     Route::resource('/checkout', CheckoutController::class);
     Route::get('/blog.html', [\App\Http\Controllers\Web\BlogController::class, 'index'])->name('blog.index');
     Route::resource('/blog', BlogController::class);
+    Route::get('/wishlist', [\App\Http\Controllers\Web\WishlistController::class, 'index'])->name('wishlist');
+    Route::post('/wishlist', [\App\Http\Controllers\Web\WishlistController::class, 'render'])->name('wishlist.render');
     Route::get('/products.html', [\App\Http\Controllers\Web\ProductController::class, 'index'])->name('products.index');
     Route::get('/products/search',[\App\Http\Controllers\Web\ProductController::class, 'search'])->name('products.search');
     Route::resource('/products', ProductController::class);
