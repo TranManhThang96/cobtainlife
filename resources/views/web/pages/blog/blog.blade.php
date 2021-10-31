@@ -1,15 +1,15 @@
 @extends('web.layout.default')
 
 @section('content')
-<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url(http://placehold.it/1920x300);">
+<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{asset('dist/images/1920x300.png')}});">
     <div class="container">
         <div class="row">
             <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
-                <h1 class="headingIV fwEbold playfair mb-4">Blog</h1>
+                <h1 class="headingIV fwEbold playfair mb-4">Tin Tức</h1>
                 <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-                    <li class="mr-2"><a href="home.html">Home</a></li>
+                    <li class="mr-2"><a href="{{route('web.home')}}">Trang Chủ</a></li>
                     <li class="mr-2">/</li>
-                    <li class="active">Blog</li>
+                    <li class="active">Tin Tức</li>
                 </ul>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 <div class="newsBlogColumn mb-md-9 mb-6">
                     <div class="imgHolder position-relative mb-6">
                         <a href="blog-detail.html">
-                            <img src="http://placehold.it/870x450" alt="image description" class="img-fluid">
+                            <img src="{{asset('dist/images/870x450.png')}}" alt="image description" class="img-fluid">
                         </a>
                     </div>
                     <div class="textHolder d-flex align-items-start">
@@ -41,7 +41,7 @@
                 <div class="newsBlogColumn mb-md-9 mb-6">
                     <div class="imgHolder position-relative mb-6">
                         <a href="blog-detail.html">
-                            <img src="http://placehold.it/870x450" alt="image description" class="img-fluid">
+                            <img src="{{asset('dist/images/870x450.png')}}" alt="image description" class="img-fluid">
                         </a>
                     </div>
                     <div class="textHolder d-flex align-items-start">
@@ -57,7 +57,7 @@
                 <div class="newsBlogColumn mb-md-9 mb-6">
                     <div class="imgHolder position-relative mb-6">
                         <a href="blog-detail.html">
-                            <img src="http://placehold.it/870x450" alt="image description" class="img-fluid">
+                            <img src="{{asset('dist/images/870x450.png')}}" alt="image description" class="img-fluid">
                         </a>
                     </div>
                     <div class="textHolder d-flex align-items-start">

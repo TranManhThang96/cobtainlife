@@ -6,7 +6,7 @@
 	<div class="slick-fade">
 		<div>
 			<!-- align -->
-			<div class="align w-100 d-flex align-items-center bgCover" style="background-image: url(http://placehold.it/1920x900)">
+			<div class="align w-100 d-flex align-items-center bgCover" style="background-image: url({{asset('dist/images/1920x900.png')}})">
 				<div class="container position-relative holder pt-xl-10">
 					<div class="row">
 						<div class="col-12 col-xl-7">
@@ -14,7 +14,7 @@
 								<span class="title d-block text-uppercase fwEbold position-relative pl-2 mb-md-5 mb-sm-3">wellcome to botanical</span>
 								<h1 class="fwEbold position-relative mb-md-7 mb-sm-4">Houseplant <span class="text-break d-block">The Perfect Choice.</span></h1>
 								<p class="mb-md-15 mb-sm-10">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
-								<a href="shop.html" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4">Shop Now <i class="fas fa-arrow-right ml-2"></i></a>
+								<a href="{{route('web.products.index')}}" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4">Cửa Hàng <i class="fas fa-arrow-right ml-2"></i></a>
 							</div>
 						</div>
 					</div>
@@ -23,7 +23,7 @@
 		</div>
 		<div>
 			<!-- align -->
-			<div class="align w-100 bgCover" style="background-image: url(http://placehold.it/1920x900);">
+			<div class="align w-100 bgCover" style="background-image: url({{asset('dist/images/1920x900.png')}});">
 				<div class="container position-relative holder pt-14">
 					<!-- py-12 pt-lg-30 pb-lg-25 -->
 					<div class="row">
@@ -32,7 +32,7 @@
 								<h1 class="fwEbold position-relative mb-0">NUTRIENTS PLANTS</h1>
 								<strong class="year d-block fwEbold mb-3">2019</strong>
 								<span class="sub-title d-block text-uppercase mb-md-12 mb-6">OCCASSIONAL BOUQUET</span>
-								<a href="shop.html" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4">Shop Now <i class="fas fa-arrow-right ml-2"></i></a>
+								<a href="{{route('web.products.index')}}" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4">Cửa Hàng <i class="fas fa-arrow-right ml-2"></i></a>
 							</div>
 						</div>
 					</div>
@@ -122,7 +122,7 @@
 		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
 			<div class="border">
 				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
 					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
@@ -140,7 +140,7 @@
 		<div class="col-12 col-sm-6 col-lg-3 featureCol mb-6">
 			<div class="border">
 				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
 					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
@@ -158,7 +158,7 @@
 		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
 			<div class="border">
 				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
 					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
@@ -177,7 +177,7 @@
 		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
 			<div class="border">
 				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
 					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
@@ -202,7 +202,7 @@
 		<div class="grid-item mb-6 px-3">
 			<div class="itemCol">
 				<div class="position-relative">
-					<img src="http://placehold.it/410x845" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/410x845.png')}}" alt="image description" class="img-fluid w-100">
 					<div class="hoverTextBlock position-absolute">
 						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Cactus Plant</a></h2>
 						<span class="txt d-block">( 56 item )</span>
@@ -214,7 +214,7 @@
 		<div class="grid-item mb-6 px-3">
 			<div class="itemCol">
 				<div class="position-relative">
-					<img src="http://placehold.it/410x410" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/410x410.png')}}" alt="image description" class="img-fluid w-100">
 					<div class="hoverTextBlock position-absolute">
 						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Indoor Plant</a></h2>
 						<span class="txt d-block">( 36 item )</span>
@@ -226,7 +226,7 @@
 		<div class="grid-item grid-item2 mb-6 px-3">
 			<div class="itemCol">
 				<div class="position-relative">
-					<img src="http://placehold.it/845x410" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/845x410.png')}}" alt="image description" class="img-fluid w-100">
 					<div class="hoverTextBlock position-absolute">
 						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Tropical Plant</a></h2>
 						<span class="txt d-block">( 21 item )</span>
@@ -238,7 +238,7 @@
 		<div class="grid-item grid-item2 mb-6 px-3">
 			<div class="itemCol">
 				<div class="position-relative">
-					<img src="http://placehold.it/845x410" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/845x410.png')}}" alt="image description" class="img-fluid w-100">
 					<div class="hoverTextBlock position-absolute">
 						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Floor Plant</a></h2>
 						<span class="txt d-block">( 18 item )</span>
@@ -250,7 +250,7 @@
 		<div class="grid-item mb-6 px-3">
 			<div class="itemCol">
 				<div class="position-relative">
-					<img src="http://placehold.it/410x410" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/410x410.png')}}" alt="image description" class="img-fluid w-100">
 					<div class="hoverTextBlock position-absolute">
 						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Table Plant</a></h2>
 						<span class="txt d-block">( 36 item )</span>
@@ -275,7 +275,7 @@
 		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
 			<div class="border">
 				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
 					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
@@ -295,7 +295,7 @@
 		<div class="col-12 col-sm-6 col-lg-3 featureCol mb-6">
 			<div class="border">
 				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
 					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
@@ -313,7 +313,7 @@
 		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
 			<div class="border">
 				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
 					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
@@ -332,7 +332,7 @@
 		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
 			<div class="border">
 				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="http://placehold.it/270x300" alt="image description" class="img-fluid w-100">
+					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
 					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
 						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
@@ -351,7 +351,7 @@
 </section>
 <div class="container-fluid px-xl-20 px-lg-10">
 	<!-- testimonailBlock -->
-	<section class="testimonailBlock bgCover py-xl-24 py-lg-20 py-md-16 py-10" style="background-image: url(http://placehold.it/1720x560)">
+	<section class="testimonailBlock bgCover py-xl-24 py-lg-20 py-md-16 py-10" style="background-image: url({{asset('dist/images/1720x560.png')}})">
 		<header class="col-12 mainHeader mb-9 text-center">
 			<h1 class="headingIV playfair fwEblod">What Say Client</h1>
 		</header>
@@ -402,7 +402,7 @@
 			<div class="newsPostColumn text-center px-2 pb-6 mb-6">
 				<div class="imgHolder position-relative mb-6">
 					<a href="blog-detail.html">
-						<img src="http://placehold.it/370x250" alt="image description" class="img-fluid w-100">
+						<img src="{{asset('dist/images/370x250.png')}}" alt="image description" class="img-fluid w-100">
 						<time class="time text-uppercase position-absolute py-2 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block">20</strong> Sep</time>
 					</a>
 				</div>
@@ -416,7 +416,7 @@
 			<div class="newsPostColumn text-center px-2 pb-6 mb-6">
 				<div class="imgHolder position-relative mb-6">
 					<a href="blog-detail.html">
-						<img src="http://placehold.it/370x250" alt="image description" class="img-fluid w-100">
+						<img src="{{asset('dist/images/370x250.png')}}" alt="image description" class="img-fluid w-100">
 						<time class="time text-uppercase position-absolute py-2 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block">18</strong> Sep</time>
 					</a>
 				</div>
@@ -430,7 +430,7 @@
 			<div class="newsPostColumn text-center px-2 pb-6 mb-6">
 				<div class="imgHolder position-relative mb-6">
 					<a href="blog-detail.html">
-						<img src="http://placehold.it/370x250" alt="image description" class="img-fluid w-100">
+						<img src="{{asset('dist/images/370x250.png')}}" alt="image description" class="img-fluid w-100">
 						<time class="time text-uppercase position-absolute py-2 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block">21</strong> Sep</time>
 					</a>
 				</div>

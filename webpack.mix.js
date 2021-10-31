@@ -89,3 +89,7 @@ mix.js('resources/js/web/checkout.js', 'public/js/web');
 // [WEB] wishlist
 mix.js('resources/js/web/wishlist.js', 'public/js/web');
 mix.sass('resources/sass/web/wishlist/products.scss', 'public/css/web/wishlist');
+
+// [WEB] compare
+mix.js('resources/js/web/compare.js', 'public/js/web');
+mix.sass('resources/sass/web/compare/products.scss', 'public/css/web/compare');
