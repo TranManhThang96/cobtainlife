@@ -21,6 +21,11 @@ class ShopProductService extends BaseService
         return $this->productRepository->index($request);
     }
 
+    public function search($request)
+    {
+        return $this->productRepository->search($request);
+    }
+
     public function all($request = null)
     {
         return $this->productRepository->all($request);
@@ -64,5 +69,15 @@ class ShopProductService extends BaseService
     public function delete($id)
     {
         return $this->productRepository->delete($id);
+    }
+
+    public function findByAlias($alias)
+    {
+        return $this->productRepository->findByAlias($alias);
+    }
+
+    public function relatedProducts($productId, $categoryId = null)
+    {
+        return $this->productRepository->relatedProducts($productId, $categoryId);
     }
 }

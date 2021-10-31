@@ -30,9 +30,17 @@
     "/js/admin/attribute_group/add.js": "/js/admin/attribute_group/add.js",
     "/js/admin/attribute_group/edit.js": "/js/admin/attribute_group/edit.js",
     "/js/web/products/index.js": "/js/web/products/index.js",
-    "/css/web/products/index.css": "/css/web/products/index.css",
+    "/js/web/products/detail.js": "/js/web/products/detail.js",
+    "/js/web/app.js": "/js/web/app.js",
+    "/js/web/checkout.js": "/js/web/checkout.js",
+    "/js/web/common/local_storage.js": "/js/web/common/local_storage.js",
+    "/js/web/common/cart.js": "/js/web/common/cart.js",
+    "/js/web/common/utils.js": "/js/web/common/utils.js",
+    "/css/web/app.css": "/css/web/app.css",
     "/css/admin/products/index.css": "/css/admin/products/index.css",
     "/css/admin/products/add.css": "/css/admin/products/add.css",
     "/css/admin/categories/add.css": "/css/admin/categories/add.css",
-    "/css/admin/app.css": "/css/admin/app.css"
+    "/css/admin/app.css": "/css/admin/app.css",
+    "/css/web/products/detail.css": "/css/web/products/detail.css",
+    "/css/web/products/index.css": "/css/web/products/index.css"
 }

@@ -97,9 +97,27 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($alias)
     {
-        //
+        $product = $this->shopProductService->findByAlias($alias);
+        $isPromotionValid = false;
+        if (!empty($product['promotion'])) {
+            $isPromotionValid = $this->checkValidPromotion($product['promotion'], $product['price']);
+        }
+        if (!empty($product['attributes'])) {
+            $product['attributes_groups'] = collect($product['attributes'])->groupBy('attribute_group_id')->toArray();
+        }
+        $product['promotionValid'] = $isPromotionValid;
+        $relatedProducts = $this->shopProductService->relatedProducts($product->id, $product->category_id ?? null);
+        if ($relatedProducts) {
+            foreach($relatedProducts as &$relatedProduct) {
+                if (!empty($relatedProduct['promotion'])) {
+                    $isValid = $this->checkValidPromotion($relatedProduct['promotion'], $relatedProduct['price']);
+                    $relatedProduct['promotionValid'] = $isValid;
+                }
+            }
+        }
+        return view('web.pages.products.product_detail', compact('product', 'relatedProducts'));
     }
 
     /**

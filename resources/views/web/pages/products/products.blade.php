@@ -75,7 +75,7 @@
                             @foreach($productsMostViews as $product)
                                 <li class="mb-6 d-flex flex-nowrap">
                                     <div class="alignleft">
-                                        <a href="#">
+                                        <a href="{{route('web.products.show', ['product' => $product->alias])}}">
                                             <img src="{{asset('storage'.$product->image)}}" 
                                                 alt="{{$product->name}}"
                                                 onerror='this.src="{{asset('dist/images/70x80.png')}}"' 
@@ -83,7 +83,7 @@
                                         </a>
                                     </div>
                                     <div class="description-wrap pl-1">
-                                        <h4 class="headingVII mb-1"><a href="#">{{$product->name}}</a></h4>
+                                        <h4 class="headingVII mb-1"><a href="{{route('web.products.show', ['product' => $product->alias])}}">{{$product->name}}</a></h4>
                                         @if($product->promotionValid)
                                             <span class="price d-block pb-1"><del>{{number_format($product->price, 0)}} VND</del></span>
                                             <span class="price d-block fwEbold">{{number_format($product->promotion->price_promotion, 0)}} VND</span>
