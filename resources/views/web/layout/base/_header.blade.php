@@ -57,25 +57,19 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav mx-auto text-uppercase d-inline-block">
                                 <li class="nav-item {{request()->route()->getName() == 'web.home' ? 'active' : ''}}">
-                                    <a class="d-block" href="{{route('web.home')}}">Home</a>
+                                    <a class="d-block" href="{{route('web.home')}}">Trang chủ</a>
                                 </li>
                                 <li class="nav-item {{request()->route()->getName() == 'web.products.index' ? 'active' : ''}}">
-                                    <a class="d-block" href="{{route('web.products.index')}}">Store</a>
+                                    <a class="d-block" href="{{route('web.products.index')}}">Cửa hàng</a>
                                 </li>
                                 <li class="nav-item {{request()->route()->getName() == 'web.about-us' ? 'active' : ''}}">
-                                    <a class="d-block" href="{{route('web.about-us')}}">About</a>
+                                    <a class="d-block" href="{{route('web.about-us')}}">Về chúng tôi</a>
                                 </li>
                                 <li class="nav-item {{request()->route()->getName() == 'web.blog.index' ? 'active' : ''}}">
-                                    <a class="d-block" href="{{route('web.blog.index')}}">Blog</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                    <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
-                                        <li class="d-block mx-0"><a href="cart-page.html">Cart Page</a></li>
-                                    </ul>
+                                    <a class="d-block" href="{{route('web.blog.index')}}">Tin tức</a>
                                 </li>
                                 <li class="nav-item {{request()->route()->getName() == 'web.contact-us' ? 'active' : ''}}">
-                                    <a class="d-block" href="{{route('web.contact-us')}}">contact</a>
+                                    <a class="d-block" href="{{route('web.contact-us')}}">Liên hệ</a>
                                 </li>
                             </ul>
                         </div>
@@ -102,8 +96,8 @@
                                 <i class="fas fa-heart pr-1"></i>
                                 Yêu thích (<span id="count-wishlist">0</span>)
                             </a>
-							<a class="dropdown-item px-2" href="javascript:void(0);">
-                                <i class="fas fa-exchange pr-1"></i>
+							<a class="dropdown-item px-2" href="{{route('web.compare')}}">
+                                <i class="icon-arrow pr-1"></i>
                                 So sánh (<span id="count-compare-list">0</span>)
                             </a>
 						</div>

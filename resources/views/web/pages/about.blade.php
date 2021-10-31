@@ -1,15 +1,15 @@
 @extends('web.layout.default')
 
 @section('content')
-<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url(http://placehold.it/1920x300);">
+<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{asset('dist/images/1920x300.png')}});">
     <div class="container">
         <div class="row">
             <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
-                <h1 class="headingIV fwEbold playfair mb-4">About Us</h1>
+                <h1 class="headingIV fwEbold playfair mb-4">Về Chúng Tôi</h1>
                 <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-                    <li class="mr-2"><a href="home.html">Home</a></li>
+                    <li class="mr-2"><a href="{{route('web.home')}}">Trang Chủ</a></li>
                     <li class="mr-2">/</li>
-                    <li class="active">About</li>
+                    <li class="active">Về Chúng Tôi</li>
                 </ul>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <p class="pr-xl-16 pr-lg-10 mb-lg-0 mb-6">Lorem Khaled Ipsum is a major key to success. The ladies always say Khaled you smell good, I use no cologne. Cocoa butter is the key. To succeed you must believe. When you believe, you will succeed. They will try to close the door on you, just open it. The key is to drink coconut, fresh coconut, trust me. It’s important to use cocoa butter. It’s the key to more success, why not live smooth?</p>
         </div>
         <div class="col-12 col-lg-6">
-            <img src="http://placehold.it/570x440" alt="image description" class="img-fluid">
+            <img src="{{asset('dist/images/570x440.png')}}" alt="image description" class="img-fluid">
         </div>
     </div>
 </section>
@@ -58,7 +58,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-6 mb-lg-0 mb-6">
-                <img src="http://placehold.it/490x505" alt="image description" class="img-fluid">
+                <img src="{{asset('dist/images/490x505.png')}}" alt="image description" class="img-fluid">
             </div>
             <div class="col-12 col-lg-6">
                 <div id="accordion" class="accordionList pt-lg-12">
@@ -173,7 +173,7 @@
             <div class="col-12 col-sm-6 col-lg-4 mb-lg-0 mb-6">
                 <article class="teamBlock overflow-hidden">
                     <span class="imgWrap position-relative d-block w-100 mb-4">
-                        <img src="http://placehold.it/370x290" class="img-fluid" alt="image description">
+                        <img src="{{asset('dist/images/370x290.png')}}" class="img-fluid" alt="image description">
                         <ul class="list-unstyled position-absolute mb-0 d-flex justify-content-center socialNetworks">
                             <li><a href="javascript:void(0);" class="fab fa-facebook-f"></a></li>
                             <li><a href="javascript:void(0);" class="fab fa-twitter"></a></li>
@@ -191,7 +191,7 @@
             <div class="col-12 col-sm-6 col-lg-4 mb-lg-0 mb-6">
                 <article class="teamBlock overflow-hidden">
                     <span class="imgWrap position-relative d-block w-100 mb-4">
-                        <img src="http://placehold.it/370x290" class="img-fluid" alt="image description">
+                        <img src="{{asset('dist/images/370x290.png')}}" class="img-fluid" alt="image description">
                         <ul class="list-unstyled position-absolute mb-0 d-flex justify-content-center socialNetworks">
                             <li><a href="javascript:void(0);" class="fab fa-facebook-f"></a></li>
                             <li><a href="javascript:void(0);" class="fab fa-twitter"></a></li>
@@ -209,7 +209,7 @@
             <div class="col-12 col-sm-6 col-lg-4 mb-lg-0 mb-6">
                 <article class="teamBlock overflow-hidden">
                     <span class="imgWrap position-relative d-block w-100 mb-4">
-                        <img src="http://placehold.it/370x290" class="img-fluid" alt="image description">
+                        <img src="{{asset('dist/images/370x290.png')}}" class="img-fluid" alt="image description">
                         <ul class="list-unstyled position-absolute mb-0 d-flex justify-content-center socialNetworks">
                             <li><a href="javascript:void(0);" class="fab fa-facebook-f"></a></li>
                             <li><a href="javascript:void(0);" class="fab fa-twitter"></a></li>
@@ -229,7 +229,7 @@
 </section>
 <div class="container-fluid px-xl-20 mb-xl-24 mb-lg-20 mb-md-16 mb-10">
     <!-- subscribeSecBlock -->
-    <section class="subscribeSecBlock bgCover pt-xl-24 pb-xl-12 pt-lg-20 pb-lg-10 pt-md-16 pb-md-10 py-10 px-3" style="background-image: url(http://placehold.it/1720x465)">
+    <section class="subscribeSecBlock bgCover pt-xl-24 pb-xl-12 pt-lg-20 pb-lg-10 pt-md-16 pb-md-10 py-10 px-3" style="background-image: url({{asset('dist/images/1720x465.png')}})">
         <header class="col-12 mainHeader mb-9 text-center">
             <h1 class="headingIV playfair fwEblod mb-4">Subscribe Our Newsletter</h1>
             <span class="headerBorder d-block mb-5"><img src="{{asset('dist/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>
