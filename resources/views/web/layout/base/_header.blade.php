@@ -86,8 +86,29 @@
                 <!-- wishListII -->
                 <ul class="nav nav-tabs wishListII pt-5 justify-content-end border-bottom-0">
                     <li class="nav-item ml-0"><a class="nav-link icon-search" href="javascript:void(0);"></a></li>
-                    <li class="nav-item"><a class="nav-link position-relative icon-cart" href="javascript:void(0);"><span class="num rounded d-block">2</span></a></li>
-                    <li class="nav-item"><a class="nav-link icon-profile" href="javascript:void(0);"></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative icon-cart" href="{{route('web.cart.index')}}">
+                            <span class="num rounded d-block" id="qty-product-cart">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link icon-profile" href="javascript:void(0);" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                        <div class="dropdown-menu">
+							<a class="dropdown-item px-2" href="javascript:void(0);">
+                                <i class="fa fa-user pr-1"></i>
+                                Đăng nhập
+                            </a>
+							<a class="dropdown-item px-2" href="javascript:void(0);">
+                                <i class="fas fa-heart pr-1"></i>
+                                Yêu thích (<span id="count-wishlist">0</span>)
+                            </a>
+							<a class="dropdown-item px-2" href="javascript:void(0);">
+                                <i class="fas fa-exchange pr-1"></i>
+                                So sánh (<span id="count-compare-list">0</span>)
+                            </a>
+						</div>
+                    </li>
+                   
                 </ul>
             </div>
         </div>
