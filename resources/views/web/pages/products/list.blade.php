@@ -33,7 +33,7 @@
         <div class="col-12 col-sm-6 col-lg-4 featureCol mb-7">
             <div class="border">
                 <div class="imgHolder position-relative w-100 overflow-hidden">
-                    <img src="{{asset('storage'.$product->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/270x300.png')}}"' width="270px" height="300px">
+                    <img src="{{asset('storage'.$product->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/70x300.png')}}"' width="270px" height="300px">
                     <ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
                         <li class="mr-2 overflow-hidden add-wishlist" data-product-id="{{$product->id}}"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
                         <li class="mr-2 overflow-hidden">
