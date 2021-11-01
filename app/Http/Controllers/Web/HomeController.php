@@ -4,17 +4,27 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\ShopBannerService;
 
 class HomeController extends Controller
 {
+    public function __construct(
+        ShopBannerService $shopBannerService
+    ) {
+        $this->shopBannerService = $shopBannerService;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('web.pages.home');
+        $request = (object)[
+            'status' => 1
+        ];
+        $banners = $this->shopBannerService->all($request);
+        return view('web.pages.home', compact('banners'));
     }
 
     /**

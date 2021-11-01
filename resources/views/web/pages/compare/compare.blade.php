@@ -6,11 +6,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
-                    <h1 class="headingIV fwEbold playfair mb-4">Cửa Hàng</h1>
+                    <h1 class="headingIV fwEbold playfair mb-4">Sản phẩm yêu thích</h1>
                     <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-                        <li class="mr-2"><a href="{{route('web.home')}}">Trang Chủ</a></li>
-                        <li class="mr-2">/</li>
-                        <li class="active">Cửa Hàng</li>
+                        <li class="mr-sm-2 mr-1"><a href="{{route('web.home')}}">Trang Chủ</a></li>
+                        <li class="mr-sm-2 mr-1">/</li>
+                        <li class="mr-sm-2 mr-1"><a href="{{route('web.products.index')}}">Cửa Hàng</a></li>
+                        <li class="mr-sm-2 mr-1">/</li>
+                        <li class="active">Sản phẩm yêu thích</li>
                     </ul>
                 </div>
             </div>
@@ -21,53 +23,13 @@
         <div class="row">
             <div class="col-12 col-lg-9 order-lg-3" id="product-render-data">
                 <!-- content -->
-                @include('web.pages.products.list')
+                <div class="row mt-5">
+                    <span class="text-danger">Không tìm thấy dữ liệu</span>
+                </div>
             </div>
             <div class="col-12 col-lg-3 order-lg-1">
                 <!-- sidebar -->
                 <aside id="sidebar">
-                    <!-- widget -->
-                    <section class="widget overflow-hidden mb-9">
-                        <form action="javascript:void(0);" class="searchForm position-relative border" id="frm-search">
-                            <fieldset>
-                                <input type="search" class="form-control" placeholder="Tìm kiếm sản phẩm..." name="q" id="frm-search-query">
-                                <button class="position-absolute" id="btn-search-product"><i class="icon-search"></i></button>
-                            </fieldset>
-                            <input type="hidden" name="sort_by" value="" id="frm-search-sort-by"/>
-                            <input type="hidden" name="order_by" value="" id="frm-search-order-by"/>
-                            <input type="hidden" name="page" value="1" id="frm-search-page"/>
-                            <input type="hidden" name="category_id" value="" id="frm-search-category-id"/>
-                            <input type="hidden" name="price_from" value="" id="frm-search-price-from"/>
-                            <input type="hidden" name="price_to" value="" id="frm-search-price-to"/>
-                        </form>
-                    </section>
-                    <!-- widget -->
-                    <section class="widget overflow-hidden mb-9">
-                        <h3 class="headingVII fwEbold text-uppercase mb-5">Danh mục</h3>
-                        <ul class="list-unstyled categoryList mb-0">
-                            @foreach($categories as $category)
-                                <li class="mb-5 overflow-hidden sort-category" data-id="{{$category->id}}">
-                                    <a href="javascript:void(0);">{{$category->title}} 
-                                        <span class="num border float-right">{{$category->products_count ?? 0}}</span>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </section>
-                    <!-- widget -->
-                    <section class="widget mb-9">
-                        <h3 class="headingVII fwEbold text-uppercase mb-6">Lọc theo giá</h3>
-                        <!-- filter ranger form -->
-                        <form action="javascript:void(0);" class="filter-ranger-form">
-                            <div id="slider-range"></div>
-                            <input type="hidden" id="amount1" name="amount1">
-                            <input type="hidden" id="amount2" name="amount2">
-                            <div class="get-results-wrap d-flex align-items-center justify-content-between">
-                                <button type="button" class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 text-uppercase" id="btn-filter-price">Lọc</button>
-                                <p id="amount" class="mb-0"></p>
-                            </div>
-                        </form>
-                    </section>
                     <!-- widget -->
                     <section class="widget mb-9">
                         <h3 class="headingVII fwEbold text-uppercase mb-6">xem nhiều</h3>
@@ -130,9 +92,9 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('js/web/products/index.js')}}" rel="stylesheet"></script>
+    <script src="{{asset('js/web/compare.js')}}" rel="stylesheet"></script>
 @endsection
 
 @section('css')
-    <link href="{{asset('css/web/products/index.css')}}" rel="stylesheet"></link>
+    <link href="{{asset('css/web/compare/products.css')}}" rel="stylesheet"></link>
 @endsection
