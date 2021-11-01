@@ -15,7 +15,7 @@ class CreateShopBannersTable extends Migration
     {
         Schema::create('shop_banners', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('image');
             $table->enum('target', ['_self', 'blank'])->default('_self')->comment('_self, blank');
             $table->text('html')->nullable();

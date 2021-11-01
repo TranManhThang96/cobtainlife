@@ -4,41 +4,48 @@
 <!-- bannerBlockHolder -->
 <section class="bannerBlockHolder position-relative">
 	<div class="slick-fade">
-		<div>
-			<!-- align -->
-			<div class="align w-100 d-flex align-items-center bgCover" style="background-image: url({{asset('dist/images/1920x900.png')}})">
-				<div class="container position-relative holder pt-xl-10">
-					<div class="row">
-						<div class="col-12 col-xl-7">
-							<div class="txtwrap pr-xl-10">
-								<span class="title d-block text-uppercase fwEbold position-relative pl-2 mb-md-5 mb-sm-3">wellcome to botanical</span>
-								<h1 class="fwEbold position-relative mb-md-7 mb-sm-4">Houseplant <span class="text-break d-block">The Perfect Choice.</span></h1>
-								<p class="mb-md-15 mb-sm-10">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p>
-								<a href="{{route('web.products.index')}}" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4">Cửa Hàng <i class="fas fa-arrow-right ml-2"></i></a>
+		@foreach($banners as $kbanner=>$banner)
+			@if ($kbanner % 2 == 0)
+				<div>
+					<!-- align -->
+					<div class="align w-100 d-flex align-items-center bgCover" style="background-image: url({{$banner->image ? asset('storage'.$banner->image) : asset('dist/images/1920x900.png')}})">
+						<div class="container position-relative holder pt-xl-10">
+							<div class="row">
+								<div class="col-12 col-xl-7">
+									<div class="txtwrap pr-xl-10">
+										<!-- <span class="title d-block text-uppercase fwEbold position-relative pl-2 mb-md-5 mb-sm-3">wellcome to botanical</span>
+										<h1 class="fwEbold position-relative mb-md-7 mb-sm-4">Houseplant <span class="text-break d-block">The Perfect Choice.</span></h1>
+										<p class="mb-md-15 mb-sm-10">Lorem ipsum is simply dummy text of the printing and typesetting industry.</p> -->
+										{!! $banner->html !!}
+										<a href="{{route('web.products.index')}}" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4">Cửa Hàng <i class="fas fa-arrow-right ml-2"></i></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div>
-			<!-- align -->
-			<div class="align w-100 bgCover" style="background-image: url({{asset('dist/images/1920x900.png')}});">
-				<div class="container position-relative holder pt-14">
-					<!-- py-12 pt-lg-30 pb-lg-25 -->
-					<div class="row">
-						<div class="col-12 text-center">
-							<div class="txtwrap pr-md-10">
-								<h1 class="fwEbold position-relative mb-0">NUTRIENTS PLANTS</h1>
-								<strong class="year d-block fwEbold mb-3">2019</strong>
-								<span class="sub-title d-block text-uppercase mb-md-12 mb-6">OCCASSIONAL BOUQUET</span>
-								<a href="{{route('web.products.index')}}" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4">Cửa Hàng <i class="fas fa-arrow-right ml-2"></i></a>
+			@else	
+				<div>
+					<!-- align -->
+					<div class="align w-100 bgCover" style="background-image: url({{$banner->image ? asset('storage'.$banner->image) : asset('dist/images/1920x900.png')}});">
+						<div class="container position-relative holder pt-14">
+							<!-- py-12 pt-lg-30 pb-lg-25 -->
+							<div class="row">
+								<div class="col-12 text-center">
+									<div class="txtwrap pr-md-10">
+										<!-- <h1 class="fwEbold position-relative mb-0">NUTRIENTS PLANTS</h1>
+										<strong class="year d-block fwEbold mb-3">2019</strong>
+										<span class="sub-title d-block text-uppercase mb-md-12 mb-6">OCCASSIONAL BOUQUET</span> -->
+										{!! $banner->html !!}
+										<a href="{{route('web.products.index')}}" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4">Cửa Hàng <i class="fas fa-arrow-right ml-2"></i></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			@endif	
+		@endforeach
 	</div>
 	<div class="slickNavigatorsWrap">
 		<a href="#" class="slick-prev"><i class="icon-leftarrow"></i></a>
