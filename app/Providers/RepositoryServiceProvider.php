@@ -113,6 +113,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ShopTax\ShopTaxRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\ShopBanner\ShopBannerRepositoryInterface::class,
+            \App\Repositories\ShopBanner\ShopBannerRepository::class
+        );
+
     }
 
     /**

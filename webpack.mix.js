@@ -18,6 +18,11 @@ mix.js('resources/js/admin/categories/index', 'public/js/admin/categories');
 mix.js('resources/js/admin/categories/add', 'public/js/admin/categories');
 mix.sass('resources/sass/admin/categories/add.scss', 'public/css/admin/categories');
 
+// [banners]
+mix.js('resources/js/admin/cbanners/index', 'public/js/admin/cbanners');
+mix.js('resources/js/admin/cbanners/add', 'public/js/admin/cbanners');
+mix.sass('resources/sass/admin/cbanners/add.scss', 'public/css/admin/cbanners');
+
 // [products]
 mix.js('resources/js/admin/products/index', 'public/js/admin/products');
 mix.js('resources/js/admin/products/add', 'public/js/admin/products');
