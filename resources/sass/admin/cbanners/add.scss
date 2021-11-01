@@ -1,0 +1,30 @@
+#banners-frm {
+  .form-group {
+    #banner-image {
+      width: 350px;
+      max-height: 350px;
+      border: 1px solid #eee;
+      cursor: pointer;
+      position: relative;
+  
+      img {
+        width: 350px;
+        max-height: 350px;
+      }
+  
+      #banner-image-remove {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        z-index: 100;
+  
+        .mdi {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+  
