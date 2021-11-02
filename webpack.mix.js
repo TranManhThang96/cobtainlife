@@ -23,6 +23,16 @@ mix.js('resources/js/admin/cbanners/index', 'public/js/admin/cbanners');
 mix.js('resources/js/admin/cbanners/add', 'public/js/admin/cbanners');
 mix.sass('resources/sass/admin/cbanners/add.scss', 'public/css/admin/cbanners');
 
+// [supplier]
+mix.js('resources/js/admin/suppliers/index', 'public/js/admin/suppliers');
+mix.js('resources/js/admin/suppliers/add', 'public/js/admin/suppliers');
+mix.sass('resources/sass/admin/suppliers/add.scss', 'public/css/admin/suppliers');
+
+// [brand]
+mix.js('resources/js/admin/brands/index', 'public/js/admin/brands');
+mix.js('resources/js/admin/brands/add', 'public/js/admin/brands');
+mix.sass('resources/sass/admin/brands/add.scss', 'public/css/admin/brands');
+
 // [products]
 mix.js('resources/js/admin/products/index', 'public/js/admin/products');
 mix.js('resources/js/admin/products/add', 'public/js/admin/products');

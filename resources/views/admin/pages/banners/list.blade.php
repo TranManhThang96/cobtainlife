@@ -25,7 +25,7 @@
             <td scope="row">{{($banners->currentPage() - 1) * $banners->perPage() + $loop->iteration}}</td>
             <td>
             <img src="{{asset('storage'.$banner['image'])}}" alt="banner"
-                     onerror="this.src='https://admin.cobtainlife.tk/assets/images/no-image.png'" style="max-width: 100px">
+                     onerror="this.src='https://{{config('app.subdomain_admin')}}/assets/images/no-image.png'" style="max-width: 100px">
             </td>
             <td>
             <span class="badge text-white font-weight-bold bg-{{$banner['status'] == 1 ? 'success' : 'danger'}}">

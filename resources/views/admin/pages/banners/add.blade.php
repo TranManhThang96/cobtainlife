@@ -19,7 +19,7 @@
                 <div class="col-sm-10">
                     <div id="banner-image">
                         <input name="image" id="image-input" value="{{old('image') ?? ''}}" type="hidden" />
-                        <img id="image-preview" src="{{old('image') ?? asset('assets/images/no-image.png')}}" alt="no-image" />
+                        <img id="image-preview" src="{{old('image') ? asset('storage'.old('image')) : asset('assets/images/no-image.png')}}" alt="no-image" />
                         <div id="banner-image-remove" class="remove-button-corner d-flex justify-content-center align-items-center">
                         </div>
                     </div>

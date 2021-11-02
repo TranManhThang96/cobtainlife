@@ -43,6 +43,10 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/attribute-group', \ShopAttributeGroupController::class);
         Route::get('/banners/search', [\App\Http\Controllers\Admin\ShopBannerController::class, 'search'])->name('banners.search');
         Route::resource('/banners', \ShopBannerController::class);
+        Route::get('/suppliers/search', [\App\Http\Controllers\Admin\ShopSupplierController::class, 'search'])->name('suppliers.search');
+        Route::resource('/suppliers', \ShopSupplierController::class);
+        Route::get('/brands/search', [\App\Http\Controllers\Admin\ShopBrandController::class, 'search'])->name('brands.search');
+        Route::resource('/brands', \ShopBrandController::class);
     });
 });
 

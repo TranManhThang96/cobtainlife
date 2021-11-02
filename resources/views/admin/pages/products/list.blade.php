@@ -24,7 +24,7 @@
             <td scope="row">{{($products->currentPage() - 1) * $products->perPage() + $loop->iteration}}</td>
             <td>
             <img src="{{asset('storage'.$product['image'])}}" alt="{{$product['name']}}"
-                     onerror="this.src='https://admin.cobtainlife.tk/assets/images/no-image.png'" style="max-width: 100px">
+                     onerror="this.src='https://{{config('app.subdomain_admin')}}/assets/images/no-image.png'" style="max-width: 100px">
             </td>
             <td>{{$product['name']}}</td>
             <td>
