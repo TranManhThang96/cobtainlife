@@ -32,7 +32,7 @@
             <td scope="row">{{($categories->currentPage() - 1) * $categories->perPage() + $loop->iteration}}</td>
             <td>
             <img src="{{asset('storage'.$category['image'])}}" alt="{{$category['title']}}"
-                     onerror="this.src='https://admin.cobtainlife.tk/assets/images/no-image.png'" style="max-width: 100px">
+                     onerror="this.src='https://{{config('app.subdomain_admin')}}/assets/images/no-image.png'" style="max-width: 100px">
             </td>
             <td>{{$category['title']}}</td>
             <td>{{$category['parents']['title'] ?? \App\Enums\Constant::NO_PARENT}}</td>

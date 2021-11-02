@@ -45,9 +45,9 @@ class ShopSupplierRepository extends RepositoryAbstract implements ShopSupplierR
         $perPage = $request->per_page ?? Constant::DEFAULT_PER_PAGE;
 
         return $this->model
-            ->with('category')
+            ->withCount('products')
             ->when($q, function ($query, $q) {
-                return $query->where('title', 'like', "%$q%");
+                return $query->where('name', 'like', "%$q%");
             })->orderBy($sortBy, $orderBy)
             ->paginate($perPage);
     }
