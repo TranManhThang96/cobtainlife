@@ -4,6 +4,10 @@
     "/js/admin/categories/add.js": "/js/admin/categories/add.js",
     "/js/admin/cbanners/index.js": "/js/admin/cbanners/index.js",
     "/js/admin/cbanners/add.js": "/js/admin/cbanners/add.js",
+    "/js/admin/suppliers/index.js": "/js/admin/suppliers/index.js",
+    "/js/admin/suppliers/add.js": "/js/admin/suppliers/add.js",
+    "/js/admin/brands/index.js": "/js/admin/brands/index.js",
+    "/js/admin/brands/add.js": "/js/admin/brands/add.js",
     "/js/admin/products/index.js": "/js/admin/products/index.js",
     "/js/admin/products/add.js": "/js/admin/products/add.js",
     "/js/admin/products/tinymce.js": "/js/admin/products/tinymce.js",
@@ -40,8 +44,8 @@
     "/js/web/checkout.js": "/js/web/checkout.js",
     "/js/web/wishlist.js": "/js/web/wishlist.js",
     "/js/web/compare.js": "/js/web/compare.js",
-    "/css/admin/products/index.css": "/css/admin/products/index.css",
-    "/css/admin/products/add.css": "/css/admin/products/add.css",
+    "/css/admin/brands/add.css": "/css/admin/brands/add.css",
+    "/css/admin/suppliers/add.css": "/css/admin/suppliers/add.css",
     "/css/admin/cbanners/add.css": "/css/admin/cbanners/add.css",
     "/css/admin/categories/add.css": "/css/admin/categories/add.css",
     "/css/admin/app.css": "/css/admin/app.css",
@@ -49,5 +53,7 @@
     "/css/web/wishlist/products.css": "/css/web/wishlist/products.css",
     "/css/web/app.css": "/css/web/app.css",
     "/css/web/products/detail.css": "/css/web/products/detail.css",
-    "/css/web/products/index.css": "/css/web/products/index.css"
+    "/css/web/products/index.css": "/css/web/products/index.css",
+    "/css/admin/products/index.css": "/css/admin/products/index.css",
+    "/css/admin/products/add.css": "/css/admin/products/add.css"
 }
