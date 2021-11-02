@@ -1,9 +1,9 @@
 @extends('admin.layout.default')
 
-@section('title', 'Thêm banner')
+@section('title', 'Sửa banner')
 
 @section('breadcrumb')
-{{renderBreadcrumb('Thêm banner', [
+{{renderBreadcrumb('Sửa banner', [
         ['name' => 'Trang chủ', 'link' => '/'],
         ['name' => 'Danh sách banner', 'link' => route('admin.banners.index')]
     ])}}

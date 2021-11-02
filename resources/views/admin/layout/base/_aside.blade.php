@@ -33,7 +33,9 @@
                 </li>
 
 
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Thiết lập hệ thống</span></a>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                    <i class="mdi mdi-receipt"></i>
+                    <span class="hide-menu">Thiết lập hệ thống</span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="{{route('admin.order-status.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-outline"></i><span
@@ -44,10 +46,10 @@
                         <li class="sidebar-item"><a href="{{route('admin.payment-status.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Trạng thái thanh toán</span></a></li>
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                        <li class="sidebar-item"><a href="{{route('admin.suppliers.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Nhà cung cấp</span></a></li>
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                        <li class="sidebar-item"><a href="{{route('admin.brands.index')}}" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Nhãn hiệu</span></a></li>
                         <li class="sidebar-item"><a href="{{route('admin.weight-class.index')}}" class="sidebar-link"><i
