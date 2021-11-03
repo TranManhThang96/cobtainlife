@@ -6,7 +6,7 @@ namespace App\Services;
 
 use App\Repositories\ShopCustomer\ShopCustomerRepositoryInterface;
 use App\Services\BaseService;
-
+use App\Traits\PhoneNumber;
 class ShopCustomerService extends BaseService
 {
     protected $shopCustomerRepository;
@@ -49,5 +49,27 @@ class ShopCustomerService extends BaseService
     public function delete($id)
     {
         return $this->shopCustomerRepository->delete($id);
+    }
+
+    public function getCustomerByPhoneOrEmail($request)
+    {
+        $params = [
+            'name' => $request->customer_name ?? '',
+            'email' => $request->email ?? null,
+            'phone' => PhoneNumber::convertVNPhoneNumber($request->phone) ?? '',
+            'province_id' => $request->province_id ?? null,
+            'district_id' => $request->district_id ?? null,
+            'ward_id' => $request->ward_id ?? null,
+            'address' => $request->address ?? null,
+        ];
+
+        // check customer exist
+        $customer = $this->shopCustomerRepository->getCustomerByPhoneOrEmail((object)$params);
+        
+        // create new customer
+        if (!$customer) {
+            $customer = $this->shopCustomerRepository->create($params);
+        }
+        return $customer->id ?? null;
     }
 }

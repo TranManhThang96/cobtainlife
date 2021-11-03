@@ -8,6 +8,8 @@
     "/js/admin/suppliers/add.js": "/js/admin/suppliers/add.js",
     "/js/admin/brands/index.js": "/js/admin/brands/index.js",
     "/js/admin/brands/add.js": "/js/admin/brands/add.js",
+    "/js/admin/customers/index.js": "/js/admin/customers/index.js",
+    "/js/admin/customers/add.js": "/js/admin/customers/add.js",
     "/js/admin/products/index.js": "/js/admin/products/index.js",
     "/js/admin/products/add.js": "/js/admin/products/add.js",
     "/js/admin/products/tinymce.js": "/js/admin/products/tinymce.js",
@@ -55,5 +57,6 @@
     "/css/web/products/detail.css": "/css/web/products/detail.css",
     "/css/web/products/index.css": "/css/web/products/index.css",
     "/css/admin/products/index.css": "/css/admin/products/index.css",
-    "/css/admin/products/add.css": "/css/admin/products/add.css"
+    "/css/admin/products/add.css": "/css/admin/products/add.css",
+    "/css/admin/customers/add.css": "/css/admin/customers/add.css"
 }
