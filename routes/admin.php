@@ -47,6 +47,8 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/suppliers', \ShopSupplierController::class);
         Route::get('/brands/search', [\App\Http\Controllers\Admin\ShopBrandController::class, 'search'])->name('brands.search');
         Route::resource('/brands', \ShopBrandController::class);
+        Route::get('/customers/search', [\App\Http\Controllers\Admin\ShopCustomerController::class, 'search'])->name('customers.search');
+        Route::resource('/customers', \ShopCustomerController::class);
     });
 });
 
