@@ -21,6 +21,20 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                    <i class="mdi mdi-receipt"></i>
+                    <span class="hide-menu">Quản lý khách hàng</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item"><a href="{{route('admin.customers.index')}}" class="sidebar-link"><i
+                                    class="mdi mdi-note-outline"></i><span
+                                    class="hide-menu">Khách hàng</span></a></li>
+                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                                    class="mdi mdi-note-plus"></i><span
+                                    class="hide-menu">Khách hàng subscribe</span></a></li>
+                    </ul>
+                </li>
+
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Nội dung</span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="{{route('admin.banners.index')}}" class="sidebar-link"><i

@@ -27,8 +27,16 @@ class ShopCustomerRepository extends RepositoryAbstract implements ShopCustomerR
 
         return $this->model
             ->with('orders')
+            ->with('province')
+            ->with('district')
+            ->with('ward')
+            ->withCount('orders')
             ->when($q, function ($query, $q) {
-                return $query->where('name', 'like', "%$q%");
+                return $query->where(function ($qr) use ($q) {
+                    $qr->where('name', 'like', "%$q%")
+                        ->orWhere('phone', 'like', "%$q%")
+                        ->orWhere('email', 'like', "%$q%");
+                });
             })->orderBy($sortBy, $orderBy)
             ->paginate($perPage);
     }
@@ -43,6 +51,13 @@ class ShopCustomerRepository extends RepositoryAbstract implements ShopCustomerR
     public function find($id)
     {
         return $this->model::withCount('orders')->with('orders')->find($id);
+    }
+
+    public function getCustomerByPhoneOrEmail($request)
+    {
+        $phone = $request->phone ?? null;
+        $email = $request->email ?? null;
+        return $this->model->where('phone', $phone)->orWhere('email', $email)->first();
     }
 
 }

@@ -34,7 +34,8 @@ class ShopOrderController extends Controller
         ShopPaymentStatusService $shopPaymentStatusService,
         ShopShippingStatusService $shopShippingStatusService,
         ShopProductService $shopProductService,
-        ShopTaxService $shopTaxService
+        ShopTaxService $shopTaxService,
+        ShopCustomerService $shopCustomerService
     )
     {
         $this->districtService = $districtService;
@@ -47,6 +48,7 @@ class ShopOrderController extends Controller
         $this->shopShippingStatusService = $shopShippingStatusService;
         $this->shopProductService = $shopProductService;
         $this->shopTaxService = $shopTaxService;
+        $this->shopCustomerService = $shopCustomerService;
     }
 
     /**
@@ -94,12 +96,14 @@ class ShopOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ShopOrderRequest $request)
+    public function store(Request $request)
     {
         DB::beginTransaction();
         try {
             $params = $request->all();
             // insert order
+            $params['customer_id'] = $this->shopCustomerService->getCustomerByPhoneOrEmail($request);
+            
             $orderInserted = $this->shopOrderService->store($params);
             // insert order detail
             foreach($params['product_id'] as $key=>$productId) {
