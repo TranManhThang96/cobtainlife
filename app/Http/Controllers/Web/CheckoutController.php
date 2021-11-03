@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\CheckoutRequest;
 use App\Services\DistrictService;
 use App\Services\ProvinceService;
+use App\Services\ShopCustomerService;
 use App\Services\ShopProductService;
 use App\Services\WardService;
 use App\Services\ShopOrderService;
@@ -16,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
+use App\Traits\PhoneNumber;
+use Jenssegers\Agent\Agent;
 
 class CheckoutController extends Controller
 {
@@ -26,7 +29,8 @@ class CheckoutController extends Controller
         WardService $wardService,
         ShopProductService $shopProductService,
         ShopOrderService $shopOrderService,
-        ShopOrderDetailService $shopOrderDetailService
+        ShopOrderDetailService $shopOrderDetailService,
+        ShopCustomerService $shopCustomerService
     )
     {
         $this->provinceService = $provinceService;
@@ -35,6 +39,8 @@ class CheckoutController extends Controller
         $this->wardService = $wardService;
         $this->shopOrderService = $shopOrderService;
         $this->shopOrderDetailService = $shopOrderDetailService;
+        $this->shopCustomerService = $shopCustomerService;
+        $this->agent = new Agent();
     }
 
     /**
@@ -134,10 +140,27 @@ class CheckoutController extends Controller
         DB::beginTransaction();
         try {
             if ($request->session()->exists('cart')) {
+                // get customerId
+                $customerId = auth()->user()->id ?? null;
+                if (!$customerId) {
+                    $customerData = [
+                        'customer_name' => session('cart')['customer_name'] ?? '',
+                        'email' => session('cart')['email'] ?? null,
+                        'phone' => PhoneNumber::convertVNPhoneNumber(session('cart')['phone']) ?? '',
+                        'province_id' => session('cart')['province_id'] ?? null,
+                        'district_id' => session('cart')['district_id'] ?? null,
+                        'ward_id' =>session('cart')['ward_id'] ?? null,
+                        'address' => session('cart')['address'] ?? null,
+                    ];
+                   
+                    $customerId = $this->shopCustomerService->getCustomerByPhoneOrEmail((object)$customerData);
+                }
+
+                $this->agent->setUserAgent($request->userAgent());
                 // insert order
                 $orderData = [
                     'id' => null,
-                    'customer_id' => null,
+                    'customer_id' => $customerId,
                     'subtotal' => session('cart')['subTotal'],
                     'shipping' => 0,
                     'discount' => 0,
@@ -155,9 +178,9 @@ class CheckoutController extends Controller
                     'comment' => session('cart')['comment'],
                     'payment_method' => Constant::PAYMENT_CASH_VALUE,
                     'shipping_method' => Constant::SHIPPING_STANDARD_VALUE,
-                    'user_agent' => session('cart')['totalPrice'],
-                    'device_type' => session('cart')['totalPrice'],
-                    'ip_address' => session('cart')['totalPrice'],
+                    'user_agent' => $request->userAgent(),
+                    'device_type' => $this->agent->device(),
+                    'ip_address' => $request->getClientIp(),
                 ];
                 $orderInserted = $this->shopOrderService->store($orderData);
                 // insert order detail
@@ -184,7 +207,7 @@ class CheckoutController extends Controller
         } catch (Exception $e) {
             Log::error('addOrder' . $e->getMessage());
             DB::rollBack();
-            return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Có lỗi xảy ra!');
+            return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Có lỗi xảy ra!', $e->getMessage());
         }
     }
 

@@ -16,10 +16,10 @@ class CreateShopCustomersTable extends Migration
         Schema::create('shop_customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('phone');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->tinyInteger('sex')->nullable()->comment('1: nam, 2: nữ');
             $table->date('birthday')->nullable();
             $table->integer('province_id')->nullable();

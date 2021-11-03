@@ -33,6 +33,11 @@ mix.js('resources/js/admin/brands/index', 'public/js/admin/brands');
 mix.js('resources/js/admin/brands/add', 'public/js/admin/brands');
 mix.sass('resources/sass/admin/brands/add.scss', 'public/css/admin/brands');
 
+// [customer]
+mix.js('resources/js/admin/customers/index', 'public/js/admin/customers');
+mix.js('resources/js/admin/customers/add', 'public/js/admin/customers');
+mix.sass('resources/sass/admin/customers/add.scss', 'public/css/admin/customers');
+
 // [products]
 mix.js('resources/js/admin/products/index', 'public/js/admin/products');
 mix.js('resources/js/admin/products/add', 'public/js/admin/products');
