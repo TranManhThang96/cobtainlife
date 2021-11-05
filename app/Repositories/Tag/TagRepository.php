@@ -8,6 +8,7 @@ use App\Enums\Constant;
 use App\Repositories\RepositoryAbstract;
 use Carbon\Carbon;
 use App\Enums\DBConstant;
+use Illuminate\Support\Facades\DB;
 
 class TagRepository extends RepositoryAbstract implements TagRepositoryInterface
 {
@@ -20,9 +21,9 @@ class TagRepository extends RepositoryAbstract implements TagRepositoryInterface
         return \App\Models\Tag::class;
     }
 
-    public function getCountSlugLikeName($slug, $id)
+    public function getCountAliasLikeName($alias, $id)
     {
-        return $this->model::where('slug', 'LIKE', $slug . '%')
+        return $this->model::where('alias', 'LIKE', $alias . '%')
             ->when($id, function ($query, $id) {
                 return $query->where('id', '<>', $id);
             })->count();
@@ -35,7 +36,6 @@ class TagRepository extends RepositoryAbstract implements TagRepositoryInterface
         $orderBy = $params->order_by ?? 'DESC';
         $perPage = $params->per_page ?? Constant::DEFAULT_PER_PAGE;
         return $this->model
-            ->withCount('articles')
             ->when($q, function ($query, $q) {
                 return $query->where('label', 'like', "%$q%");
             })->orderBy($sortBy, $orderBy)
@@ -47,12 +47,19 @@ class TagRepository extends RepositoryAbstract implements TagRepositoryInterface
         return $this->model::orderBy('id', Constant::SORT_BY_DESC)->get();
     }
 
-    public function getTagBySlug($slug, $id = null)
+    public function getTagByAlias($alias, $id = null)
     {
-        return $this->model::where('slug', $slug)
+        return $this->model::where('alias', $alias)
             ->when($id, function ($query, $id) {
                 return $query->where('id', '<>', $id);
             })->first();
+    }
+
+    public function getNewsTags()
+    {
+        return DB::table('shop_tags')->select(DB::raw('distinct shop_tags.id, shop_tags.label, shop_tags.alias'))
+        ->join('shop_news_tag', 'shop_tags.id', '=', 'shop_news_tag.tag_id')
+        ->get();
     }
 
 }

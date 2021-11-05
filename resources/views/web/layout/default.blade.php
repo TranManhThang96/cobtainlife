@@ -25,7 +25,7 @@
 	<link href="{{asset('dist/css/responsive.css')}}" rel="stylesheet"/>
 	<!-- toast -->
 	<link href="{{asset('assets/libs/toastr/build/toastr.min.css')}}" rel="stylesheet"/>
-
+	<link href="{{asset('css/web/app.css')}}" rel="stylesheet">
 	@yield('css')
 </head>
 <body>

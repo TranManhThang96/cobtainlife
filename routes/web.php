@@ -23,7 +23,7 @@ Route::domain(config('app.main_domain'))->name('web.')->group(function () {
     Route::get('/checkout-confirm', [\App\Http\Controllers\Web\CheckoutController::class, 'checkoutConfirm'])->name('checkout-confirm');
     Route::post('/add-order', [\App\Http\Controllers\Web\CheckoutController::class, 'addOrder'])->name('add-order');
     Route::resource('/checkout', CheckoutController::class);
-    Route::get('/blog.html', [\App\Http\Controllers\Web\BlogController::class, 'index'])->name('blog.index');
+    Route::get('/blog/{type}/{value}', [\App\Http\Controllers\Web\BlogController::class, 'getNewsByType'])->name('blog.type');
     Route::resource('/blog', BlogController::class);
     Route::get('/wishlist', [\App\Http\Controllers\Web\WishlistController::class, 'index'])->name('wishlist');
     Route::post('/wishlist', [\App\Http\Controllers\Web\WishlistController::class, 'render'])->name('wishlist.render');

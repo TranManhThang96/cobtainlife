@@ -118,6 +118,16 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ShopBanner\ShopBannerRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\ShopNews\ShopNewsRepositoryInterface::class,
+            \App\Repositories\ShopNews\ShopNewsRepository::class
+        );
+
+        $this->app->bind(
+            \App\Repositories\Tag\TagRepositoryInterface::class,
+            \App\Repositories\Tag\TagRepository::class
+        );
+
     }
 
     /**

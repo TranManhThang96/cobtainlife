@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class ShopCustomer extends Model
 {
     use HasFactory;
-
+    use SoftDeletes;
     protected $table = 'shop_customers';
 
     protected $fillable = [
