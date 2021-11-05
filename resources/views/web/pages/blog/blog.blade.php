@@ -21,142 +21,66 @@
         <div class="col-12 col-lg-9 order-lg-3">
             <!-- content -->
             <article id="content">
-                <!-- newsBlogColumn -->
-                <div class="newsBlogColumn mb-md-9 mb-6">
-                    <div class="imgHolder position-relative mb-6">
-                        <a href="blog-detail.html">
-                            <img src="{{asset('dist/images/870x450.png')}}" alt="image description" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="textHolder d-flex align-items-start">
-                        <time class="time text-center text-uppercase py-sm-3 py-1 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block mb-1">20</strong> Sep</time>
-                        <div class="alignLeft pl-sm-6 pl-3">
-                            <h2 class="headingV fwEbold mb-2"><a href="blog-detail.html">Aptent taciti soci litora cianpen</a></h2>
-                            <span class="postBy d-block pb-sm-6 pb-2 mb-3">Post by: <a href="blog-detail.html">Jane doe</a></span>
-                            <p class="mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...</p>
+                @foreach($listNews as $news)
+                    <!-- newsBlogColumn -->
+                    <div class="newsBlogColumn mb-md-9 mb-6">
+                        <div class="imgHolder position-relative mb-6">
+                            <a href="{{route('web.blog.show', ['blog' => $news->alias])}}">
+                                <img src="{{asset('storage'.$news->image)}}" alt="{{$news->name}}" onerror='this.src="{{asset('dist/images/870x450.png')}}"' width="870px" height="450px">
+                            </a>
+                        </div>
+                        <div class="textHolder d-flex align-items-start">
+                            <time class="time text-center text-uppercase py-sm-3 py-1 px-1" datetime="{{$news->created_at}}"> 
+                                <strong class="fwEbold d-block mb-1">{{readDateTime($news->created_at, 'd')}}</strong> {{readDateTime($news->created_at, 'M')}}
+                            </time>
+                            <div class="alignLeft pl-sm-6 pl-3">
+                                <h2 class="headingV fwEbold mb-2"><a href="{{route('web.blog.show', ['blog' => $news->alias])}}">{{$news->title ?? ''}}</a></h2>
+                                <span class="postBy d-block pb-sm-6 pb-2 mb-3">Đăng bởi: <a href="{{route('web.blog.show', ['blog' => $news->alias])}}">Cobtainlife</a></span>
+                                <p class="d-inline-block text-truncate" style="max-width: 40vw">{{$news->description}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- newsBlogColumn -->
-                <div class="newsBlogColumn mb-md-9 mb-6">
-                    <div class="imgHolder position-relative mb-6">
-                        <a href="blog-detail.html">
-                            <img src="{{asset('dist/images/870x450.png')}}" alt="image description" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="textHolder d-flex align-items-start">
-                        <time class="time text-center text-uppercase py-sm-3 py-1 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block mb-1">20</strong> Sep</time>
-                        <div class="alignLeft pl-sm-6 pl-3">
-                            <h2 class="headingV fwEbold mb-2"><a href="blog-detail.html">Aptent taciti soci litora cianpen</a></h2>
-                            <span class="postBy d-block pb-sm-6 pb-2 mb-3">Post by: <a href="blog-detail.html">Jane doe</a></span>
-                            <p class="mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- newsBlogColumn -->
-                <div class="newsBlogColumn mb-md-9 mb-6">
-                    <div class="imgHolder position-relative mb-6">
-                        <a href="blog-detail.html">
-                            <img src="{{asset('dist/images/870x450.png')}}" alt="image description" class="img-fluid">
-                        </a>
-                    </div>
-                    <div class="textHolder d-flex align-items-start">
-                        <time class="time text-center text-uppercase py-sm-3 py-1 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block mb-1">20</strong> Sep</time>
-                        <div class="alignLeft pl-sm-6 pl-3">
-                            <h2 class="headingV fwEbold mb-2"><a href="blog-detail.html">Aptent taciti soci litora cianpen</a></h2>
-                            <span class="postBy d-block pb-sm-6 pb-2 mb-3">Post by: <a href="blog-detail.html">Jane doe</a></span>
-                            <p class="mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout...</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
                 <div class="col-12 mb-sm-0 mb-6">
-                    <!-- pagination -->
-                    <ul class="list-unstyled pagination d-flex justify-content-center align-items-end">
-                        <li><a href="javascript:void(0);"><i class="fas fa-chevron-left"></i></a></li>
-                        <li class="active"><a href="javascript:void(0);">1</a></li>
-                        <li><a href="javascript:void(0);">2</a></li>
-                        <li>...</li>
-                        <li><a href="javascript:void(0);"><i class="fas fa-chevron-right"></i></a></li>
-                    </ul>
+                    {{$listNews->links('vendor.pagination.cobtainlife')}}
                 </div>
             </article>
         </div>
         <div class="col-12 col-lg-3 order-lg-1">
             <!-- sidebar -->
             <aside id="sidebar">
-                <!-- widget -->
                 <section class="widget overflow-hidden mb-md-9 mb-6">
-                    <h3 class="headingVII fwEbold text-uppercase mb-4">Search</h3>
-                    <form action="javascript:void(0);" class="searchForm position-relative border">
-                        <fieldset>
-                            <input type="search" class="form-control" placeholder="Search product...">
-                            <button class="position-absolute"><i class="icon-search"></i></button>
-                        </fieldset>
-                    </form>
-                </section>
-                <!-- widget -->
-                <section class="widget overflow-hidden mb-md-9 mb-6">
-                    <h3 class="headingVII fwEbold text-uppercase mb-2">RECENT POSTS</h3>
+                    <h3 class="headingVII fwEbold text-uppercase mb-2">Bài viết gần đây</h3>
                     <ul class="list-unstyled recentPostList mb-0">
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Blog image post</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Post with Gallery</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Post with Audio</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Post with Video</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Maecenas ultricies</a></li>
+                        @foreach($recentNews as $recentNewsItem)
+                            <li><a href="{{route('web.blog.show', ['blog' => $recentNewsItem->alias])}}" class="py-2 d-block">{{$recentNewsItem->title}}</a></li>
+                        @endforeach
                     </ul>
                 </section>
-                <!-- widget -->
-                <section class="widget overflow-hidden mb-md-9 mb-6">
-                    <h3 class="headingVII fwEbold text-uppercase mb-2">RECENT COMMENTS</h3>
-                    <ul class="list-unstyled recentPostList mb-0">
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                    </ul>
-                </section>
-                <!-- widget -->
                 <section class="widget overflow-hidden mb-md-6 mb-3">
-                    <h3 class="headingVII fwEbold text-uppercase mb-4">ARCHIVES</h3>
+                    <h3 class="headingVII fwEbold text-uppercase mb-4">Lưu trữ</h3>
                     <ul class="list-unstyled archiveList mb-0">
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">March 2018</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">December 2018</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">November 2018</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">September 2018</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">August 2018</a></li>
+                        @foreach($archives as $archive)
+                            <li class="mb-3"><a href="{{route('web.blog.type', ['type' => 'date', 'value' => $archive->new_date])}}" class="d-block">{{getMonth($archive->month)}} - {{$archive->year}}</a></li>
+                        @endforeach
                     </ul>
                 </section>
                 <!-- widget -->
-                <section class="widget overflow-hidden mb-md-5 mb-3">
-                    <h3 class="headingVII fwEbold text-uppercase mb-4">CATEGORIES</h3>
-                    <ul class="list-unstyled archiveList mb-0">
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Creative</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Fashion</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Image</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Photography</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Travel</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Videos</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">WordPress</a></li>
-                    </ul>
-                </section>
-                <!-- widget -->
-                <section class="widget overflow-hidden mb-md-9 mb-6">
-                    <h3 class="headingVII fwEbold text-uppercase mb-4">META</h3>
-                    <ul class="list-unstyled archiveList mb-0">
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Log in</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Entries RSS</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Comments RSS</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">WordPress.org</a></li>
-                    </ul>
-                </section>
+                <section class="widget mb-9">
+                        <h3 class="headingVII fwEbold text-uppercase mb-5">tags</h3>
+                        <ul class="list-unstyled tagNavList d-flex flex-wrap mb-0">
+                            @foreach($tags as $tag)
+                                <li class="text-center"><a href="{{route('web.blog.type', ['type' => 'tags', 'value' => $tag->alias])}}" class="md-round d-block">{{$tag->label}}</a></li>
+                            @endforeach
+                        </ul>
+                    </section>
             </aside>
         </div>
     </div>
 </div>
 <div class="container mb-lg-24 mb-md-16 mb-10">
     <!-- subscribeSecBlock -->
-    <section class="subscribeSecBlock bgCover col-12 pt-lg-24 pb-lg-12 pt-md-16 pb-md-8 py-10" style="background-image: url(http://placehold.it/1170x465)">
+    <section class="subscribeSecBlock bgCover col-12 pt-lg-24 pb-lg-12 pt-md-16 pb-md-8 py-10" style="background-image: url({{asset('dist/images/1170x465.png')}})">
         <header class="col-12 mainHeader mb-9 text-center">
             <h1 class="headingIV playfair fwEblod mb-4">Subscribe Our Newsletter</h1>
             <span class="headerBorder d-block mb-5"><img src="{{asset('dist/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>

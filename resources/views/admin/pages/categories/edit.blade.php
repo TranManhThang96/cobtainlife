@@ -90,11 +90,11 @@
                 <div class="col-sm-10">
                     <div id="categories-image">
                         <input name="image" id="image-input" value="{{old('image') ?? $category->image}}" type="hidden" />
-                        <img id="image-preview" src="{{(old('image') ?? $category->image) ?? asset('assets/images/no-image.png')}}" alt="no-image" />
+                        <img id="image-preview" src="{{old('image', $category->image) ? asset('storage'.old('image', $category->image)) : asset('assets/images/no-image.png')}}" alt="no-image" />
                         <div id="categories-image-remove" class="remove-button-corner d-flex justify-content-center align-items-center">
                         </div>
                     </div>
-                    <x-custom-error field="description" />
+                    <x-custom-error field="image" />
                 </div>
             </div>
 

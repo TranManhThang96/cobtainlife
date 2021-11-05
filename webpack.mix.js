@@ -38,6 +38,12 @@ mix.js('resources/js/admin/customers/index', 'public/js/admin/customers');
 mix.js('resources/js/admin/customers/add', 'public/js/admin/customers');
 mix.sass('resources/sass/admin/customers/add.scss', 'public/css/admin/customers');
 
+// [news]
+mix.js('resources/js/admin/news/index', 'public/js/admin/news');
+mix.js('resources/js/admin/news/add', 'public/js/admin/news');
+mix.sass('resources/sass/admin/news/add.scss', 'public/css/admin/news');
+mix.sass('resources/sass/admin/news/index.scss', 'public/css/admin/news');
+
 // [products]
 mix.js('resources/js/admin/products/index', 'public/js/admin/products');
 mix.js('resources/js/admin/products/add', 'public/js/admin/products');
