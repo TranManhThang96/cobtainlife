@@ -43,6 +43,9 @@
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i
                                     class="mdi mdi-note-plus"></i><span
                                     class="hide-menu">Quản lý trang</span></a></li>
+                        <li class="sidebar-item"><a href="{{route('admin.news.index')}}" class="sidebar-link"><i
+                                    class="mdi mdi-note-plus"></i><span
+                                    class="hide-menu">Bài viết</span></a></li>
                     </ul>
                 </li>
 

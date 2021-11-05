@@ -10,6 +10,8 @@
     "/js/admin/brands/add.js": "/js/admin/brands/add.js",
     "/js/admin/customers/index.js": "/js/admin/customers/index.js",
     "/js/admin/customers/add.js": "/js/admin/customers/add.js",
+    "/js/admin/news/index.js": "/js/admin/news/index.js",
+    "/js/admin/news/add.js": "/js/admin/news/add.js",
     "/js/admin/products/index.js": "/js/admin/products/index.js",
     "/js/admin/products/add.js": "/js/admin/products/add.js",
     "/js/admin/products/tinymce.js": "/js/admin/products/tinymce.js",
@@ -58,5 +60,7 @@
     "/css/web/products/index.css": "/css/web/products/index.css",
     "/css/admin/products/index.css": "/css/admin/products/index.css",
     "/css/admin/products/add.css": "/css/admin/products/add.css",
+    "/css/admin/news/index.css": "/css/admin/news/index.css",
+    "/css/admin/news/add.css": "/css/admin/news/add.css",
     "/css/admin/customers/add.css": "/css/admin/customers/add.css"
 }

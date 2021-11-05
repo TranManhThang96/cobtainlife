@@ -9,3 +9,10 @@
         outline: 0 !important;
     }
 }
+
+.btn-social {
+    font-size: 1.25rem;
+    &:hover {
+        cursor: pointer;
+    }
+}

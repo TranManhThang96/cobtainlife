@@ -6,13 +6,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
-                <h1 class="headingIV fwEbold playfair mb-4">Blog</h1>
+                <h1 class="headingIV fwEbold playfair mb-4">Tin tức</h1>
                 <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
-                    <li class="mr-sm-2 mr-1"><a href="home.html">Home</a></li>
+                    <li class="mr-sm-2 mr-1"><a href="home.html">Trang chủ</a></li>
                     <li class="mr-sm-2 mr-1">/</li>
-                    <li class="mr-sm-2 mr-1"><a href="blog.html">Blog</a></li>
+                    <li class="mr-sm-2 mr-1"><a href="blog.html">Tin tức</a></li>
                     <li class="mr-sm-2 mr-1">/</li>
-                    <li class="active">Aptent taciti soci litora cianpen</li>
+                    <li class="active">{{$news->title}}</li>
                 </ul>
             </div>
         </div>
@@ -25,92 +25,45 @@
             <!-- newsBlogColumn -->
             <div class="newsBlogColumn mb-9">
                 <div class="imgHolder mb-6">
-                    <img src="{{asset('dist/images/870x450.png')}}" alt="image description" class="img-fluid">
+                    <img src="{{asset('storage'.$news->image)}}" alt="{{$news->name}}" onerror='this.src="{{asset('dist/images/870x450.png')}}"' width="870px" height="450px">
                 </div>
                 <div class="textHolder d-flex align-items-start mb-1">
                     <time class="time text-center text-uppercase py-sm-3 py-1 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block mb-1">20</strong> Sep</time>
                     <div class="alignLeft pl-6 w-100">
-                        <h2 class="headingV fwEbold mb-2">Aptent taciti soci litora cianpen</h2>
-                        <span class="postBy d-block pb-6 mb-3">Post by: Jane doe</span>
+                        <h2 class="headingV fwEbold mb-2">{{$news->title}}</h2>
+                        <span class="postBy d-block pb-6 mb-3">Đăng bởi: Cobtainlife</span>
                     </div>
                 </div>
-                <p class="mb-5"><span class="d-block">The standard Lorem Ipsum passage, used since the 1500s</span>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                <p class="mb-5"><span class="d-block">Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</span>
-                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
-                <div class="imgHolder mb-5">
-                    <img src="{{asset('dist/images/870x450.png')}}" alt="image description" class="img-fluid">
-                </div>
-                <p class="mb-5">On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.</p>
+                {!! $news->content !!}
             </div>
         </div>
         <div class="col-12 col-lg-3 order-lg-1">
             <!-- sidebar -->
             <aside id="sidebar">
-                <!-- widget -->
                 <section class="widget overflow-hidden mb-md-9 mb-6">
-                    <h3 class="headingVII fwEbold text-uppercase mb-4">Search</h3>
-                    <form action="javascript:void(0);" class="searchForm position-relative border">
-                        <fieldset>
-                            <input type="search" class="form-control" placeholder="Search product...">
-                            <button class="position-absolute"><i class="icon-search"></i></button>
-                        </fieldset>
-                    </form>
-                </section>
-                <!-- widget -->
-                <section class="widget overflow-hidden mb-md-9 mb-6">
-                    <h3 class="headingVII fwEbold text-uppercase mb-2">RECENT POSTS</h3>
+                    <h3 class="headingVII fwEbold text-uppercase mb-2">Bài viết gần đây</h3>
                     <ul class="list-unstyled recentPostList mb-0">
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Blog image post</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Post with Gallery</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Post with Audio</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Post with Video</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Maecenas ultricies</a></li>
-                    </ul>
-                </section>
-                <!-- widget -->
-                <section class="widget overflow-hidden mb-md-9 mb-6">
-                    <h3 class="headingVII fwEbold text-uppercase mb-2">RECENT COMMENTS</h3>
-                    <ul class="list-unstyled recentPostList mb-0">
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
-                        <li><a href="javascript:void(0);" class="py-2 d-block">Admin on Vivamus blandit</a></li>
+                        @foreach($recentNews as $recentNewsItem)
+                        <li><a href="{{route('web.blog.show', ['blog' => $recentNewsItem->alias])}}" class="py-2 d-block">{{$recentNewsItem->title}}</a></li>
+                        @endforeach
                     </ul>
                 </section>
                 <!-- widget -->
                 <section class="widget overflow-hidden mb-md-6 mb-3">
-                    <h3 class="headingVII fwEbold text-uppercase mb-4">ARCHIVES</h3>
+                    <h3 class="headingVII fwEbold text-uppercase mb-4">Lưu trữ</h3>
                     <ul class="list-unstyled archiveList mb-0">
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">March 2018</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">December 2018</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">November 2018</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">September 2018</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">August 2018</a></li>
+                        @foreach($archives as $archive)
+                        <li class="mb-3"><a href="{{route('web.blog.type', ['type' => 'date', 'value' => $archive->new_date])}}" class="d-block">{{getMonth($archive->month)}} - {{$archive->year}}</a></li>
+                        @endforeach
                     </ul>
                 </section>
                 <!-- widget -->
                 <section class="widget overflow-hidden mb-md-5 mb-3">
-                    <h3 class="headingVII fwEbold text-uppercase mb-4">CATEGORIES</h3>
-                    <ul class="list-unstyled archiveList mb-0">
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Creative</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Fashion</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Image</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Photography</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Travel</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Videos</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">WordPress</a></li>
-                    </ul>
-                </section>
-                <!-- widget -->
-                <section class="widget overflow-hidden mb-md-9 mb-6">
-                    <h3 class="headingVII fwEbold text-uppercase mb-4">META</h3>
-                    <ul class="list-unstyled archiveList mb-0">
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Log in</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Entries RSS</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">Comments RSS</a></li>
-                        <li class="mb-3"><a href="javascript:void(0);" class="d-block">WordPress.org</a></li>
+                    <h3 class="headingVII fwEbold text-uppercase mb-4">Tags</h3>
+                    <ul class="list-unstyled tagNavList d-flex flex-wrap mb-0">
+                        @foreach($tags as $tag)
+                        <li class="text-center"><a href="{{route('web.blog.type', ['type' => 'tags', 'value' => $tag->alias])}}" class="md-round d-block">{{$tag->label}}</a></li>
+                        @endforeach
                     </ul>
                 </section>
             </aside>
@@ -120,11 +73,19 @@
         <div class="col-12">
             <!-- socialNetworkList -->
             <ul class="list-unstyled socialNetworkList d-flex flex-nowrap mb-5">
-                <li class="text-uppercase mr-12">SHARE THIS POST:</li>
-                <li class="mr-4"><a href="javascript:void(0);" class="fab fa-facebook-f"></a></li>
-                <li class="mr-4"><a href="javascript:void(0);" class="fab fa-google-plus-g"></a></li>
-                <li class="mr-4"><a href="javascript:void(0);" class="fab fa-twitter"></a></li>
-                <li class="mr-4"><a href="javascript:void(0);" class="fab fa-pinterest-p"></a></li>
+                <li class="text-uppercase mr-12">Chia sẻ bài viết:</li>
+                <li class="mr-4">
+                    <i class="fab fa-facebook-f btn-social" data-href="https://facebook.com/sharer/sharer.php?u={{urlencode(route('web.blog.show', ['blog' => $news->alias]))}}"aria-hidden="true"></i>
+                </li>
+                <li class="mr-4">
+                <i class="fab fa-google-plus btn-social" data-href="https://plus.google.com/share?url={{route('web.blog.show', ['blog' => $news->alias])}}" aria-hidden="true"></i>
+                </li>
+                <li class="mr-4">
+                    <i class="fab fa-twitter btn-social" data-href="https://twitter.com/intent/tweet?text={{$news->alias}}&url={{route('web.blog.show', ['blog' => $news->alias])}}" aria-hidden="true"></i>
+                </li>
+                <li class="mr-4">
+                    <i class="fab fa-linkedin btn-social" data-href="https://www.linkedin.com/shareArticle/?mini=true&url={{route('web.blog.show', ['blog' => $news->alias])}}&title={{$news->title}}&summary={{$news->alias}}&source={{route('web.blog.show', ['blog' => $news->alias])}}" aria-hidden="true"></i>
+                </li>
             </ul>
         </div>
     </div>
