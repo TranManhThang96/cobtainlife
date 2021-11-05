@@ -171,10 +171,6 @@
 </div>
 @endsection
 
-@section('css')
-<link href="{{asset('css/web/app.css')}}" rel="stylesheet">
-@endsection
-
 @section('script')
 <script src="{{asset('js/web/checkout.js')}}" rel="stylesheet"></script>
 @endsection

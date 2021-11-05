@@ -38,8 +38,8 @@ class TagService extends BaseService
             if (is_numeric($tag) && !in_array((int)$tag, $tagsId)) {
                 $tagsId[] = (int)$tag;
             } else {
-                $tagSlug = Str::slug($tag, '-');
-                $tagExist = $this->tagRepository->getTagBySlug($tagSlug);
+                $tagAlias = Str::slug($tag, '-');
+                $tagExist = $this->tagRepository->getTagByAlias($tagAlias);
                 if (!empty($tagExist->id)) {
                     if (!in_array((int)$tagExist->id, $tagsId)) {
                         $tagsId[] = (int)$tagExist->id;
@@ -49,7 +49,7 @@ class TagService extends BaseService
                     //add tag
                     $newTag = $this->tagRepository->create([
                         'label' => $tag,
-                        'slug' => $tagSlug,
+                        'alias' => $tagAlias,
                     ]);
                     if (!empty($newTag->id)) {
                         $tagsId[] = $newTag->id;
@@ -60,9 +60,9 @@ class TagService extends BaseService
         return $tagsId;
     }
 
-    public function getCountSlugLikeName($slug, $id = null)
+    public function getCountAliasLikeName($tagAlias, $id = null)
     {
-        return $this->tagRepository->getCountSlugLikeName($slug, $id);
+        return $this->tagRepository->getCountAliasLikeName($tagAlias, $id);
     }
 
     public function store($attributes)
@@ -84,4 +84,10 @@ class TagService extends BaseService
     {
         return $this->tagRepository->delete($id);
     }
+
+    public function getNewsTags()
+    {
+        return $this->tagRepository->getNewsTags();
+    }
 }
+
