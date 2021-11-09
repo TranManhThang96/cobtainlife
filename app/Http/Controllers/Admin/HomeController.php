@@ -3,10 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\ShopCustomerService;
+use App\Services\ShopNewsService;
+use App\Services\ShopOrderDetailService;
+use App\Services\ShopOrderService;
+use App\Services\ShopProductService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
 {
+    public function __construct(
+        ShopOrderService $shopOrderService,
+        ShopProductService $shopProductService,
+        ShopCustomerService $shopCustomerService,
+        ShopNewsService $shopNewsService,
+        ShopOrderDetailService $shopOrderDetailService
+    ) {
+        $this->shopOrderService = $shopOrderService;
+        $this->shopProductService = $shopProductService;
+        $this->shopCustomerService = $shopCustomerService;
+        $this->shopNewsService = $shopNewsService;
+        $this->shopOrderDetailService = $shopOrderDetailService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +34,32 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.dashboard');
+        $totalOrders = $this->shopOrderService->totalOrders();
+        $totalProducts = $this->shopProductService->totalProducts();
+        $totalCustomers = $this->shopCustomerService->totalCustomers();
+        $mostViewedProducts = $this->shopProductService->getMostViewedProducts();
+        $bestSellProducts = $this->shopOrderDetailService->bestSellProducts();
+        $totalNews = $this->shopNewsService->totalNews();
+        return view('admin.pages.dashboard', compact(
+            'totalOrders',
+            'totalProducts',
+            'totalCustomers',
+            'totalNews',
+            'mostViewedProducts',
+            'bestSellProducts'
+        ));
+    }
+
+    public function chart()
+    {
+        $recentOrdersMonth  = $this->shopOrderService->recentOrdersMonth();
+        $recentOrdersYear  = $this->shopOrderService->recentOrdersYear();
+        $percentOrdersYear = $this->shopOrderService->percentOrdersYear();
+        return $this->apiSendSuccess([
+            'recentOrdersMonth' => $recentOrdersMonth,
+            'recentOrdersYear' => $recentOrdersYear,
+            'percentOrdersYear' => $percentOrdersYear
+        ], Response::HTTP_OK);
     }
 
     /**

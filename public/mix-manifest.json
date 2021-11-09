@@ -1,5 +1,6 @@
 {
     "/js/admin/app.js": "/js/admin/app.js",
+    "/js/admin/dashboard.js": "/js/admin/dashboard.js",
     "/js/admin/categories/index.js": "/js/admin/categories/index.js",
     "/js/admin/categories/add.js": "/js/admin/categories/add.js",
     "/js/admin/cbanners/index.js": "/js/admin/cbanners/index.js",

@@ -56,4 +56,14 @@ class ShopOrderDetail extends Model
             return '';
         }
     }
+
+    public function order()
+    {
+        return $this->belongsTo(\App\Models\ShopOrder::class, 'order_id', 'id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(\App\Models\ShopProduct::class, 'product_id', 'id');
+    }
 }
