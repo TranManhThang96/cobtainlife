@@ -60,4 +60,9 @@ class ShopOrderDetailService extends BaseService
     {
         return $this->shopOrderDetailRepository->deleteMultipleOrderDetail($orderIds);
     }
+
+    public function bestSellProducts()
+    {
+        return $this->shopOrderDetailRepository->bestSellProducts();
+    }
 }

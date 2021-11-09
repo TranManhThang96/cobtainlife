@@ -31,9 +31,9 @@ class ShopProductService extends BaseService
         return $this->productRepository->all($request);
     }
 
-    public function getProductsMostViews($request = null)
+    public function getMostViewedProducts($request = null)
     {
-        return $this->productRepository->getProductsMostViews($request);
+        return $this->productRepository->getMostViewedProducts($request);
     }
 
     public function getAll()
@@ -79,5 +79,15 @@ class ShopProductService extends BaseService
     public function relatedProducts($productId, $categoryId = null)
     {
         return $this->productRepository->relatedProducts($productId, $categoryId);
+    }
+
+    public function totalProducts()
+    {
+        return $this->productRepository->totalProducts();
+    }
+
+    public function updateView($productId)
+    {
+        return $this->productRepository->updateView($productId);
     }
 }

@@ -23,7 +23,7 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $productsMostViews = $this->shopProductService->getProductsMostViews();
+        $productsMostViews = $this->shopProductService->getMostViewedProducts();
         if ($productsMostViews) {
             foreach($productsMostViews as &$product) {
                 if (!empty($product['promotion'])) {

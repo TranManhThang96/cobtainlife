@@ -38,4 +38,17 @@ class ShopOrderDetailRepository extends RepositoryAbstract implements ShopOrderD
         DB::table('shop_order_details')->whereIn('id', $orderIds)->update(['deleted_at' => new \DateTime()]);
     }
 
+    public function bestSellProducts($request = null)
+    {
+        $limit = $request->limit ?? 5;
+        return $this->model::select('product_id', DB::raw("sum(qty) as product_qty"))
+        ->with(['product' => function ($query) {
+            $query->select('id', 'name', 'alias', 'image');
+        }])
+            ->orderBy('product_qty', 'DESC')
+            ->groupBy('product_id')
+            ->skip(0)->take($limit)
+            ->get();
+    }
+
 }

@@ -6,8 +6,7 @@ namespace App\Repositories\ShopProduct;
 
 use App\Enums\Constant;
 use App\Repositories\RepositoryAbstract;
-use Carbon\Carbon;
-use App\Enums\DBConstant;
+use Illuminate\Support\Facades\DB;
 
 class ShopProductRepository extends RepositoryAbstract implements ShopProductRepositoryInterface
 {
@@ -100,7 +99,7 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         return $this->model::with('attributes')->orderBy($sortBy, $orderBy)->get();
     }
 
-    public function getProductsMostViews($request)
+    public function getMostViewedProducts($request)
     {
         $sortBy = $request->sort_by ?? 'view';
         $orderBy = $request->order_by ?? 'DESC';
@@ -154,5 +153,19 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
                         ->get();
         }
         return $products;       
+    }
+
+    public function totalProducts()
+    {
+        return $this->model::count();
+    }
+
+    public function updateView($productId)
+    {
+        return DB::table('shop_products')->where('id', $productId)->update(
+            [
+                'view' => DB::raw('view + 1')
+            ]
+        );
     }
 }
