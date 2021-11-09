@@ -6,7 +6,7 @@ namespace App\Repositories\ShopOrder;
 
 use App\Enums\Constant;
 use App\Repositories\RepositoryAbstract;
-
+use Illuminate\Support\Facades\DB;
 class ShopOrderRepository extends RepositoryAbstract implements ShopOrderRepositoryInterface
 {
     /**
@@ -75,4 +75,32 @@ class ShopOrderRepository extends RepositoryAbstract implements ShopOrderReposit
             ->find($id);
     }
 
+    public function totalOrders()
+    {
+        return $this->model::count();
+    }
+
+    // thống kê đơn hàng 30 ngày gần nhất
+    public function recentOrdersMonth()
+    {
+        return $this->model::select(DB::raw("DATE_FORMAT(created_at, '%d/%m/%Y') new_date"), DB::raw("COUNT(created_at) qty"))
+        ->whereRaw('created_at BETWEEN NOW() - INTERVAL 30 DAY AND NOW()')
+        ->groupBy('new_date')->get();
+    }
+
+    // thống kê đơn hàng 12 tháng gần nhất
+    public function recentOrdersYear()
+    {
+        return $this->model::select(DB::raw("DATE_FORMAT(created_at, '%m/%Y') new_date"), DB::raw("COUNT(created_at) qty"))
+        ->whereRaw('created_at BETWEEN NOW() - INTERVAL 365 DAY AND NOW()')
+        ->groupBy('new_date')->get();
+    }
+
+    // thống kê đơn hàng từ web or other
+    public function percentOrdersYear()
+    {
+        return $this->model::select(DB::raw("SUM(ISNULL(created_by)) AS web"), DB::raw("SUM(!ISNULL(created_by)) AS other"))
+        ->whereRaw('created_at BETWEEN NOW() - INTERVAL 365 DAY AND NOW()')
+        ->get();
+    }
 }

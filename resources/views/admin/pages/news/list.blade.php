@@ -27,8 +27,8 @@
             </td>
             <td>{{$news->title}}</td>
             <td>
-                <span class="badge text-white font-weight-bold bg-{{$news['status'] == 1 ? 'success' : 'danger'}}">
-                    {{$news['status'] == 1 ? 'ON' : 'OFF'}}
+                <span class="badge text-white font-weight-bold bg-{{$news->status == 1 ? 'success' : 'danger'}}">
+                    {{$news->status == 1 ? 'ON' : 'OFF'}}
                 </span>
             </td>
             <td>
@@ -41,8 +41,8 @@
             <td>{{date('d/m/Y H:i:s', strtotime($news->created_at))}}</td>
             <td>{{date('d/m/Y H:i:s', strtotime($news->updated_at))}}</td>
             <td>
-                <a class="btn btn-cyan btn-sm" href="{{route('admin.news.edit', ['news' => $news['id']])}}">Sửa
-                </a>
+                <a class="btn btn-dark btn-sm" href="{{route('web.blog.show', ['blog' => $news->alias])}}" target="_blank">Xem</a>
+                <a class="btn btn btn-cyan btn-sm" href="{{route('admin.news.edit', ['news' => $news['id']])}}">Sửa</a>
                 <button type="button" class="btn btn-danger btn-sm btn-delete-news" data-news-id="{{$news['id']}}">Xóa</button>
             </td>
         </tr>

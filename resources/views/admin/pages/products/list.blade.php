@@ -56,6 +56,7 @@
                 </span>
             </td>
             <td>
+                <a class="btn btn-dark btn-sm" href="{{route('web.products.show', ['product' => $product->alias])}}" target="_blank">Xem</a>
                 <a class="btn btn-cyan btn-sm"
                         href="{{route('admin.products.edit', ['product' => $product['id']])}}">Sửa
                 </a>

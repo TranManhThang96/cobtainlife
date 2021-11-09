@@ -119,4 +119,9 @@ class ShopNewsRepository extends RepositoryAbstract implements ShopNewsRepositor
     {
         return $this->model::with('tags')->where('alias', $alias)->first();
     }
+
+    public function totalNews()
+    {
+        return $this->model::count();
+    }
 }

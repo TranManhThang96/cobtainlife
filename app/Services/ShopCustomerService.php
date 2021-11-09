@@ -72,4 +72,9 @@ class ShopCustomerService extends BaseService
         }
         return $customer->id ?? null;
     }
+
+    public function totalCustomers()
+    {
+        return $this->shopCustomerRepository->totalCustomers();
+    }
 }

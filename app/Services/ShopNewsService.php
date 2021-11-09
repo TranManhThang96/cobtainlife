@@ -75,4 +75,9 @@ class ShopNewsService extends BaseService
     {
         return $this->newsRepository->recentNews($request);
     }
+
+    public function totalNews()
+    {
+        return $this->newsRepository->totalNews();
+    }
 }
