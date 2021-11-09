@@ -47,3 +47,5 @@ npm run production
 
 # Turn off maintenance mode
 php artisan up
+
+composer dump-autoload
