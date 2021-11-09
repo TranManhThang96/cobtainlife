@@ -11,6 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 mix.js('resources/js/admin/app.js', 'public/js/admin')
+mix.js('resources/js/admin/dashboard.js', 'public/js/admin')
 mix.sass('resources/sass/admin/app.scss', 'public/css/admin');
 
 // [categories]

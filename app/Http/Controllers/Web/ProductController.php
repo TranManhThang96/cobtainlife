@@ -29,7 +29,7 @@ class ProductController extends Controller
     {
         $categories = $this->shopCategoryService->all();
         $products = $this->shopProductService->index($request);
-        $productsMostViews = $this->shopProductService->getProductsMostViews();
+        $productsMostViews = $this->shopProductService->getMostViewedProducts();
         if ($products) {
             foreach($products as &$product) {
                 if (!empty($product['promotion'])) {
@@ -100,6 +100,10 @@ class ProductController extends Controller
     public function show($alias)
     {
         $product = $this->shopProductService->findByAlias($alias);
+        if (!$product) {
+            return abort(404);
+        }
+        $this->shopProductService->updateView($product->id);
         $isPromotionValid = false;
         if (!empty($product['promotion'])) {
             $isPromotionValid = $this->checkValidPromotion($product['promotion'], $product['price']);

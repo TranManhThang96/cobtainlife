@@ -60,4 +60,9 @@ class ShopCustomerRepository extends RepositoryAbstract implements ShopCustomerR
         return $this->model->where('phone', $phone)->orWhere('email', $email)->first();
     }
 
+    public function totalCustomers()
+    {
+        return $this->model::count();
+    }
+
 }
