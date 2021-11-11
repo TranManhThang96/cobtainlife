@@ -34,6 +34,7 @@ Route::domain(config('app.main_domain'))->name('web.')->group(function () {
     Route::resource('/products', ProductController::class);
     Route::get('/address/provinces/{id}', [\App\Http\Controllers\Web\AddressController::class, 'province'])->name('address.province');
     Route::get('/address/districts/{id}', [\App\Http\Controllers\Web\AddressController::class, 'district'])->name('address.district');
+    Route::resource('/comments', CommentController::class);
 });
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'admin.auth']], function () {
