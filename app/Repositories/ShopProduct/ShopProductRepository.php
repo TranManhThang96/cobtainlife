@@ -131,6 +131,9 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
                 $q->select('id', 'name');
             }]);
         }])->with('orders')
+        ->with(['comments' => function($query) {
+            return $query->with('child:id,customer_name,customer_email,comment,comment_parent,created_at');
+        }])
         ->where('alias', $alias)
         ->first();
     }

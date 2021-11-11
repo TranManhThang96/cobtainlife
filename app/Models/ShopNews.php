@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DBConstant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -45,5 +46,14 @@ class ShopNews extends Model
     public function tags()
     {
         return $this->belongsToMany(\App\Models\Tag::class, 'shop_news_tag', 'news_id' ,'tag_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\ShopComment::class, 'object_id', 'id')->where([
+            ['type', DBConstant::NEWS_COMMENT],
+            ['comment_parent', DBConstant::NO_COMMENT_PARENT],
+            ['status', DBConstant::SHOW_COMMENT],
+        ]);
     }
 }

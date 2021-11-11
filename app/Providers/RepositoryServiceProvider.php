@@ -128,6 +128,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\Tag\TagRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\ShopComment\ShopCommentRepositoryInterface::class,
+            \App\Repositories\ShopComment\ShopCommentRepository::class
+        );
+
     }
 
     /**
