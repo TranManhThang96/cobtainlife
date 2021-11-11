@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\ShopNews;
 
 use App\Enums\Constant;
+use App\Enums\DBConstant;
 use App\Repositories\RepositoryAbstract;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -117,7 +118,9 @@ class ShopNewsRepository extends RepositoryAbstract implements ShopNewsRepositor
 
     public function findByAlias($alias)
     {
-        return $this->model::with('tags')->where('alias', $alias)->first();
+        return $this->model::with('tags')->with(['comments' => function($query) {
+            return $query->with('child:id,customer_name,customer_email,comment,comment_parent,created_at');
+        }])->where('alias', $alias)->first();
     }
 
     public function totalNews()
