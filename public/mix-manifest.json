@@ -49,6 +49,7 @@
     "/js/web/checkout.js": "/js/web/checkout.js",
     "/js/web/wishlist.js": "/js/web/wishlist.js",
     "/js/web/compare.js": "/js/web/compare.js",
+    "/js/web/blog/detail.js": "/js/web/blog/detail.js",
     "/css/admin/brands/add.css": "/css/admin/brands/add.css",
     "/css/admin/suppliers/add.css": "/css/admin/suppliers/add.css",
     "/css/admin/cbanners/add.css": "/css/admin/cbanners/add.css",

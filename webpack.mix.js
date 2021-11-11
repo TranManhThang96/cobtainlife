@@ -120,3 +120,7 @@ mix.sass('resources/sass/web/wishlist/products.scss', 'public/css/web/wishlist')
 // [WEB] compare
 mix.js('resources/js/web/compare.js', 'public/js/web');
 mix.sass('resources/sass/web/compare/products.scss', 'public/css/web/compare');
+
+
+// [WEB] blog
+mix.js('resources/js/web/blog/detail.js', 'public/js/web/blog');

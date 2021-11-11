@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\DBConstant;
 class ShopProduct extends Model
 {
     use HasFactory;
@@ -109,5 +110,14 @@ class ShopProduct extends Model
     public function setPriceAttribute($value)
     {
         $this->attributes['price'] = convertStringToNumber($value);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\ShopComment::class, 'object_id', 'id')->where([
+            ['type', DBConstant::PRODUCT_COMMENT],
+            ['comment_parent', DBConstant::NO_COMMENT_PARENT],
+            ['status', DBConstant::SHOW_COMMENT],
+        ]);
     }
 }

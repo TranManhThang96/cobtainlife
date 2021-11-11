@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- introBannerHolder -->
-<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url(http://placehold.it/1920x300);">
+<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{asset('dist/images/1920x300.png')}});">
     <div class="container">
         <div class="row">
             <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
@@ -148,7 +148,96 @@
                     </p>
                 </div>
                 <div id="tab2-0">
-                    <!-- <p>Aenean id ullamcorper libero. Vestibulum imperdiet nibh. Lorem ullamcorper volutpat. Vestibulum lacinia risus. Etiam sagittis ullamcorper volutpat. Vestibulum lacinia risus sed ligula malesuada volutpat.Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p> -->
+                <div id="tab2-0">
+                    <div class="row mb-10">
+                        <div class="col-12 border-bottom">
+                            <!-- commentsBlock -->
+                            <div class="commentsBlock overflow-hidden mb-2">
+                                <h4 class="headingVII text-uppercase mb-5">Bình Luận</h4>
+                                @foreach($product->comments as $comment)
+                                <!-- commentArea -->
+                                <article class="commentArea overflow-hidden d-flex align-items-start mb-6">
+                                    <div class="name text-uppercase">{{substr($comment->customer_name, 0, 1)}}</div>
+                                    <div class="txtHolder border px-2 py-2">
+                                        <span class="commentDate d-block mb-2">
+                                            <a href="javascript:void(0);" class="text-capitalize">{{$comment->customer_name}}</a>
+                                            <i class="fas fa-clock ml-2" aria-hidden="true"></i> {{date('d/m/Y H:i:s', strtotime($comment->created_at))}}
+                                            <!-- <a href="javascript:void(0);" class="link text-green">Reply</a> -->
+                                        </span>
+                                        <p class="mb-1">{{$comment->comment}}</p>
+                                    </div>
+                                </article>
+
+                                @foreach($comment->child as $childComment)
+                                <div class="commentOneLevel pl-md-20 pl-sm-10 pl-0 mb-9">
+                                    <article class="commentArea overflow-hidden d-flex align-items-start mb-2">
+                                        <div class="name text-uppercase">{{$childComment->customer_name}}</div>
+                                        <div class="txtHolder border px-2 py-2">
+                                            <span class="commentDate d-block mb-2">
+                                                <a href="javascript:void(0);" class="text-capitalize">{{$childComment->customer_name}}</a>
+                                                <i class="fas fa-clock ml-2" aria-hidden="true"></i> {{date('d/m/Y H:i:s', strtotime($childComment->created_at))}}
+                                            </span>
+                                            <p class="mb-1">{{$childComment->comment}}</p>
+                                        </div>
+                                    </article>
+                                </div>
+                                @endforeach @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- commentFormArea -->
+                            <div class="commentFormArea">
+                                <form class="commentform" id="comment-form">
+                                    <input type="hidden" name="object_id" value="{{$product->id}}" />
+                                    <input type="hidden" name="type" value="1" />
+                                    <div class="form-group w-100 mb-5 d-flex">
+                                        <h2 class="headingVII text-uppercase mr-5 pt-1">Đánh giá</h2>
+                                        <ul class="list-unstyled ratingList d-flex flex-nowrap mb-2 comment-rating">
+                                            <input type="hidden" name="rating" value="0" />
+                                            <li class="mr-2">
+                                                <a href="javascript:void(0);" data-id="star-1" class="star"><i class="far fa-star"></i></a>
+                                            </li>
+                                            <li class="mr-2">
+                                                <a href="javascript:void(0);" data-id="star-2" class="star"><i class="far fa-star"></i></a>
+                                            </li>
+                                            <li class="mr-2">
+                                                <a href="javascript:void(0);" data-id="star-3" class="star"><i class="far fa-star"></i></a>
+                                            </li>
+                                            <li class="mr-2">
+                                                <a href="javascript:void(0);" data-id="star-4" class="star"><i class="far fa-star"></i></a>
+                                            </li>
+                                            <li class="mr-2">
+                                                <a href="javascript:void(0);" data-id="star-5" class="star"><i class="far fa-star"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="form-group w-100 mb-5">
+                                        <textarea class="form-control" placeholder="bình luận" name="comment"></textarea>
+                                    </div>
+                                    <div class="d-flex flex-wrap row1 mb-md-5">
+                                        <div class="form-group coll mb-5">
+                                            <label for="name" class="mb-1">Họ và tên *</label>
+                                            <input type="text" id="name" class="form-control" name="customer_name" />
+                                        </div>
+                                        <div class="form-group coll mb-5">
+                                            <label for="email" class="mb-1">Email *</label>
+                                            <input type="email" class="form-control" id="email" name="customer_email" />
+                                        </div>
+                                        <div class="form-group coll mb-5">
+                                            <label for="website" class="mb-1">Website</label>
+                                            <input type="text" class="form-control" id="website" name="customer_website" />
+                                        </div>
+                                    </div>
+                                    <button class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4" id="comment-btn" data-object-id="{{$product->id}}">Bình luận<i class="fas fa-arrow-right ml-2"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
@@ -215,5 +304,6 @@
 @endsection
 
 @section('script')
+    <script src="{{asset('assets/extra-libs/nameBadges/jquery.nameBadges.js')}}" rel="stylesheet"></script>
     <script src="{{asset('js/web/products/detail.js')}}" rel="stylesheet"></script>
 @endsection
