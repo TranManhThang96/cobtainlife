@@ -1,8 +1,8 @@
-@extends('web.layout.default')
+@extends('web.layout.full')
 
 @section('content')
 <!-- introBannerHolder -->
-<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url(http://placehold.it/1920x300);">
+<section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{asset('dist/images/1920x300.png')}});">
     <div class="container">
         <div class="row">
             <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
@@ -69,19 +69,5 @@
             <a href="javascript:void(0);" class="btn btnTheme w-100 fwEbold text-center text-white md-round py-3 px-4 py-md-3 px-md-4" id="go-checkout-confirm">Thanh Toán</a>
         </div>
     </div>
-</div>
-<div class="container mb-lg-24 mb-md-16 mb-10">
-    <!-- subscribeSecBlock -->
-    <section class="subscribeSecBlock bgCover col-12 pt-lg-24 pb-lg-12 pt-md-16 pb-md-8 py-10" style="background-image: url(http://placehold.it/1170x465)">
-        <header class="col-12 mainHeader mb-9 text-center">
-            <h1 class="headingIV playfair fwEblod mb-4">Subscribe Our Newsletter</h1>
-            <span class="headerBorder d-block mb-5"><img src="{{asset('dist/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>
-            <p class="mb-6">Enter Your email address to join our mailing list and keep yourself update</p>
-        </header>
-        <form class="emailForm1 mx-auto overflow-hidden d-flex flex-wrap">
-            <input type="email" class="form-control px-4 border-0" placeholder="Enter your mail...">
-            <button type="submit" class="btn btnTheme btnShop fwEbold text-white py-3 px-4 py-md-3 px-md-4">Shop Now <i class="fas fa-arrow-right ml-2"></i></button>
-        </form>
-    </section>
 </div>
 @endsection
