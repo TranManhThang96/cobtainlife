@@ -79,19 +79,36 @@
             <div class="col-sm-3 col-lg-2">
                 <!-- wishListII -->
                 <ul class="nav nav-tabs wishListII pt-5 justify-content-end border-bottom-0">
-                    <li class="nav-item ml-0"><a class="nav-link icon-search" href="javascript:void(0);"></a></li>
+                    <!-- search -->
+                    <li class="nav-item ml-0">
+                        <div class="navbar-search">
+                            <a class="nav-link navbar-search-icon icon-search" href="javascript:void(0);"></a>
+                            <form class="rd-search" action="{{route('web.products.index')}}" method="GET">
+                                <div class="form-wrap">
+                                    <input class="rd-navbar-search-form-input form-input" type="text" name="q" placeholder="Nhập từ khóa">
+                                    <button class="rd-search-form-submit" type="submit"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <!-- end search -->
+
+                    <!-- cart -->
                     <li class="nav-item">
                         <a class="nav-link position-relative icon-cart" href="{{route('web.cart.index')}}">
                             <span class="num rounded d-block" id="qty-product-cart">0</span>
                         </a>
                     </li>
+                    <!-- end cart -->
+
+                    <!-- login -->
                     <li class="nav-item">
                         <a class="nav-link icon-profile" href="javascript:void(0);" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
                         <div class="dropdown-menu">
-							<a class="dropdown-item px-2" href="javascript:void(0);">
+							<!-- <a class="dropdown-item px-2" href="javascript:void(0);">
                                 <i class="fa fa-user pr-1"></i>
                                 Đăng nhập
-                            </a>
+                            </a> -->
 							<a class="dropdown-item px-2" href="{{route('web.wishlist')}}">
                                 <i class="fas fa-heart pr-1"></i>
                                 Yêu thích (<span id="count-wishlist">0</span>)
@@ -102,7 +119,8 @@
                             </a>
 						</div>
                     </li>
-                   
+                    <!-- end login -->
+
                 </ul>
             </div>
         </div>
