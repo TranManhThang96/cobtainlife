@@ -248,3 +248,24 @@
   }
 }
 
+.sidebar-nav {
+  ul {
+    .sidebar-item {
+      .sidebar-link {
+        i {
+          font-size: 1.25rem !important;
+        }
+      }
+      .first-level {
+        .sidebar-item {
+          .sidebar-link {
+            i {
+              font-size: 0.8rem !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

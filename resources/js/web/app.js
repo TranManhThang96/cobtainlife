@@ -70,6 +70,22 @@ $(document).ready(function () {
     }
     $('.comment-rating input[name="rating"]').val(eID);
   });
+
+  $('.navbar-search-icon').click(function() {
+    const isClose = $(this).hasClass('close-search');
+    const parentElement = $(this).parent();
+    if (isClose) {
+      parentElement.removeClass('active');
+      $(this).find('.fa-times-circle').remove();
+      $(this).removeClass('navbar-search-icon').removeClass('close-search').addClass('icon-search');
+    } else {
+      parentElement.addClass('active');
+      setTimeout(() => {
+        parentElement.find('input.rd-navbar-search-form-input').focus();
+      }, 500)
+      $(this).removeClass('icon-search').addClass('navbar-search-icon').addClass('close-search').append('<i class="fa fa-times-circle" aria-hidden="true" style="font-weight: 500;"></i>')
+    }
+  })
 })
 
 /**
