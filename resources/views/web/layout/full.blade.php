@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="csrf-token" content="{{ csrf_token() }}"/>
 	<!-- set the page title -->
-	<title>Botanical - HTML5 Ecommerce Template</title>
+	<title>Cobtainlife</title>
 	<!-- include the site Google Fonts stylesheet -->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700%7CRoboto:300,400,500,700,900&display=swap" rel="stylesheet">
 	<!-- include the site bootstrap stylesheet -->
@@ -41,7 +41,7 @@
 
             <div class="container mb-lg-24 mb-md-16 mb-10">
                 <!-- subscribeSecBlock -->
-                <section class="subscribeSecBlock bgCover col-12 pt-lg-24 pb-lg-12 pt-md-16 pb-md-8 py-10" style="background-image: url({{asset('dist/images/1170x465.png')}})">
+                <section class="subscribeSecBlock bgCover col-12 pt-lg-24 pb-lg-12 pt-md-16 pb-md-8 py-10" style="background-image: url({{$configs->store_background_subscribe['value'] ? asset('storage'.$configs->store_background_subscribe['value']) : asset('dist/images/1170x465.png')}})">
                     <header class="col-12 mainHeader mb-9 text-center">
                         <h1 class="headingIV playfair fwEblod mb-4">Subscribe Our Newsletter</h1>
                         <span class="headerBorder d-block mb-5"><img src="{{asset('dist/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>

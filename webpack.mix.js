@@ -93,6 +93,10 @@ mix.js('resources/js/admin/attribute_group/index', 'public/js/admin/attribute_gr
 mix.js('resources/js/admin/attribute_group/add', 'public/js/admin/attribute_group');
 mix.js('resources/js/admin/attribute_group/edit', 'public/js/admin/attribute_group');
 
+// [configs]
+mix.js('resources/js/admin/configs/index', 'public/js/admin/configs');
+mix.sass('resources/sass/admin/configs/index.scss', 'public/css/admin/configs');
+
 
 // WEB
 

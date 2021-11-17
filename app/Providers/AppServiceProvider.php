@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\ShopConfig;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $allConfigs = ShopConfig::all();
+        $configs = (object) array_column($allConfigs->toArray(), null, 'key');
+        View::share('configs', $configs);
+
         Schema::defaultStringLength(191);
     }
 }
