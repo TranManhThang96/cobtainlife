@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="csrf-token" content="{{ csrf_token() }}"/>
 	<!-- set the page title -->
-	<title>Botanical - HTML5 Ecommerce Template</title>
+	<title>Cobtainlife</title>
 	<!-- include the site Google Fonts stylesheet -->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700%7CRoboto:300,400,500,700,900&display=swap" rel="stylesheet">
 	<!-- include the site bootstrap stylesheet -->
