@@ -52,6 +52,7 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/customers', \ShopCustomerController::class);
         Route::get('/news/search', [\App\Http\Controllers\Admin\NewsController::class, 'search'])->name('news.search');
         Route::resource('/news', \NewsController::class);
+        Route::resource('/configs', \ShopConfigController::class);
     });
 });
 

@@ -65,7 +65,7 @@
                 </li>
 
                 <li class="sidebar-item"> 
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.configs.index')}}" aria-expanded="false">
                         <i class="fas fa-h-square"></i>
                         <span class="hide-menu">Cấu hình cửa hàng</span>
                     </a>

@@ -1,34 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ShopConfigRequest;
+use App\Services\ShopConfigService;
 use Illuminate\Http\Request;
-use App\Services\ShopBannerService;
-use App\Services\ShopNewsService;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response;
 
-class HomeController extends Controller
+class ShopConfigController extends Controller
 {
-    public function __construct(
-        ShopBannerService $shopBannerService,
-        ShopNewsService $shopNewsService
-    ) {
-        $this->shopBannerService = $shopBannerService;
-        $this->shopNewsService = $shopNewsService;
+    public function __construct(ShopConfigService $shopConfigService)
+    {
+        $this->shopConfigService = $shopConfigService;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $request = (object)[
-            'status' => 1
-        ];
-        $banners = $this->shopBannerService->all($request);
-        $lastNews = $this->shopNewsService->recentNews((object)['limit' => 3]);
-        return view('web.pages.home', compact('banners', 'lastNews'));
+        $allConfigs = $this->shopConfigService->all();
+        $configs = (object) array_column($allConfigs->toArray(), null, 'key');
+        return view('admin.pages.configs.index', compact('configs'));
     }
 
     /**
@@ -47,9 +44,18 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ShopConfigRequest $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $this->shopConfigService->save($request->all());
+            DB::commit();
+            return $this->apiSendSuccess(null, Response::HTTP_OK, 'Lưu cấu hình thành công!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Lưu cấu hình thất bại!');
+            DB::rollBack();
+        }
     }
 
     /**

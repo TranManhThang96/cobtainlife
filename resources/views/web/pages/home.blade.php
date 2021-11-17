@@ -398,54 +398,29 @@
 	<div class="row">
 		<!-- mainHeader -->
 		<header class="col-12 mainHeader mb-4 text-center">
-			<h1 class="headingIV playfair fwEblod mb-4">Latest News</h1>
+			<h1 class="headingIV playfair fwEblod mb-4">Bài viết gần nhất</h1>
 			<span class="headerBorder d-block mb-5"><img src="{{asset('dist/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>
-			<p>There are many variations of passages of lorem ipsum available </p>
 		</header>
 	</div>
 	<div class="row">
-		<div class="col-12 col-sm-6 col-lg-4">
-			<!-- newsPostColumn -->
-			<div class="newsPostColumn text-center px-2 pb-6 mb-6">
-				<div class="imgHolder position-relative mb-6">
-					<a href="blog-detail.html">
-						<img src="{{asset('dist/images/370x250.png')}}" alt="image description" class="img-fluid w-100">
-						<time class="time text-uppercase position-absolute py-2 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block">20</strong> Sep</time>
-					</a>
+		@foreach($lastNews as $news)
+			<div class="col-12 col-sm-6 col-lg-4">
+				<!-- newsPostColumn -->
+				<div class="newsPostColumn text-center px-2 pb-6 mb-6">
+					<div class="imgHolder position-relative mb-6">
+						<a href="{{route('web.blog.show', ['blog' => $news->alias])}}">
+							<img src="{{asset('storage'.$news->image)}}" alt="{{$news->name}}" onerror='this.src="{{asset('dist/images/370x250.png')}}"' width="370px" height="250px">
+							<time class="time text-uppercase position-absolute py-2 px-1" datetime="{{$news->created_at}}"> 
+								<strong class="fwEbold d-block">{{readDateTime($news->created_at, 'd')}}</strong> {{readDateTime($news->created_at, 'M')}}
+							</time>
+						</a>
+					</div>
+					<span class="postBy d-block mb-3">Đăng bởi: <a href="{{route('web.blog.show', ['blog' => $news->alias])}}">Cobtainlife</a></span>
+					<h2 class="headingV fwEbold mb-2"><a href="{{route('web.blog.show', ['blog' => $news->alias])}}">{{$news->title ?? ''}}</a></h2>
+					<p class="mb-0 text-truncate" style="max-width: 40vw">{{$news->description}}</p>
 				</div>
-				<span class="postBy d-block mb-3">Post by: <a href="blog-detail.html">Jane doe</a></span>
-				<h2 class="headingV fwEbold mb-2"><a href="blog-detail.html">Aptent taciti soci litora cianpen</a></h2>
-				<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...</p>
 			</div>
-		</div>
-		<div class="col-12 col-sm-6 col-lg-4">
-			<!-- newsPostColumn -->
-			<div class="newsPostColumn text-center px-2 pb-6 mb-6">
-				<div class="imgHolder position-relative mb-6">
-					<a href="blog-detail.html">
-						<img src="{{asset('dist/images/370x250.png')}}" alt="image description" class="img-fluid w-100">
-						<time class="time text-uppercase position-absolute py-2 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block">18</strong> Sep</time>
-					</a>
-				</div>
-				<span class="postBy d-block mb-3">Post by: <a href="blog-detail.html">Jane doe</a></span>
-				<h2 class="headingV fwEbold mb-2"><a href="blog-detail.html">Aptent taciti soci litora cianpen</a></h2>
-				<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...</p>
-			</div>
-		</div>
-		<div class="col-12 col-sm-6 col-lg-4">
-			<!-- newsPostColumn -->
-			<div class="newsPostColumn text-center px-2 pb-6 mb-6">
-				<div class="imgHolder position-relative mb-6">
-					<a href="blog-detail.html">
-						<img src="{{asset('dist/images/370x250.png')}}" alt="image description" class="img-fluid w-100">
-						<time class="time text-uppercase position-absolute py-2 px-1" datetime="2019-02-03 20:00"> <strong class="fwEbold d-block">21</strong> Sep</time>
-					</a>
-				</div>
-				<span class="postBy d-block mb-3">Post by: <a href="blog-detail.html">Jane doe</a></span>
-				<h2 class="headingV fwEbold mb-2"><a href="blog-detail.html">Aptent taciti soci litora cianpen</a></h2>
-				<p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...</p>
-			</div>
-		</div>
+		@endforeach
 	</div>
 </section>
 @endsection
