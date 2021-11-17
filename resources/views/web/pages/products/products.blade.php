@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- introBannerHolder -->
-    <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{asset('dist/images/1920x300.png')}});">
+    <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{$configs->store_background['value'] ? asset('storage'.$configs->store_background['value']) : asset('dist/images/1920x300.png')}});">
         <div class="container">
             <div class="row">
                 <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">

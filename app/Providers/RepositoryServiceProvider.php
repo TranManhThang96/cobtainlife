@@ -133,6 +133,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ShopComment\ShopCommentRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\ShopConfig\ShopConfigRepositoryInterface::class,
+            \App\Repositories\ShopConfig\ShopConfigRepository::class
+        );
+
     }
 
     /**

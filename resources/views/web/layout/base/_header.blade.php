@@ -4,10 +4,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-4">
-                    <a href="javascript:void(0);" class="tel d-flex align-items-end"><i class="icon-call mr-2"></i> Hotline: (602) 462 8889</a>
+                    <a href="javascript:void(0);" class="tel d-flex align-items-end"><i class="icon-call mr-2"></i>{{$configs->store_hotline['value']}}</a>
                 </div>
                 <div class="col-12 col-sm-4 text-center">
-                    <span class="txt d-block">Wellcome To Botanical Store</span>
+                    <span class="txt d-block">{{$configs->store_welcome['value']}}</span>
                 </div>
                 <div class="col-12 col-sm-4">
                     <!-- langListII -->
@@ -40,7 +40,7 @@
             <div class="col-6 col-sm-2">
                 <!-- mainLogo -->
                 <div class="logo">
-                    <a href="home.html"><img src="{{asset('dist/images/logo.png')}}" alt="Botanical" class="img-fluid"></a>
+                    <a href="{{route('web.home')}}"><img src="{{asset('storage'.$configs->store_logo['value'])}}" alt="Cobtainlife" class="img-fluid"></a>
                 </div>
             </div>
             <div class="col-6 col-sm-7 col-lg-8 static-block">
