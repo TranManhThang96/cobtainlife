@@ -97,6 +97,10 @@ mix.js('resources/js/admin/attribute_group/edit', 'public/js/admin/attribute_gro
 mix.js('resources/js/admin/configs/index', 'public/js/admin/configs');
 mix.sass('resources/sass/admin/configs/index.scss', 'public/css/admin/configs');
 
+// [coupons]
+mix.js('resources/js/admin/coupons/add', 'public/js/admin/coupons');
+mix.js('resources/js/admin/coupons/index', 'public/js/admin/coupons');
+
 
 // WEB
 

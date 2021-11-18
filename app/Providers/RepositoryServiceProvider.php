@@ -138,6 +138,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ShopConfig\ShopConfigRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\ShopCoupon\ShopCouponRepositoryInterface::class,
+            \App\Repositories\ShopCoupon\ShopCouponRepository::class
+        );
+
     }
 
     /**

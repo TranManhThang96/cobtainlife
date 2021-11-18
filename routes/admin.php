@@ -53,6 +53,8 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::get('/news/search', [\App\Http\Controllers\Admin\NewsController::class, 'search'])->name('news.search');
         Route::resource('/news', \NewsController::class);
         Route::resource('/configs', \ShopConfigController::class);
+        Route::get('/coupons/search', [\App\Http\Controllers\Admin\ShopCouponController::class, 'search'])->name('coupons.search');
+        Route::resource('/coupons', \ShopCouponController::class);
     });
 });
 
