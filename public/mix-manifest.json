@@ -41,6 +41,8 @@
     "/js/admin/attribute_group/add.js": "/js/admin/attribute_group/add.js",
     "/js/admin/attribute_group/edit.js": "/js/admin/attribute_group/edit.js",
     "/js/admin/configs/index.js": "/js/admin/configs/index.js",
+    "/js/admin/coupons/add.js": "/js/admin/coupons/add.js",
+    "/js/admin/coupons/index.js": "/js/admin/coupons/index.js",
     "/js/web/products/index.js": "/js/web/products/index.js",
     "/js/web/products/detail.js": "/js/web/products/detail.js",
     "/js/web/common/local_storage.js": "/js/web/common/local_storage.js",
