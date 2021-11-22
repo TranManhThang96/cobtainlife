@@ -10,12 +10,25 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+                
                 <li class="sidebar-item"> 
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.orders.index')}}" aria-expanded="false">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span class="hide-menu">Đơn hàng</span>
+                    <a class="sidebar-link has-arrow waves-effect waves-dark {{in_array(request()->route()->getName(), ['admin.orders.index', 'admin.coupons.index']) ? 'active' : ''}}" href="javascript:void(0)" aria-expanded="false" data-type="{{request()->route()->getName()}}">
+                        <i class="fa fa-cart-arrow-down"></i>
+                        <span class="hide-menu">Đơn hàng & Mã giảm giá</span>
                     </a>
+                    <ul aria-expanded="false" class="collapse  first-level {{in_array(request()->route()->getName(), ['admin.orders.index', 'admin.coupons.index']) ? 'in' : ''}}">
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.orders.index')}}" aria-expanded="false">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span class="hide-menu">Đơn hàng</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item"><a href="{{route('admin.coupons.index')}}" class="sidebar-link"><i
+                                    class="fa fa-gift"></i><span
+                                    class="hide-menu">Mã giảm giá </span></a></li>
+                    </ul>
                 </li>
+
                 
                 <li class="sidebar-item"> 
                     <a class="sidebar-link has-arrow waves-effect waves-dark {{in_array(request()->route()->getName(), ['admin.products.index', 'admin.orders.index']) ? 'active' : ''}}" href="javascript:void(0)" aria-expanded="false" data-type="{{request()->route()->getName()}}">
