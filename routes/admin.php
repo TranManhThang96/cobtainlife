@@ -55,6 +55,9 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::resource('/configs', \ShopConfigController::class);
         Route::get('/coupons/search', [\App\Http\Controllers\Admin\ShopCouponController::class, 'search'])->name('coupons.search');
         Route::resource('/coupons', \ShopCouponController::class);
+        Route::get('/subscribes/search', [\App\Http\Controllers\Admin\ShopCustomerSubscribe::class, 'search'])->name('subscribes.search');
+        Route::post('/custom-subscribes-status', [\App\Http\Controllers\Admin\ShopCustomerSubscribe::class, 'status'])->name('subscribes.status');
+        Route::resource('/subscribes', \ShopCustomerSubscribe::class);
     });
 });
 

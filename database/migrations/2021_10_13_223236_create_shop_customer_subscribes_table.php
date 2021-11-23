@@ -13,11 +13,13 @@ class CreateShopSubscribesTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop_subscribes', function (Blueprint $table) {
+        Schema::create('shop_customer_subscribes', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('phone');
+            $table->string('name')->nullable();
+            $table->string('email')->unique();
+            $table->string('phone')->nullable()->unique();
             $table->text('content')->nullable();
+            $table->tinyInteger('type')->default(0)->comment('0: subscribe, 1: contact');
             $table->tinyInteger('status')->default(0)->comment('0: new, 1: đã liên hệ lại');
             $table->softDeletes();
             $table->timestamps();
@@ -31,6 +33,6 @@ class CreateShopSubscribesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop_subscribes');
+        Schema::dropIfExists('shop_customer_subscribes');
     }
 }

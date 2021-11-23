@@ -6,11 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
-                <h1 class="headingIV fwEbold playfair mb-4">Tin tức</h1>
+                <h1 class="headingIV fwEbold playfair mb-4">Kiến thức</h1>
                 <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
                     <li class="mr-sm-2 mr-1"><a href="home.html">Trang chủ</a></li>
                     <li class="mr-sm-2 mr-1">/</li>
-                    <li class="mr-sm-2 mr-1"><a href="blog.html">Tin tức</a></li>
+                    <li class="mr-sm-2 mr-1"><a href="blog.html">Kiến thức</a></li>
                     <li class="mr-sm-2 mr-1">/</li>
                     <li class="active">{{$news->title}}</li>
                 </ul>
