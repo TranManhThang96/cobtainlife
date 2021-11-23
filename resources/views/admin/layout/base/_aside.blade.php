@@ -53,7 +53,7 @@
                         <li class="sidebar-item"><a href="{{route('admin.customers.index')}}" class="sidebar-link"><i
                                     class="fa fa-user"></i><span
                                     class="hide-menu">Khách hàng</span></a></li>
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i
+                        <li class="sidebar-item"><a href="{{route('admin.subscribes.index')}}" class="sidebar-link"><i
                                     class="fa fa-user-circle"></i><span
                                     class="hide-menu">Khách hàng subscribe</span></a></li>
                     </ul>

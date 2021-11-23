@@ -43,13 +43,17 @@
                 <!-- subscribeSecBlock -->
                 <section class="subscribeSecBlock bgCover col-12 pt-lg-24 pb-lg-12 pt-md-16 pb-md-8 py-10" style="background-image: url({{$configs->store_background_subscribe['value'] ? asset('storage'.$configs->store_background_subscribe['value']) : asset('dist/images/1170x465.png')}})">
                     <header class="col-12 mainHeader mb-9 text-center">
-                        <h1 class="headingIV playfair fwEblod mb-4">Subscribe Our Newsletter</h1>
+                        <h1 class="headingIV playfair fwEblod mb-4">Đăng ký</h1>
                         <span class="headerBorder d-block mb-5"><img src="{{asset('dist/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>
-                        <p class="mb-6">Enter Your email address to join our mailing list and keep yourself update</p>
+                        <p class="mb-6">Vui lòng nhập địa chỉ email của bạn để luôn nhận được những khuyến mại hấp dẫn.</p>
                     </header>
-                    <form class="emailForm1 mx-auto overflow-hidden d-flex flex-wrap">
-                        <input type="email" class="form-control px-4 border-0" placeholder="Enter your mail...">
-                        <button type="submit" class="btn btnTheme btnShop fwEbold text-white py-3 px-4 py-md-3 px-md-4">Shop Now <i class="fas fa-arrow-right ml-2"></i></button>
+                    <form class="emailForm1 mx-auto overflow-hidden d-flex flex-wrap" id="frm-subscribe-news">
+						@csrf
+                        <input type="email" class="form-control px-4 border-0" placeholder="Địa chỉ email..." name="email">
+                        <button class="btn btnTheme btnShop fwEbold text-white py-3 px-4 py-md-3 px-md-4" id="btn-subscribe-news">
+							Đăng ký 
+							<i class="fas fa-arrow-right ml-2"></i>
+						</button>
                     </form>
                 </section>
             </div>
