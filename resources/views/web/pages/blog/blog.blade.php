@@ -5,11 +5,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12 pt-lg-23 pt-md-15 pt-sm-10 pt-6 text-center">
-                <h1 class="headingIV fwEbold playfair mb-4">Tin Tức</h1>
+                <h1 class="headingIV fwEbold playfair mb-4">Kiến thức</h1>
                 <ul class="list-unstyled breadCrumbs d-flex justify-content-center">
                     <li class="mr-2"><a href="{{route('web.home')}}">Trang Chủ</a></li>
                     <li class="mr-2">/</li>
-                    <li class="active">Tin Tức</li>
+                    <li class="active">Kiến thức</li>
                 </ul>
             </div>
         </div>
