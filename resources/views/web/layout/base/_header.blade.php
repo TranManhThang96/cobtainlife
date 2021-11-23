@@ -66,7 +66,7 @@
                                     <a class="d-block" href="{{route('web.about-us')}}">Về chúng tôi</a>
                                 </li>
                                 <li class="nav-item {{request()->route()->getName() == 'web.blog.index' ? 'active' : ''}}">
-                                    <a class="d-block" href="{{route('web.blog.index')}}">Tin tức</a>
+                                    <a class="d-block" href="{{route('web.blog.index')}}">Kiến thức</a>
                                 </li>
                                 <li class="nav-item {{request()->route()->getName() == 'web.contact-us' ? 'active' : ''}}">
                                     <a class="d-block" href="{{route('web.contact-us')}}">Liên hệ</a>
