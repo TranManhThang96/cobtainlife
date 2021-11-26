@@ -31,6 +31,11 @@ class ShopCustomerService extends BaseService
         return $this->shopCustomerRepository->getAll();
     }
 
+    public function allMail()
+    {
+        return $this->shopCustomerRepository->allMail();
+    }
+
     public function store($attributes)
     {
         return $this->shopCustomerRepository->create($attributes);
