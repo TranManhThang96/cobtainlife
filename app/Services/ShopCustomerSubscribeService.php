@@ -25,6 +25,11 @@ class ShopCustomerSubscribeService extends BaseService
         return $this->shopCustomerSubscribeRepository->all($request);
     }
 
+    public function allMail()
+    {
+        return $this->shopCustomerSubscribeRepository->allMail();
+    }
+
     public function getAll()
     {
         return $this->shopCustomerSubscribeRepository->getAll();

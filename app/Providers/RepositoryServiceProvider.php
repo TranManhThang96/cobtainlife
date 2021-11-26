@@ -148,6 +148,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ShopCustomerSubscribe\ShopCustomerSubscribeRepository::class
         );
 
+        $this->app->bind(
+            \App\Repositories\MailCampaign\MailCampaignRepositoryInterface::class,
+            \App\Repositories\MailCampaign\MailCampaignRepository::class
+        );
+
     }
 
     /**
