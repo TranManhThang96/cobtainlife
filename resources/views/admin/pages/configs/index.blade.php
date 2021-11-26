@@ -44,7 +44,7 @@
                 Order
             </div>
             <div class="tab-pane fade" id="pills-email" role="tabpanel" aria-labelledby="pills-email-tab">
-                Email
+                @include('admin.pages.configs.components.email')
             </div>
             <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
                 Comment

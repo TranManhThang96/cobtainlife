@@ -42,6 +42,9 @@ mix.sass('resources/sass/admin/customers/add.scss', 'public/css/admin/customers'
 // [customer subscribes]
 mix.js('resources/js/admin/customer_subscribes/index', 'public/js/admin/customer_subscribes');
 
+// [campaigns]
+mix.js('resources/js/admin/campaigns/add', 'public/js/admin/campaigns');
+
 // [news]
 mix.js('resources/js/admin/news/index', 'public/js/admin/news');
 mix.js('resources/js/admin/news/add', 'public/js/admin/news');

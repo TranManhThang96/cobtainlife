@@ -12,6 +12,7 @@
     "/js/admin/customers/index.js": "/js/admin/customers/index.js",
     "/js/admin/customers/add.js": "/js/admin/customers/add.js",
     "/js/admin/customer_subscribes/index.js": "/js/admin/customer_subscribes/index.js",
+    "/js/admin/campaigns/add.js": "/js/admin/campaigns/add.js",
     "/js/admin/news/index.js": "/js/admin/news/index.js",
     "/js/admin/news/add.js": "/js/admin/news/add.js",
     "/js/admin/products/index.js": "/js/admin/products/index.js",

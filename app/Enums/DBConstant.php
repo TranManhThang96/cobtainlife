@@ -19,4 +19,8 @@ class DBConstant extends BaseEnum
     const NO_COMMENT_PARENT = 0;
     const SHOW_COMMENT = 1;
     const HIDDEN_COMMENT = 0;
+
+    // status
+    const ON = 1;
+    const OFF = 0;
 }

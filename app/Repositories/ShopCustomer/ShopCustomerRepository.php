@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\ShopCustomer;
 
 use App\Enums\Constant;
+use App\Enums\DBConstant;
 use App\Repositories\RepositoryAbstract;
 
 class ShopCustomerRepository extends RepositoryAbstract implements ShopCustomerRepositoryInterface
@@ -65,4 +66,8 @@ class ShopCustomerRepository extends RepositoryAbstract implements ShopCustomerR
         return $this->model::count();
     }
 
+    public function allMail()
+    {
+        return $this->model::select('email')->where('status', DBConstant::ON)->get();
+    }
 }
