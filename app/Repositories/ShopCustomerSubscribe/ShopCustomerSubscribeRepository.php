@@ -52,4 +52,9 @@ class ShopCustomerSubscribeRepository extends RepositoryAbstract implements Shop
     {
         return $this->model::whereIn('id', $customers)->update(['status' => 1]);
     }
+
+    public function allMail()
+    {
+        return $this->model::select('email')->get();
+    }
 }

@@ -58,6 +58,7 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::get('/subscribes/search', [\App\Http\Controllers\Admin\ShopCustomerSubscribe::class, 'search'])->name('subscribes.search');
         Route::post('/custom-subscribes-status', [\App\Http\Controllers\Admin\ShopCustomerSubscribe::class, 'status'])->name('subscribes.status');
         Route::resource('/subscribes', \ShopCustomerSubscribe::class);
+        Route::resource('/campaigns', \MailCampaignController::class);
     });
 });
 
