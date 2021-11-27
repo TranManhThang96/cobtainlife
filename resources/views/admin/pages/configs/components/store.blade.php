@@ -12,7 +12,7 @@
                                 <i class="fa fa-phone fa-fw"></i>
                             </div>
                         </div>
-                        <input name="store_hotline" type="text" value="{{old('store_hotline') ?? $configs->store_hotline['value']}}" class="form-control {{$errors->has('store_hotline') ? 'is-invalid' : ''}}" id="store-hotline" />
+                        <input name="store_hotline" type="text" value="{{old('store_hotline') ?? ($configs->store_hotline['value'] ?? '')}}" class="form-control {{$errors->has('store_hotline') ? 'is-invalid' : ''}}" id="store-hotline" />
                         <x-custom-error field="store_hotline" />
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="store_welcome" type="text" value="{{old('store_welcome') ?? $configs->store_welcome['value']}}" class="form-control {{$errors->has('store_welcome') ? 'is-invalid' : ''}}" id="store-welcome" />
+                        <input name="store_welcome" type="text" value="{{old('store_welcome') ?? ($configs->store_welcome['value'] ?? '')}}" class="form-control {{$errors->has('store_welcome') ? 'is-invalid' : ''}}" id="store-welcome" />
                         <x-custom-error field="store_welcome" />
                     </div>
                 </div>
@@ -42,8 +42,23 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="store_address" type="text" value="{{old('store_address') ?? $configs->store_address['value']}}" class="form-control {{$errors->has('store_address') ? 'is-invalid' : ''}}" id="store-address" />
+                        <input name="store_address" type="text" value="{{old('store_address') ?? ($configs->store_address['value'] ?? '')}}" class="form-control {{$errors->has('store_address') ? 'is-invalid' : ''}}" id="store-address" />
                         <x-custom-error field="store_address" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="store-google-embed" class="col-sm-2 text-right font-weight-bold">Google embed</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
+                        </div>
+                        <input name="store_google_embed" type="text" value="{{old('store_google_embed') ?? ($configs->store_google_embed['value'] ?? '')}}" class="form-control {{$errors->has('store_google_embed') ? 'is-invalid' : ''}}" id="store-google-embed" />
+                        <x-custom-error field="store_google_embed" />
                     </div>
                 </div>
             </div>
@@ -57,7 +72,7 @@
                                 <i class="fa fa-envelope"></i>
                             </div>
                         </div>
-                        <input name="store_email" type="text" value="{{old('store_email') ?? $configs->store_email['value']}}" class="form-control {{$errors->has('store_email') ? 'is-invalid' : ''}}" id="store-address" />
+                        <input name="store_email" type="text" value="{{old('store_email') ?? ($configs->store_email['value'] ?? '')}}" class="form-control {{$errors->has('store_email') ? 'is-invalid' : ''}}" id="store-address" />
                         <x-custom-error field="store_email" />
                     </div>
                 </div>
@@ -69,7 +84,7 @@
                     <div class="row mx-0">
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="text" name="store_logo" class="form-control" id="store-logo" value="{{old('store_logo', $configs->store_logo['value'])}}">
+                                <input type="text" name="store_logo" class="form-control" id="store-logo" value="{{old('store_logo', ($configs->store_logo['value'] ?? ''))}}">
                             </div>
                             <div class="input-group-append">
                                 <span class="btn btn-primary lfm" data-input="store-logo" data-preview="preview-store-logo">
@@ -81,7 +96,7 @@
                         <x-custom-error field="store_logo" />
                     </div>
                     <div id="preview-store-logo" class="img-holder mt-3">
-                        <img src="{{old('store_logo', $configs->store_logo['value']) ? asset('storage'.old('store_logo', $configs->store_logo['value'])) : asset('assets/images/no-image.png')}}" />
+                        <img src="{{old('store_logo', ($configs->store_logo['value'] ?? '')) ? asset('storage'.old('store_logo', ($configs->store_logo['value'] ?? ''))) : asset('assets/images/no-image.png')}}" />
                     </div>
                 </div>
             </div>
@@ -93,7 +108,7 @@
                     <div class="row mx-0">
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="text" name="store_background" class="form-control" id="store-background" value="{{old('store_background', $configs->store_background['value'])}}">
+                                <input type="text" name="store_background" class="form-control" id="store-background" value="{{old('store_background', ($configs->store_background['value'] ?? ''))}}">
                             </div>
                             <div class="input-group-append">
                                 <span class="btn btn-primary lfm" data-input="store-background" data-preview="preview-store-background">
@@ -105,7 +120,7 @@
                         <x-custom-error field="store_background" />
                     </div>
                     <div id="preview-store-background" class="img-holder mt-3">
-                        <img src="{{old('store_background', $configs->store_background['value']) ? asset('storage'.old('store_background', $configs->store_background['value'])) : asset('assets/images/no-image.png')}}" />
+                        <img src="{{old('store_background', ($configs->store_background['value'] ?? '')) ? asset('storage'.old('store_background', ($configs->store_background['value'] ?? ''))) : asset('assets/images/no-image.png')}}" />
                     </div>
                 </div>
             </div>
@@ -128,7 +143,7 @@
                         <x-custom-error field="store_background_subscribe" />
                     </div>
                     <div id="preview-store-background-subscribe" class="img-holder mt-3">
-                        <img src="{{old('store_background_subscribe', $configs->store_background_subscribe['value']) ? asset('storage'.old('store_background_subscribe', $configs->store_background_subscribe['value'])) : asset('assets/images/no-image.png')}}" />
+                        <img src="{{old('store_background_subscribe', ($configs->store_background_subscribe['value'] ?? '')) ? asset('storage'.old('store_background_subscribe', ($configs->store_background_subscribe['value'] ?? ''))) : asset('assets/images/no-image.png')}}" />
                     </div>
                 </div>
             </div>
@@ -143,7 +158,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="store_facebook_url" type="text" value="{{old('store_facebook_url', $configs->store_facebook_url['value'])}}" class="form-control {{$errors->has('store_facebook_url') ? 'is-invalid' : ''}}" id="store-facebook-url" />
+                        <input name="store_facebook_url" type="text" value="{{old('store_facebook_url', ($configs->store_facebook_url['value'] ?? ''))}}" class="form-control {{$errors->has('store_facebook_url') ? 'is-invalid' : ''}}" id="store-facebook-url" />
                         <x-custom-error field="store_facebook_url" />
                     </div>
                 </div>
@@ -158,7 +173,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="store_twitter_url" type="text" value="{{old('store_twitter_url', $configs->store_twitter_url['value'])}}" class="form-control {{$errors->has('store_twitter_url') ? 'is-invalid' : ''}}" id="store-twitter-url" />
+                        <input name="store_twitter_url" type="text" value="{{old('store_twitter_url', ($configs->store_twitter_url['value'] ?? ''))}}" class="form-control {{$errors->has('store_twitter_url') ? 'is-invalid' : ''}}" id="store-twitter-url" />
                         <x-custom-error field="store_twitter_url" />
                     </div>
                 </div>
@@ -173,7 +188,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="store_instagram_url" type="text" value="{{old('store_instagram_url', $configs->store_instagram_url['value'])}}" class="form-control {{$errors->has('store_instagram_url') ? 'is-invalid' : ''}}" id="store-instagram-url" />
+                        <input name="store_instagram_url" type="text" value="{{old('store_instagram_url', ($configs->store_instagram_url['value'] ?? ''))}}" class="form-control {{$errors->has('store_instagram_url') ? 'is-invalid' : ''}}" id="store-instagram-url" />
                         <x-custom-error field="store_instagram_url" />
                     </div>
                 </div>
@@ -188,7 +203,7 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </div>
                         </div>
-                        <input name="store_youtube_url" type="text" value="{{old('store_youtube_url', $configs->store_youtube_url['value'])}}" class="form-control {{$errors->has('store_youtube_url') ? 'is-invalid' : ''}}" id="store-youtube-url" />
+                        <input name="store_youtube_url" type="text" value="{{old('store_youtube_url', ($configs->store_youtube_url['value'] ?? ''))}}" class="form-control {{$errors->has('store_youtube_url') ? 'is-invalid' : ''}}" id="store-youtube-url" />
                         <x-custom-error field="store_youtube_url" />
                     </div>
                 </div>

@@ -48,4 +48,32 @@ $(document).ready(function () {
       }
     });
   })
+
+  $('#btn-add-says').click(function () {
+    let rowHtml = `
+    <div class="row say-item mt-3">
+      <div class="col-8 pl-0">
+        <input type="text" name="client_say[]" value="" class="form-control rounded-0 input-sm" placeholder="Nhận xét" />
+      </div>
+      <div class="col-2">
+        <div class="input-group">
+          <input type="text" name="client_name[]" value="" class="form-control rounded-0 input-sm" placeholder="Tên" />
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="input-group">
+          <input type="text" name="client_job[]" value="" class="form-control rounded-0 input-sm" placeholder="Nghề nghiệp" />
+          <span title="Remove" class="btn btn-flat btn-danger remove-say">
+            <i class="fa fa-times"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    `;
+    $(`#says`).append(rowHtml);
+  })
+
+  $(document).on('click', '.remove-say', function () {
+    $(this).closest('.say-item').remove();
+  })
 })
