@@ -59,6 +59,9 @@ Route::domain(config('app.subdomain_admin'))->name('admin.')->group(function () 
         Route::post('/custom-subscribes-status', [\App\Http\Controllers\Admin\ShopCustomerSubscribe::class, 'status'])->name('subscribes.status');
         Route::resource('/subscribes', \ShopCustomerSubscribe::class);
         Route::resource('/campaigns', \MailCampaignController::class);
+        Route::get('/comments/search', [\App\Http\Controllers\Admin\CommentController::class, 'search'])->name('comments.search');
+        Route::post('/comments/reply', [\App\Http\Controllers\Admin\CommentController::class, 'reply'])->name('comments.reply');
+        Route::resource('/comments', CommentController::class);
     });
 });
 

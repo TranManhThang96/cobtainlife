@@ -96,82 +96,87 @@
                 <h4 class="headingVII text-uppercase mb-5">Bình Luận</h4>
                 @foreach($news->comments as $comment)
                     <!-- commentArea -->
-                    <article class="commentArea overflow-hidden d-flex align-items-start mb-6">
-                        <a href="javascript:void(0);" class="img rounded pr-5"><img src="{{asset('dist/images/70x70.png')}}" alt="image description" class="img-fluid"></a>
-                        <div class="txtHolder border px-2 py-2">
-                            <span class="commentDate d-block mb-2">
-                                <a href="javascript:void(0);" class="text-capitalize">{{$comment->customer_name}}</a> 
-                                <i class="fas fa-clock ml-2" aria-hidden="true"></i> {{date('d/m/Y H:i:s', strtotime($comment->created_at))}}
-                                <!-- <a href="javascript:void(0);" class="link text-green">Reply</a> -->
-                            </span>
-                            <p class="mb-1">{{$comment->comment}}</p>
-                        </div>
-                    </article>
+                    @if (($configs->comment_auto_hide['value'] ?? '') != \App\Enums\DBConstant::SHOW_COMMENT || (($configs->comment_auto_hide['value'] ?? '') == \App\Enums\DBConstant::SHOW_COMMENT && !in_array($comment->rating, [1,2])))
+                        <article class="commentArea overflow-hidden d-flex align-items-start mb-6">
+                        <div class="name text-uppercase">{{sortName($comment->customer_name)}}</div>
+                            <div class="txtHolder border px-2 py-2">
+                                <span class="commentDate d-block mb-2">
+                                    <a href="javascript:void(0);" class="text-capitalize">{{$comment->customer_name}}</a> 
+                                    <i class="fas fa-clock ml-2" aria-hidden="true"></i> {{date('d/m/Y H:i:s', strtotime($comment->created_at))}}
+                                    <!-- <a href="javascript:void(0);" class="link text-green">Reply</a> -->
+                                </span>
+                                <p class="mb-1">{{$comment->comment}}</p>
+                            </div>
+                        </article>
 
-                    @foreach($comment->child as $childComment)
-						<div class="commentOneLevel pl-md-20 pl-sm-10 pl-0 mb-9">
-							<article class="commentArea overflow-hidden d-flex align-items-start mb-2">
-								<a href="javascript:void(0);" class="img rounded pr-5"><img src="{{asset('dist/images/70x70.png')}}" alt="image description" class="img-fluid"></a>
-								<div class="txtHolder border px-2 py-2">
-									<span class="commentDate d-block mb-2">
-                                        <a href="javascript:void(0);" class="text-capitalize">{{$childComment->customer_name}}</a> 
-                                        <i class="fas fa-clock ml-2" aria-hidden="true"></i> {{date('d/m/Y H:i:s', strtotime($childComment->created_at))}}
-                                    </span>
-									<p class="mb-1">{{$childComment->comment}}</p>
-								</div>
-							</article>
-						</div>
-                    @endforeach
+                        @foreach($comment->child as $childComment)
+                            <div class="commentOneLevel pl-md-20 pl-sm-10 pl-0 mb-9">
+                                <article class="commentArea overflow-hidden d-flex align-items-start mb-2">
+                                <div class="name text-uppercase">{{sortName($childComment->customer_name)}}</div>
+                                    <div class="txtHolder border px-2 py-2">
+                                        <span class="commentDate d-block mb-2">
+                                            <a href="javascript:void(0);" class="text-capitalize">{{$childComment->customer_name}}</a> 
+                                            <i class="fas fa-clock ml-2" aria-hidden="true"></i> {{date('d/m/Y H:i:s', strtotime($childComment->created_at))}}
+                                        </span>
+                                        <p class="mb-1">{{$childComment->comment}}</p>
+                                    </div>
+                                </article>
+                            </div>
+                        @endforeach
+                    @endif
                 @endforeach
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <!-- commentFormArea -->
-            <div class="commentFormArea">
-                <form class="commentform" id="comment-form">
-                    <input type="hidden" name="object_id" value="{{$news->id}}">
-                    <input type="hidden" name="type" value="2">
-                    <div class="form-group w-100 mb-5 d-flex">
-                        <h2 class="headingVII text-uppercase mr-5 pt-1">Đánh giá</h2>
-                        <ul class="list-unstyled ratingList d-flex flex-nowrap mb-2 comment-rating">
-                            <input type="hidden" name="rating" value="0">
-                            <li class="mr-2"><a href="javascript:void(0);" data-id="star-1" class="star"><i class="far fa-star"></i></a></li>
-                            <li class="mr-2"><a href="javascript:void(0);" data-id="star-2" class="star"><i class="far fa-star"></i></a></li>
-                            <li class="mr-2"><a href="javascript:void(0);" data-id="star-3" class="star"><i class="far fa-star"></i></a></li>
-                            <li class="mr-2"><a href="javascript:void(0);" data-id="star-4" class="star"><i class="far fa-star"></i></a></li>
-                            <li class="mr-2"><a href="javascript:void(0);" data-id="star-5" class="star"><i class="far fa-star"></i></a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="form-group w-100 mb-5">
-                        <textarea class="form-control" placeholder="bình luận" name="comment"></textarea>
-                    </div>
-                    <div class="d-flex flex-wrap row1 mb-md-5">
-                        <div class="form-group coll mb-5">
-                            <label for="name" class="mb-1">Họ và tên *</label>
-                            <input type="text" id="name" class="form-control" name="customer_name">
+    @if (($configs->comment_enable['value'] ?? '') == \App\Enums\DBConstant::SHOW_COMMENT)
+        <div class="row">
+            <div class="col-12">
+                <!-- commentFormArea -->
+                <div class="commentFormArea">
+                    <form class="commentform" id="comment-form">
+                        <input type="hidden" name="object_id" value="{{$news->id}}">
+                        <input type="hidden" name="type" value="2">
+                        <div class="form-group w-100 mb-5 d-flex">
+                            <h2 class="headingVII text-uppercase mr-5 pt-1">Đánh giá</h2>
+                            <ul class="list-unstyled ratingList d-flex flex-nowrap mb-2 comment-rating">
+                                <input type="hidden" name="rating" value="0">
+                                <li class="mr-2"><a href="javascript:void(0);" data-id="star-1" class="star"><i class="far fa-star"></i></a></li>
+                                <li class="mr-2"><a href="javascript:void(0);" data-id="star-2" class="star"><i class="far fa-star"></i></a></li>
+                                <li class="mr-2"><a href="javascript:void(0);" data-id="star-3" class="star"><i class="far fa-star"></i></a></li>
+                                <li class="mr-2"><a href="javascript:void(0);" data-id="star-4" class="star"><i class="far fa-star"></i></a></li>
+                                <li class="mr-2"><a href="javascript:void(0);" data-id="star-5" class="star"><i class="far fa-star"></i></a></li>
+                            </ul>
                         </div>
-                        <div class="form-group coll mb-5">
-                            <label for="email" class="mb-1">Email *</label>
-                            <input type="email" class="form-control" id="email" name="customer_email">
+                        
+                        <div class="form-group w-100 mb-5">
+                            <textarea class="form-control" placeholder="bình luận" name="comment"></textarea>
                         </div>
-                        <div class="form-group coll mb-5">
-                            <label for="website" class="mb-1">Website</label>
-                            <input type="text" class="form-control" id="website" name="customer_website">
+                        <div class="d-flex flex-wrap row1 mb-md-5">
+                            <div class="form-group coll mb-5">
+                                <label for="name" class="mb-1">Họ và tên *</label>
+                                <input type="text" id="name" class="form-control" name="customer_name">
+                            </div>
+                            <div class="form-group coll mb-5">
+                                <label for="email" class="mb-1">Email *</label>
+                                <input type="email" class="form-control" id="email" name="customer_email">
+                            </div>
+                            <div class="form-group coll mb-5">
+                                <label for="website" class="mb-1">Website</label>
+                                <input type="text" class="form-control" id="website" name="customer_website">
+                            </div>
                         </div>
-                    </div>
-                    <button class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4" id="comment-btn" data-object-id="{{$news->id}}">
-                        Bình luận<i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </form>
+                        <button class="btn btnTheme btnShop md-round fwEbold text-white py-3 px-4 py-md-3 px-md-4" id="comment-btn" data-object-id="{{$news->id}}">
+                            Bình luận<i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 </div>
 @endsection
 
 @section('script')
+    <script src="{{asset('assets/extra-libs/nameBadges/jquery.nameBadges.js')}}" rel="stylesheet"></script>
     <script src="{{asset('js/web/blog/detail.js')}}"></script>
 @endsection
