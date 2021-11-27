@@ -16,6 +16,11 @@ class ShopCommentService extends BaseService
         $this->commentRepository = $commentRepository;
     }
 
+    public function index($request)
+    {
+        return $this->commentRepository->index($request);
+    }
+
     public function store($attributes)
     {
         return $this->commentRepository->create($attributes);
@@ -25,5 +30,15 @@ class ShopCommentService extends BaseService
     public function delete($id)
     {
         return $this->commentRepository->delete($id);
+    }
+
+    public function update($id, $attributes)
+    {
+        return $this->commentRepository->update($id, $attributes);
+    }
+    
+    public function find($id)
+    {
+        return $this->commentRepository->find($id);
     }
 }
