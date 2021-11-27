@@ -176,3 +176,11 @@ if (!function_exists('getMonth')) {
         return '';
     }
 }
+
+if (!function_exists('sortName')) {
+    function sortName($name)
+    {
+        $words = preg_split("/\s+/", $name);
+        return $words[count($words) - 1][0];
+    }
+}

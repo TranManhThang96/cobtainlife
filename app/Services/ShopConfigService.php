@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Enums\DBConstant;
 use App\Repositories\ShopConfig\ShopConfigRepositoryInterface;
 use App\Services\BaseService;
 
@@ -27,7 +28,7 @@ class ShopConfigService extends BaseService
         $code = $configs['code'];
         unset($configs['code']);
         unset($configs['_token']);
-        $keysExcept = ['client_say', 'client_name', 'client_job'];
+        $keysExcept = ['client_say', 'client_name', 'client_job', 'comment_enable', 'comment_auto_hide'];
         foreach ($configs as $key => $config) {
             if (!in_array($key, $keysExcept)) {
                 $data = [
@@ -56,6 +57,31 @@ class ShopConfigService extends BaseService
                 ];
                 $this->configRepository->updateOrCreate($data);
             }
+        }
+
+        if ($code == 'comment') {
+            $enableComment = [
+                'code' => $code,
+                'key' => 'comment_enable',  
+            ];
+
+            $autoHideComment = [
+                'code' => $code,
+                'key' => 'comment_auto_hide',  
+            ];
+            if (!isset($configs['comment_enable'])) {
+                $enableComment['value'] = DBConstant::HIDDEN_COMMENT;
+            } else {
+                $enableComment['value'] = DBConstant::SHOW_COMMENT;
+            }
+
+            if (!isset($configs['comment_auto_hide'])) {
+                $autoHideComment['value'] = DBConstant::HIDDEN_COMMENT;
+            } else {
+                $autoHideComment['value'] = DBConstant::SHOW_COMMENT;
+            }
+            $this->configRepository->updateOrCreate($enableComment);
+            $this->configRepository->updateOrCreate($autoHideComment);
         }
     }
 }
