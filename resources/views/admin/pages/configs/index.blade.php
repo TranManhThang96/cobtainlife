@@ -50,7 +50,7 @@
                 Comment
             </div>
             <div class="tab-pane fade" id="pills-client-say" role="tabpanel" aria-labelledby="pills-client-say-tab">
-                Client say
+                @include('admin.pages.configs.components.client_say')
             </div>
         </div>
     </div>

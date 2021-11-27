@@ -4,7 +4,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="sidebar-item"> 
+                <li class="sidebar-item mt-2"> 
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/" aria-expanded="false">
                         <i class="fa fa-tachometer-alt"></i>
                         <span class="hide-menu">Dashboard</span>

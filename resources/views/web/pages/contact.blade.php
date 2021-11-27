@@ -22,20 +22,18 @@
             <ul class="list-unstyled contactListHolder mb-0 d-flex flex-wrap text-center">
                 <li class="mb-lg-0 mb-6">
                     <span class="icon d-block mx-auto bg-lightGray py-4 mb-4"><i class="fas fa-map-marker-alt"></i></span>
-                    <strong class="title text-uppercase playfair mb-5 d-block">address</strong>
-                    <address class="mb-0">7th floor - Palace Building - 221B Walk of Fame -<span class="d-block"> London - UK</span></address>
+                    <strong class="title text-uppercase playfair mb-5 d-block">Địa chỉ</strong>
+                    <address class="mb-0">Nhà C7, Khu biệt thự 130 Đốc Ngữ, Phường Vĩnh Phúc <span class="d-block"> Quận Ba Đình, Hà Nội</span></address>
                 </li>
                 <li class="mb-lg-0 mb-6">
                     <span class="icon d-block mx-auto bg-lightGray py-4 mb-3"><i class="fas fa-headphones"></i></span>
-                    <strong class="title text-uppercase playfair mb-5 d-block">phone</strong>
-                    <a href="tel:84123456789" class="d-block">(+84) - 123 - 456 - 789</a>
-                    <a href="tel:84321654987" class="d-block">(+84) - 321 - 654 - 987</a>
+                    <strong class="title text-uppercase playfair mb-5 d-block">Số điện thoại</strong>
+                    <a href="tel:84917891616" class="d-block">(+84) - 91 789 1616</a>
                 </li>
                 <li class="mb-lg-0 mb-6">
                     <span class="icon d-block mx-auto bg-lightGray py-5 mb-3"><i class="fas fa-envelope"></i></span>
-                    <strong class="title text-uppercase playfair mb-5 d-block">email</strong>
-                    <a href="#" class="d-block">Two-support@Two.lnk</a>
-                    <a href="#" class="d-block">info@Two.lnk</a>
+                    <strong class="title text-uppercase playfair mb-5 d-block">Email</strong>
+                    <a href="#" class="d-block">cobtainlife@gmail.com</a>
                 </li>
             </ul>
         </div>
@@ -43,7 +41,7 @@
 </div>
 <!-- mapHolder -->
 <div class="mapHolder">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.2111888003233!2d105.85531421533217!3d21.024234193307805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abebf87e0011%3A0x647af200da508d2b!2zTmjDoCBIw6F0IEzhu5tuIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1637676503423!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+<iframe src="{{$configs->store_google_embed['value'] ?? ''}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </div>
 <section class="contactSecBlock container pt-xl-23 pb-xl-24 pt-lg-20 pb-lg-10 pt-md-16 pb-md-8 py-10">
     <div class="row">
