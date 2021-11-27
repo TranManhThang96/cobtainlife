@@ -71,12 +71,12 @@
                         <li class="sidebar-item"><a href="{{route('admin.banners.index')}}" class="sidebar-link"><i
                                     class="fa fa-image"></i><span
                                     class="hide-menu">Banner</span></a></li>
-                        <!-- <li class="sidebar-item"><a href="#" class="sidebar-link"><i
-                                    class="mdi mdi-note-plus"></i><span
-                                    class="hide-menu">Quản lý trang</span></a></li> -->
                         <li class="sidebar-item"><a href="{{route('admin.news.index')}}" class="sidebar-link"><i
                                     class="fa fa-file"></i><span
                                     class="hide-menu">Bài viết</span></a></li>
+                        <li class="sidebar-item"><a href="{{route('admin.comments.index')}}" class="sidebar-link"><i
+                                    class="fa fa-comment"></i><span
+                                    class="hide-menu">Bình luận</span></a></li>
                     </ul>
                 </li>
 

@@ -45,6 +45,9 @@ mix.js('resources/js/admin/customer_subscribes/index', 'public/js/admin/customer
 // [campaigns]
 mix.js('resources/js/admin/campaigns/add', 'public/js/admin/campaigns');
 
+// [comments]
+mix.js('resources/js/admin/comments/index', 'public/js/admin/comments');
+
 // [news]
 mix.js('resources/js/admin/news/index', 'public/js/admin/news');
 mix.js('resources/js/admin/news/add', 'public/js/admin/news');

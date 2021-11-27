@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DBConstant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -44,5 +45,25 @@ class ShopComment extends Model
     public function child()
     {
         return $this->hasMany(\App\Models\ShopComment::class, 'comment_parent', 'id');
+    }
+
+    public function scopeNoParent($query)
+    {
+        return $query->where('comment_parent', DBConstant::NO_COMMENT_PARENT); //0: no comment parent
+    }
+
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('type', $type);
+    }
+
+    public function news()
+    {
+        return $this->belongsTo(\App\Models\ShopNews::class, 'object_id', 'id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(\App\Models\ShopProduct::class, 'object_id', 'id');
     }
 }

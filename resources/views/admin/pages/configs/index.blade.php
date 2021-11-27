@@ -47,7 +47,7 @@
                 @include('admin.pages.configs.components.email')
             </div>
             <div class="tab-pane fade" id="pills-comment" role="tabpanel" aria-labelledby="pills-comment-tab">
-                Comment
+                @include('admin.pages.configs.components.comment')
             </div>
             <div class="tab-pane fade" id="pills-client-say" role="tabpanel" aria-labelledby="pills-client-say-tab">
                 @include('admin.pages.configs.components.client_say')
