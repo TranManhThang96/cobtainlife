@@ -6,7 +6,6 @@ namespace App\Repositories\ShopCategory;
 
 use App\Enums\Constant;
 use App\Repositories\RepositoryAbstract;
-use Carbon\Carbon;
 use App\Enums\DBConstant;
 
 class ShopCategoryRepository extends RepositoryAbstract implements ShopCategoryRepositoryInterface
@@ -26,7 +25,7 @@ class ShopCategoryRepository extends RepositoryAbstract implements ShopCategoryR
             ->when($id, function ($query, $id) {
                 return $query->where('id', '<>', $id);
             })->count();
-        return $count > 0;    
+        return $count > 0;
     }
 
     public function getCountAliasLikeName($alias, $id)
@@ -65,4 +64,15 @@ class ShopCategoryRepository extends RepositoryAbstract implements ShopCategoryR
         return $this->model::withCount('products')->withCount('categories')->find($id);
     }
 
+    public function getCategoriesHomePage($request)
+    {
+        $sortBy = $request->sort_by ?? 'sort';
+        $orderBy = $request->order_by ?? 'ASC';
+        $limit = $request->limit ?? 5;
+        return $this->model::withCount('products')
+            ->orderBy($sortBy, $orderBy)
+            ->skip(0)->take($limit)
+            ->where('top', DBConstant::SHOW_TOP)
+            ->get();
+    }
 }
