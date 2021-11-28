@@ -102,12 +102,12 @@
 		<div class="col-12">
 			<!-- quotationBlock -->
 			<blockquote class="quotationBlock text-center d-block m-0">
-				<q class="d-block playfair mb-7">We ship healthy potted plants right to your doorstep. Each plant comes with simple care instructions from our plant experts.</q>
+				<q class="d-block playfair mb-7">To plant a garden is to believe in tomorrow.</q>
 				<cite class="d-block">
 					<img src="{{asset('dist/images/signature.png')}}" alt="signature" class="img-fluid mb-6">
 					<span class="d-flex flex-nowrap align-items-center justify-content-center">
-						<strong class="fwEbold mr-1">Sarah Jefferson</strong>
-						<span class="text-uppercase fwEbold pt-1">- CEO</span>
+						<strong class="fwEbold mr-1">Audrey Hepburn</strong>
+						<!-- <span class="text-uppercase fwEbold pt-1">- CEO</span> -->
 					</span>
 				</cite>
 			</blockquote>
@@ -119,152 +119,139 @@
 	<div class="row">
 		<!-- mainHeader -->
 		<header class="col-12 mainHeader mb-4 text-center">
-			<h1 class="headingIV playfair fwEblod mb-4">New Arrival</h1>
+			<h1 class="headingIV playfair fwEblod mb-4">Sản phẩm mới về</h1>
 			<span class="headerBorder d-block mb-5"><img src="{{asset('dist/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>
-			<p>There are many variations of passages of lorem ipsum available </p>
+			<p>Có rất nhiều sản phẩm mới về cho bạn lựa chọn.</p>
 		</header>
 	</div>
 	<div class="row">
-		<!-- featureCol -->
-		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
-			<div class="border">
-				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
-					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-						<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-					</ul>
-				</div>
-				<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-					<span class="title d-block mb-2"><a href="shop-detail.html">Sit voluptatem</a></span>
-					<span class="price d-block fwEbold">68.00 $</span>
-				</div>
-			</div>
-		</div>
-		<!-- featureCol -->
-		<div class="col-12 col-sm-6 col-lg-3 featureCol mb-6">
-			<div class="border">
-				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
-					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-						<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-					</ul>
-				</div>
-				<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-					<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
-					<span class="price d-block fwEbold">58.00 $</span>
-				</div>
-			</div>
-		</div>
-		<!-- featureCol -->
-		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
-			<div class="border">
-				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
-					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-						<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-					</ul>
-				</div>
-				<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-					<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
-					<span class="price d-block fwEbold">60.00 $</span>
-					<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">Hot</span>
+		@foreach($newArrivalProducts as $product)
+			<!-- featureCol -->
+			<div class="col-12 col-sm-6 col-lg-3 featureCol mb-6">
+				<div class="border">
+					<div class="imgHolder position-relative w-100 overflow-hidden">
+						<img src="{{asset('storage'.$product->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/70x300.png')}}"' width="270px" height="300px">
+						<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
+							<li class="mr-2 overflow-hidden add-wishlist" data-product-id="{{$product->id}}"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+							<li class="mr-2 overflow-hidden">
+								@if ($product->attributes_count > 0)
+									<a href="{{route('web.products.show', ['product' => $product->alias])}}" class="icon-cart d-block"></a>
+								@else
+									<a href="javascript:void(0);" class="icon-cart d-block add-to-cart" 
+									data-product-id="{{$product->id}}"
+									data-product-name="{{$product->name}}"
+									data-product-link="{{route('web.products.show', ['product' => $product->alias])}}"
+									data-product-sku="{{$product->sku}}"
+									data-product-full-id="{{$product->id}}"
+									data-product-image="{{asset('storage'.$product->image)}}"
+									data-product-price="{{$product->promotionValid ? $product->promotion->price_promotion : $product->price}}"
+									>
+								</a>
+								@endif
+							</li>
+							<li class="mr-2 overflow-hidden"><a href="{{route('web.products.show', ['product' => $product->alias])}}" class="icon-eye d-block"></a></li>
+							<li class="overflow-hidden add-compare-list" data-product-id="{{$product->id}}"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+						</ul>
+					</div>
+					<div class="text-center py-5 px-4">
+						<span class="title d-block mb-2"><a href="{{route('web.products.show', ['product' => $product->alias])}}">{{$product->name}}</a></span>
+						@if($product->promotionValid)
+							<span class="price d-block fwEbold"><del>{{number_format($product->price, 0)}} VND</del>{{number_format($product->promotion->price_promotion, 0)}} VND</span>
+						@else
+							<span class="price d-block fwEbold">{{number_format($product->price, 0)}} VND</span>
+						@endif
+
+						@if($product->hot)
+							<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block {{$product->promotionValid ? 'ml-8' : ''}}">HOT</span>
+						@endif
+
+						@if($product->promotionValid)
+							<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span>
+						@endif
+					</div>
 				</div>
 			</div>
-		</div>
-		<!-- featureCol -->
-		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
-			<div class="border">
-				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
-					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-						<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-					</ul>
-				</div>
-				<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-					<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
-					<span class="price d-block fwEbold"><del>80.50 $</del>65.00 $</span>
-					<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span>
-				</div>
-			</div>
-		</div>
+		@endforeach
 	</div>
 </section>
 <!-- categorySecBlock -->
 <div class="categorySecBlock overflow-hidden pt-xl-9 pb-xl-6 px-xl-17 px-0 pt-lg-10 pb-lg-4 pt-md-8 pb-md-2 pt-5">
 	<!-- masonryHolder -->
 	<div class="masonryHolder">
-		<!-- grid-item -->
-		<div class="grid-item mb-6 px-3">
-			<div class="itemCol">
-				<div class="position-relative">
-					<img src="{{asset('dist/images/410x845.png')}}" alt="image description" class="img-fluid w-100">
-					<div class="hoverTextBlock position-absolute">
-						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Cactus Plant</a></h2>
-						<span class="txt d-block">( 56 item )</span>
+		@if(isset($categories[0]))
+			<!-- grid-item -->
+			<div class="grid-item mb-6 px-3">
+				<div class="itemCol">
+					<div class="position-relative">
+						<img src="{{$categories[0]['image'] ? asset('storage'.$categories[0]['image']) : asset('dist/images/410x845.png')}}" alt="image description" class="img-fluid w-100">
+						<div class="hoverTextBlock position-absolute">
+							<h2 class="headingIV playfair fwEbold mb-3"><a href="{{route('web.products.index', ['category_id'=>$categories[0]['id']])}}">{{$categories[0]['title']}}</a></h2>
+							<span class="txt d-block">( {{$categories[0]['products_count']}} sản phẩm )</span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- grid-item -->
-		<div class="grid-item mb-6 px-3">
-			<div class="itemCol">
-				<div class="position-relative">
-					<img src="{{asset('dist/images/410x410.png')}}" alt="image description" class="img-fluid w-100">
-					<div class="hoverTextBlock position-absolute">
-						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Indoor Plant</a></h2>
-						<span class="txt d-block">( 36 item )</span>
+		@endif
+
+		@if(isset($categories[1]))
+			<!-- grid-item -->
+			<div class="grid-item mb-6 px-3">
+				<div class="itemCol">
+					<div class="position-relative">
+						<img src="{{$categories[1]['image'] ? asset('storage'.$categories[1]['image']) : asset('dist/images/410x410.png')}}" alt="image description" class="img-fluid w-100">
+						<div class="hoverTextBlock position-absolute">
+							<h2 class="headingIV playfair fwEbold mb-3"><a href="{{route('web.products.index', ['category_id'=>$categories[1]['id']])}}">{{$categories[1]['title']}}</a></h2>
+							<span class="txt d-block">( {{$categories[1]['products_count']}} sản phẩm )</span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- grid-item -->
-		<div class="grid-item grid-item2 mb-6 px-3">
-			<div class="itemCol">
-				<div class="position-relative">
-					<img src="{{asset('dist/images/845x410.png')}}" alt="image description" class="img-fluid w-100">
-					<div class="hoverTextBlock position-absolute">
-						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Tropical Plant</a></h2>
-						<span class="txt d-block">( 21 item )</span>
+		@endif
+
+		@if(isset($categories[2]))
+			<!-- grid-item -->
+			<div class="grid-item grid-item2 mb-6 px-3">
+				<div class="itemCol">
+					<div class="position-relative">
+						<img src="{{$categories[2]['image'] ? asset('storage'.$categories[2]['image']) : asset('dist/images/845x410.png')}}" alt="image description" class="img-fluid w-100">
+						<div class="hoverTextBlock position-absolute">
+							<h2 class="headingIV playfair fwEbold mb-3"><a href="{{route('web.products.index', ['category_id'=>$categories[2]['id']])}}">{{$categories[2]['title']}}</a></h2>
+							<span class="txt d-block">( {{$categories[2]['products_count']}} sản phẩm )</span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- grid-item -->
-		<div class="grid-item grid-item2 mb-6 px-3">
-			<div class="itemCol">
-				<div class="position-relative">
-					<img src="{{asset('dist/images/845x410.png')}}" alt="image description" class="img-fluid w-100">
-					<div class="hoverTextBlock position-absolute">
-						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Floor Plant</a></h2>
-						<span class="txt d-block">( 18 item )</span>
+		@endif
+
+		@if(isset($categories[3]))
+			<!-- grid-item -->
+			<div class="grid-item grid-item2 mb-6 px-3">
+				<div class="itemCol">
+					<div class="position-relative">
+						<img src="{{$categories[3]['image'] ? asset('storage'.$categories[3]['image']) : asset('dist/images/845x410.png')}}" alt="image description" class="img-fluid w-100">
+						<div class="hoverTextBlock position-absolute">
+							<h2 class="headingIV playfair fwEbold mb-3"><a href="{{route('web.products.index', ['category_id'=>$categories[3]['id']])}}">{{$categories[3]['title']}}</a></h2>
+							<span class="txt d-block">( {{$categories[3]['products_count']}} sản phẩm )</span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- grid-item -->
-		<div class="grid-item mb-6 px-3">
-			<div class="itemCol">
-				<div class="position-relative">
-					<img src="{{asset('dist/images/410x410.png')}}" alt="image description" class="img-fluid w-100">
-					<div class="hoverTextBlock position-absolute">
-						<h2 class="headingIV playfair fwEbold mb-3"><a href="javascript:void(0);">Table Plant</a></h2>
-						<span class="txt d-block">( 36 item )</span>
+		@endif
+
+		@if(isset($categories[4]))
+			<!-- grid-item -->
+			<div class="grid-item mb-6 px-3">
+				<div class="itemCol">
+					<div class="position-relative">
+						<img src="{{$categories[4]['image'] ? asset('storage'.$categories[4]['image']) : asset('dist/images/410x410.png')}}" alt="image description" class="img-fluid w-100">
+						<div class="hoverTextBlock position-absolute">
+							<h2 class="headingIV playfair fwEbold mb-3"><a href="{{route('web.products.index', ['category_id'=>$categories[4]['id']])}}">{{$categories[4]['title']}}</a></h2>
+							<span class="txt d-block">( {{$categories[4]['products_count']}} sản phẩm )</span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		@endif
 	</div>
 </div>
 <!-- featureSec -->
@@ -272,88 +259,59 @@
 	<div class="row">
 		<!-- mainHeader -->
 		<header class="col-12 mainHeader mb-4 text-center">
-			<h1 class="headingIV playfair fwEblod mb-4">Best seller</h1>
+			<h1 class="headingIV playfair fwEblod mb-4">Sản phẩm bán chạy</h1>
 			<span class="headerBorder d-block mb-5"><img src="{{asset('dist/images/hbdr.png')}}" alt="Header Border" class="img-fluid img-bdr"></span>
-			<p>There are many variations of passages of lorem ipsum available </p>
+			<p>Sản phẩm bán chạy nhất của cửa hàng.</p>
 		</header>
 	</div>
 	<div class="row">
-		<!-- featureCol -->
-		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
-			<div class="border">
-				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
-					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-						<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-					</ul>
-				</div>
-				<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-					<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
-					<span class="price d-block fwEbold mb-1"><del>80.50 $</del> 68.00 $</span>
-					<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span>
-					<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span>
-				</div>
-			</div>
-		</div>
-		<!-- featureCol -->
-		<div class="col-12 col-sm-6 col-lg-3 featureCol mb-6">
-			<div class="border">
-				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
-					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-						<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-					</ul>
-				</div>
-				<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-					<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
-					<span class="price d-block fwEbold mb-1">58.00 $</span>
-				</div>
-			</div>
-		</div>
-		<!-- featureCol -->
-		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
-			<div class="border">
-				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
-					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-						<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-					</ul>
-				</div>
-				<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-					<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
-					<span class="price d-block fwEbold mb-1">60.00 $</span>
-					<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">Hot</span>
+		@foreach($bestSellerProducts as $product)
+			<!-- featureCol -->
+			<div class="col-12 col-sm-6 col-lg-3 featureCol mb-6">
+				<div class="border">
+					<div class="imgHolder position-relative w-100 overflow-hidden">
+						<img src="{{asset('storage'.$product->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/70x300.png')}}"' width="270px" height="300px">
+						<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
+							<li class="mr-2 overflow-hidden add-wishlist" data-product-id="{{$product->id}}"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
+							<li class="mr-2 overflow-hidden">
+								@if ($product->attributes_count > 0)
+									<a href="{{route('web.products.show', ['product' => $product->alias])}}" class="icon-cart d-block"></a>
+								@else
+									<a href="javascript:void(0);" class="icon-cart d-block add-to-cart" 
+									data-product-id="{{$product->id}}"
+									data-product-name="{{$product->name}}"
+									data-product-link="{{route('web.products.show', ['product' => $product->alias])}}"
+									data-product-sku="{{$product->sku}}"
+									data-product-full-id="{{$product->id}}"
+									data-product-image="{{asset('storage'.$product->image)}}"
+									data-product-price="{{$product->promotionValid ? $product->promotion->price_promotion : $product->price}}"
+									>
+								</a>
+								@endif
+							</li>
+							<li class="mr-2 overflow-hidden"><a href="{{route('web.products.show', ['product' => $product->alias])}}" class="icon-eye d-block"></a></li>
+							<li class="overflow-hidden add-compare-list" data-product-id="{{$product->id}}"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
+						</ul>
+					</div>
+					<div class="text-center py-5 px-4">
+						<span class="title d-block mb-2"><a href="{{route('web.products.show', ['product' => $product->alias])}}">{{$product->name}}</a></span>
+						@if($product->promotionValid)
+							<span class="price d-block fwEbold"><del>{{number_format($product->price, 0)}} VND</del>{{number_format($product->promotion->price_promotion, 0)}} VND</span>
+						@else
+							<span class="price d-block fwEbold">{{number_format($product->price, 0)}} VND</span>
+						@endif
+
+						@if($product->hot)
+							<span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block {{$product->promotionValid ? 'ml-8' : ''}}">HOT</span>
+						@endif
+
+						@if($product->promotionValid)
+							<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span>
+						@endif
+					</div>
 				</div>
 			</div>
-		</div>
-		<!-- featureCol -->
-		<div class="col-12 col-sm-6 col-lg-3 featureCol position-relative mb-6">
-			<div class="border">
-				<div class="imgHolder position-relative w-100 overflow-hidden">
-					<img src="{{asset('dist/images/270x300.png')}}" alt="image description" class="img-fluid w-100">
-					<ul class="list-unstyled postHoverLinskList d-flex justify-content-center m-0">
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-heart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-cart d-block"></a></li>
-						<li class="mr-2 overflow-hidden"><a href="javascript:void(0);" class="icon-eye d-block"></a></li>
-						<li class="overflow-hidden"><a href="javascript:void(0);" class="icon-arrow d-block"></a></li>
-					</ul>
-				</div>
-				<div class="text-center py-xl-5 py-sm-4 py-2 px-xl-2 px-1">
-					<span class="title d-block mb-2"><a href="shop-detail.html">Pellentesque aliquet</a></span>
-					<span class="price d-block fwEbold mb-1"><del>80.50 $</del>65.00 $</span>
-					<span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span>
-				</div>
-			</div>
-		</div>
+		@endforeach
 	</div>
 </section>
 <div class="container-fluid px-xl-20 px-lg-10">

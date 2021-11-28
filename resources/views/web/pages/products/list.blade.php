@@ -59,13 +59,17 @@
                 <div class="text-center py-5 px-4">
                     <span class="title d-block mb-2"><a href="{{route('web.products.show', ['product' => $product->alias])}}">{{$product->name}}</a></span>
                     @if($product->promotionValid)
-                    <span class="price d-block fwEbold"><del>{{number_format($product->price, 0)}} VND</del>{{number_format($product->promotion->price_promotion, 0)}} VND</span>
+                        <span class="price d-block fwEbold"><del>{{number_format($product->price, 0)}} VND</del>{{number_format($product->promotion->price_promotion, 0)}} VND</span>
                     @else
-                    <span class="price d-block fwEbold">{{number_format($product->price, 0)}} VND</span>
+                        <span class="price d-block fwEbold">{{number_format($product->price, 0)}} VND</span>
                     @endif
-                    <span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block">HOT</span>
+
+                    @if($product->hot)
+                        <span class="hotOffer fwEbold text-uppercase text-white position-absolute d-block {{$product->promotionValid ? 'ml-8' : ''}}">HOT</span>
+                    @endif
+
                     @if($product->promotionValid)
-                    <span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block ml-8">Sale</span>
+                        <span class="hotOffer green fwEbold text-uppercase text-white position-absolute d-block">Sale</span>
                     @endif
                 </div>
             </div>

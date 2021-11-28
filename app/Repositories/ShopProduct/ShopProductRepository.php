@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\ShopProduct;
 
 use App\Enums\Constant;
+use App\Enums\DBConstant;
 use App\Repositories\RepositoryAbstract;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +26,7 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
             ->when($id, function ($query, $id) {
                 return $query->where('id', '<>', $id);
             })->count();
-        return $count > 0;    
+        return $count > 0;
     }
 
     public function getCountAliasLikeName($alias, $id)
@@ -107,57 +108,79 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         return $this->model::with('category')->with('promotion')->withCount('attributes')->orderBy($sortBy, $orderBy)->skip(0)->take($limit)->get();
     }
 
+    public function getBestSellerProducts($request)
+    {
+        $sortBy = $request->sort_by ?? 'view';
+        $orderBy = $request->order_by ?? 'DESC';
+        $limit = $request->limit ?? 4;
+        return $this->model::with('category')->with('promotion')->withCount('attributes')->orderBy($sortBy, $orderBy)->skip(0)->take($limit)->get();
+    }
+
+    public function getNewArrivalProducts($request)
+    {
+        $sortBy = $request->sort_by ?? 'updated_at';
+        $orderBy = $request->order_by ?? 'DESC';
+        $limit = $request->limit ?? 4;
+        return $this->model::with('category')
+            ->with('promotion')
+            ->withCount('attributes')
+            ->orderBy($sortBy, $orderBy)
+            ->skip(0)->take($limit)
+            ->where('new_arrival', DBConstant::PRODUCT_NEW_ARRIVAL)
+            ->get();
+    }
+
     public function find($id)
     {
         return $this->model::with('category')
-        ->with('promotion')
-        ->with('images')
-        ->with(['attributes' => function($query) {
-            $query->select('id','name', 'code', 'attribute_group_id', 'product_id', 'add_price')
-            ->with(['shopAttributeGroup' => function($q) {
-                $q->select('id', 'name');
-            }]);
-        }])->with('orders')->find($id);
+            ->with('promotion')
+            ->with('images')
+            ->with(['attributes' => function ($query) {
+                $query->select('id', 'name', 'code', 'attribute_group_id', 'product_id', 'add_price')
+                    ->with(['shopAttributeGroup' => function ($q) {
+                        $q->select('id', 'name');
+                    }]);
+            }])->with('orders')->find($id);
     }
 
     public function findByAlias($alias)
     {
         return $this->model::with('category')
-        ->with('promotion')
-        ->with('images')
-        ->with('supplier')
-        ->with('brand')
-        ->with(['attributes' => function($query) {
-            $query->select('id','name', 'code', 'attribute_group_id', 'product_id', 'add_price')
-            ->with(['shopAttributeGroup' => function($q) {
-                $q->select('id', 'name');
-            }]);
-        }])->with('orders')
-        ->with(['comments' => function($query) {
-            return $query->with('child:id,customer_name,customer_email,comment,comment_parent,created_at');
-        }])
-        ->where('alias', $alias)
-        ->first();
+            ->with('promotion')
+            ->with('images')
+            ->with('supplier')
+            ->with('brand')
+            ->with(['attributes' => function ($query) {
+                $query->select('id', 'name', 'code', 'attribute_group_id', 'product_id', 'add_price')
+                    ->with(['shopAttributeGroup' => function ($q) {
+                        $q->select('id', 'name');
+                    }]);
+            }])->with('orders')
+            ->with(['comments' => function ($query) {
+                return $query->with('child:id,customer_name,customer_email,comment,comment_parent,created_at');
+            }])
+            ->where('alias', $alias)
+            ->first();
     }
 
     public function relatedProducts($productId, $categoryId = null, $limit = 4)
     {
         $products =  $this->model::select('id', 'alias', 'name', 'image', 'price')
-                        ->with('promotion')
-                        ->where('id', '<>', $productId)
-                        ->when($categoryId, function ($query, $categoryId) {
-                            return $query->where('category_id', '=', $categoryId);
-                        })->orderBy('view', 'DESC')
-                        ->skip(0)->take($limit)
-                        ->get();
+            ->with('promotion')
+            ->where('id', '<>', $productId)
+            ->when($categoryId, function ($query, $categoryId) {
+                return $query->where('category_id', '=', $categoryId);
+            })->orderBy('view', 'DESC')
+            ->skip(0)->take($limit)
+            ->get();
         if ($products->count() == 0) {
             $products =  $this->model::select('id', 'alias', 'name', 'image', 'price')
-                        ->with('promotion')
-                        ->where('id', '<>', $productId)->orderBy('view', 'DESC')
-                        ->skip(0)->take($limit)
-                        ->get();
+                ->with('promotion')
+                ->where('id', '<>', $productId)->orderBy('view', 'DESC')
+                ->skip(0)->take($limit)
+                ->get();
         }
-        return $products;       
+        return $products;
     }
 
     public function totalProducts()
