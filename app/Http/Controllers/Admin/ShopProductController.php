@@ -225,6 +225,14 @@ class ShopProductController extends Controller
                 $params['status'] = 0;
             }
 
+            if (!isset($params['new_arrival'])) {
+                $params['new_arrival'] = 0;
+            }
+
+            if (!isset($params['hot'])) {
+                $params['hot'] = 0;
+            }
+
             $result = $this->shopProductService->update($id, $params);
             if ($result) {
                 $productId = $id;

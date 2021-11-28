@@ -60,4 +60,9 @@ class ShopCategoryService extends BaseService
     {
         return $this->categoryRepository->delete($id);
     }
+
+    public function getCategoriesHomePage($request = null)
+    {
+        return $this->categoryRepository->getCategoriesHomePage($request);
+    }
 }

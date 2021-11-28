@@ -36,6 +36,8 @@ class ShopProduct extends Model
         'width',
         'height',
         'status',
+        'new_arrival',
+        'hot',
         'sort',
         'created_by',
         'updated_by'

@@ -37,6 +37,8 @@ class CreateShopProductsTable extends Migration
             $table->integer('height')->nullable()->default(0);
             $table->integer('kind')->default(0)->comment('0:single, 1:bundle, 2:group');
             $table->tinyInteger('status')->default(1)->comment('1: on, 0: off');
+            $table->tinyInteger('new_arrival')->default(0)->comment('1: sản phẩm mới về');
+            $table->tinyInteger('hot')->default(0)->comment('1: sản phẩm hot');
             $table->integer('sort')->default(1)->comment('thứ tự');
             $table->integer('view')->default(1)->comment('lượt xem');
             $table->integer('created_by')->nullable();
