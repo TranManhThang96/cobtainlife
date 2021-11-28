@@ -107,7 +107,9 @@
             </div>
 
             <div class="form-group row">
-                <label for="product-brand" class="col-sm-2 text-right font-weight-bold">Nhãn hàng</label>
+                <label for="product-brand" class="col-sm-2 text-right font-weight-bold">
+                    Nhãn hàng (<a href="{{route('admin.brands.create')}}"><i class="fa fa-link" aria-hidden="true"></i></a>)
+                </label>
                 <div class="col-sm-10">
                     <select class="custom-select custom-select-2 mr-sm-2 select-brand" name="brand_id">
                         <option selected value="#">Chọn nhãn hàng</option>
@@ -121,7 +123,9 @@
             </div>
 
             <div class="form-group row">
-                <label for="product-supplier" class="col-sm-2 text-right font-weight-bold">Nhà cung cấp</label>
+                <label for="product-supplier" class="col-sm-2 text-right font-weight-bold">
+                    Nhà cung cấp (<a href="{{route('admin.suppliers.create')}}"><i class="fa fa-link" aria-hidden="true"></i></a>)
+                </label>
                 <div class="col-sm-10">
                     <select class="custom-select custom-select-2 mr-sm-2 select-supplier" name="supplier_id">
                         <option selected value="#">Chọn nhà cung cấp</option>
@@ -135,7 +139,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="product-cost" class="col-sm-2 text-right font-weight-bold">Giá cost</label>
+                <label for="product-cost" class="col-sm-2 text-right font-weight-bold">Giá cost (giá nhập)</label>
                 <div class="col-sm-10">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -192,11 +196,13 @@
 
 
             <div class="form-group row">
-                <label for="product-weight-class" class="col-sm-2 text-right font-weight-bold">Đơn vị khối lượng</label>
+                <label for="product-weight-class" class="col-sm-2 text-right font-weight-bold">
+                    Đơn vị khối lượng (<a href="{{route('admin.weight-class.index')}}"><i class="fa fa-link" aria-hidden="true"></i></a>)
+                </label>
                 <div class="col-sm-10">
                     <div class="input-group">
                         <select class="custom-select custom-select-2 mr-sm-2 select-weight-class" name="weight_class">
-                            <option selected value="#">Chọn đơn vị khối lượng</option>
+                            <option selected value="#">Chọn đơn vị khối lượng </option>
                             @if(isset($weightClasses)) 
                                 @foreach($weightClasses as $weightClass)
                                     <option value="{{$weightClass['name']}}" {{old('weight_class') == $weightClass['name'] ? 'selected' : ''}}>{{$weightClass['description']}}</option>
@@ -225,7 +231,9 @@
 
 
             <div class="form-group row">
-                <label for="product-length-class" class="col-sm-2 text-right font-weight-bold">Đơn vị kích thước</label>
+                <label for="product-length-class" class="col-sm-2 text-right font-weight-bold">
+                    Đơn vị kích thước (<a href="{{route('admin.length-class.index')}}"><i class="fa fa-link" aria-hidden="true"></i></a>)
+                </label>
                 <div class="col-sm-10">
                     <select class="custom-select custom-select-2 mr-sm-2 select-weight-class" name="length_class">
                         <option selected value="#">Chọn đơn vị kích thước</option>
@@ -309,10 +317,32 @@
                 </div>
             </div>
 
+            <div class="form-group row">
+                <label for="product-new-arrival" class="col-sm-2 text-right font-weight-bold">Sản phẩm mới về</label>
+                <div class="col-sm-10">
+                    <label class="switch">
+                        <input type="checkbox" name="new_arrival" value="1" id="product-new-arrival">
+                        <span class="slider round-custom"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="product-hot" class="col-sm-2 text-right font-weight-bold">Sản phẩm hot</label>
+                <div class="col-sm-10">
+                    <label class="switch">
+                        <input type="checkbox" name="hot" value="1" id="product-hot">
+                        <span class="slider round-custom"></span>
+                    </label>
+                </div>
+            </div>
+
             <hr/>
 
             <div class="form-group row mt-3">
-                <label for="product-attributes" class="col-sm-2 text-right font-weight-bold">Thuộc tính</label>
+                <label for="product-attributes" class="col-sm-2 text-right font-weight-bold">
+                    Thuộc tính (<a href="{{route('admin.attribute-group.index')}}"><i class="fa fa-link" aria-hidden="true"></i></a>)
+                </label>
                 <div class="col-sm-10">
                     @if(isset($shopAttributeGroups)) 
                         @foreach($shopAttributeGroups as $shopAttributeGroup)
