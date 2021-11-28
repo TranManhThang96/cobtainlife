@@ -29,8 +29,8 @@
                     <tr>
                         <th scope="col" class="text-uppercase fwEbold border-top-0">Sản phẩm</th>
                         <th scope="col" class="text-uppercase fwEbold border-top-0">Giá</th>
-                        <th scope="col" class="text-uppercase fwEbold border-top-0">Số lượng</th>
-                        <th scope="col" class="text-uppercase fwEbold border-top-0">Tổng tiền</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0 {{request()->route()->getName() == 'web.checkout.index' ? 'text-center' : ''}}">Số lượng</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0 {{request()->route()->getName() == 'web.checkout.index' ? 'text-center' : ''}}">Tổng tiền</th>
                     </tr>
                 </thead>
                 <tbody id="cart-items">
@@ -56,6 +56,11 @@
                 <table class="table table-borderless table-responsive">
 
                     <tbody>
+                        <tr width="100%">
+                            <td class="form-group" colspan="2">
+                                <label class="control-label font-weight-bold text-center">Thông tin giao hàng</label>
+                            </td>
+                        </tr>
                         <tr width="100%">
                             <td class="form-group" colspan="2">
                                 <label for="phone" class="control-label"><i class="fa fa-user"></i> Họ và Tên:</label>
@@ -123,7 +128,17 @@
             </form>
 
         </div>
+
         <div class="col-12 col-md-6 text-right mt-3">
+            <div class="row mb-3 text-left d-flex align-items-center">
+                <div class="col-6">
+                    <input class="form-control" name="coupon_code" type="text" placeholder="Mã giảm giá" value="" />
+                </div>
+                <div class="col-6">
+                    <button class="btn btnTheme w-100 fwEbold text-center text-white md-round py-3 px-4 py-md-3 px-md-4" id="button-apply-coupon">Áp dụng</button>
+                </div>
+            </div>
+
             <table class="table box table-bordered" id="showTotal">
                 <tbody>
                     <tr class="showTotal">
@@ -133,8 +148,24 @@
                         </td>
                     </tr>
                     <tr class="showTotal">
-                        <th>Thuế</th>
-                        <td style="text-align: right;" id="checkout-tax">
+                        <th>Thuế
+                            @if (isset($configs->order_default_vat))
+                                ({{$configs->order_default_vat['value']}}%)
+                            @endif
+                        </th>
+                        <td style="text-align: right;" id="checkout-tax" data-vat="{{$configs->order_default_vat['value'] ?? 0}}">
+                            0
+                        </td>
+                    </tr>
+                    <tr class="showTotal">
+                        <th>Mã giảm giá</th>
+                        <td style="text-align: right;" id="checkout-coupon">
+                            
+                        </td>
+                    </tr>
+                    <tr class="showTotal">
+                        <th>Giảm giá</th>
+                        <td style="text-align: right;" id="checkout-discount">
                             0
                         </td>
                     </tr>
