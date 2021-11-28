@@ -90,4 +90,11 @@ class ShopProductService extends BaseService
     {
         return $this->productRepository->updateView($productId);
     }
+
+    public function minusQty($qtyProducts)
+    {
+        foreach ($qtyProducts as $productId => $qty) {
+            return $this->productRepository->minusQty($productId, $qty);
+        }
+    }
 }

@@ -20,6 +20,7 @@ class ShopCoupon extends Model
         'value',
         'max_discount',
         'max_applied',
+        'applied',
         'start',
         'end',
         'status',

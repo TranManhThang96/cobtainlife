@@ -42,14 +42,14 @@
                 data-product-attribute>
                 {{$product->name}}
                 </h2>
-                <ul class="list-unstyled ratingList d-flex flex-nowrap mb-2">
+                <!-- <ul class="list-unstyled ratingList d-flex flex-nowrap mb-2">
                     <li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
                     <li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
                     <li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
                     <li class="mr-2"><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
                     <li class="mr-2"><a href="javascript:void(0);"><i class="far fa-star"></i></a></li>
                     <li>( 5 customer reviews )</li>
-                </ul>
+                </ul> -->
                 <strong class="price d-block mb-5 text-green" 
                     id="product-price" 
                     data-product-price="{{$product->promotionValid ? $product->promotion->price_promotion : $product->price}}"
@@ -62,9 +62,7 @@
                     @if (!empty($product->sku))
                         <li class="mb-2">Code: <span>{{$product->sku}}</span></li>
                     @endif
-                    @if (!empty($product->stock))
-                        <li class="mb-2">Số lượng: <span>{{$product->stock}}</span></li>
-                    @endif
+                    <li class="mb-2">Lượt xem: <span>{{$product->view}}</span></li>
 
                     <!-- <li class="mb-2">Shipping tax: <span>Free</span></li> -->
                 </ul>
@@ -87,27 +85,33 @@
                 <div class="holder overflow-hidden d-flex flex-wrap mb-6">
                     <input type="number" placeholder="1" id="product-qty" value="1">
                     <a href="javascript:void(0);" class="btn btnTheme btnShop fwEbold text-white md-round py-3 px-4 py-md-3 px-md-4" id="detail-btn-add-cart">
-                        Add To Cart <i class="fas fa-arrow-right ml-2"></i>
+                        Thêm vào giỏ hàng <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
                 <ul class="list-unstyled socialNetwork d-flex flex-wrap mb-sm-11 mb-4">
-                    <li class="text-uppercase mr-5">SHARE THIS PRODUCT:</li>
+                    <li class="text-uppercase mr-5">Chia sẻ:</li>
                     <li class="mr-4">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{route('web.products.show', ['product' => $product->alias])}}" target="_blank" class="fab fa-facebook-f"></a>
+                        <i class="fab fa-facebook-f btn-social" data-href="https://facebook.com/sharer/sharer.php?u={{urlencode(route('web.products.show', ['product' => $product->alias]))}}"aria-hidden="true"></i>
                     </li>
-                    <li class="mr-4"><a href="javascript:void(0);" class="fab fa-google-plus-g"></a></li>
-                    <li class="mr-4"><a href="javascript:void(0);" class="fab fa-twitter"></a></li>
-                    <li class="mr-4"><a href="javascript:void(0);" class="fab fa-pinterest-p"></a></li>
+                    <li class="mr-4">
+                        <i class="fab fa-google-plus btn-social" data-href="https://plus.google.com/share?url={{urlencode(route('web.products.show', ['product' => $product->alias]))}}" aria-hidden="true"></i>
+                    </li>
+                    <li class="mr-4">
+                        <i class="fab fa-twitter btn-social" data-href="https://twitter.com/intent/tweet?text={{$product->alias}}&url={{urlencode(route('web.products.show', ['product' => $product->alias]))}}" aria-hidden="true"></i>
+                    </li>
+                    <li class="mr-4">
+                        <i class="fab fa-linkedin btn-social" data-href="https://www.linkedin.com/sharing/share-offsite/?url={{urlencode(route('web.products.show', ['product' => $product->alias]))}}" aria-hidden="true"></i>
+                    </li>
                 </ul>
                 <ul class="list-unstyled productInfoDetail mb-0">
                     <li class="mb-2">Danh mục:
                         <a href="javascript:void(0);">{{$product->category->title}}</a>
                     </li>
                     <li class="mb-2">Nhà cung cấp:
-                        <a href="javascript:void(0);">{{$product->category->supplier_id}}</a>
+                        <a href="javascript:void(0);">{{$product->supplier->name ?? 'kk'}}</a>
                     </li>
-                    <li>Thương hiệu:
-                        <a href="javascript:void(0);">{{$product->brand_id}}</a>
+                    <li>Nhãn hiệu:
+                        <a href="javascript:void(0);">{{$product->brand->name ?? ''}}</a>
                     </li>
                 </ul>
             </div>

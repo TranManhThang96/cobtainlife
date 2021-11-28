@@ -117,6 +117,10 @@ class ShopShippingStatusController extends Controller
     public function destroy($id)
     {
         $shippingStatus = $this->shopShippingStatusService->find($id);
+        if ($id == 1) {
+            return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Không thể xóa trạng thái mặc định!');
+        }
+        
         if ($shippingStatus->orders_count > 0) {
             return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Không thể xóa trạng thái vì có đơn hàng!');
         }

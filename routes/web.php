@@ -37,6 +37,7 @@ Route::domain(config('app.main_domain'))->name('web.')->group(function () {
     Route::get('/address/districts/{id}', [\App\Http\Controllers\Web\AddressController::class, 'district'])->name('address.district');
     Route::resource('/comments', CommentController::class);
     Route::resource('/custom-subscribes', \ShopCustomerSubscribe::class);
+    Route::post('/coupons/check', [\App\Http\Controllers\Web\ShopCouponController::class, 'checkCoupon']);
 });
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'admin.auth']], function () {
