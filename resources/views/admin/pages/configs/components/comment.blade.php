@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12 bg-white py-2">
             <div class="form-group row">
-                <label for="comment-smtp-host" class="col-sm-6 text-right font-weight-bold">Cho phép bình luận</label>
+                <label class="col-sm-6 text-right font-weight-bold">Cho phép bình luận</label>
                 <div class="col-sm-6">
                     <label class="switch">
                         <input type="checkbox" name="comment_enable" value="1" {{($configs->comment_enable['value'] ?? '') == 1 ? 'checked' : ''}}>
@@ -14,7 +14,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="comment-smtp-port" class="col-sm-6 text-right font-weight-bold">Ẩn bình luận đánh giá thấp (dưới 3 sao)</label>
+                <label class="col-sm-6 text-right font-weight-bold">Ẩn bình luận đánh giá thấp (dưới 3 sao)</label>
                 <div class="col-sm-6">
                     <label class="switch">
                         <input type="checkbox" name="comment_auto_hide" value="1" {{($configs->comment_auto_hide['value'] ?? '') == 1 ? 'checked' : ''}}>

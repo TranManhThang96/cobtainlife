@@ -212,6 +212,11 @@ $(document).ready(function () {
     }
     let dataForm = $('#frm-order-info').serializeArray();
     dataForm.push({ name: 'cart', value: JSON.stringify(cart) });
+    const coupon = $('#checkout-coupon').text();
+    if (coupon.trim() !== '') {
+      dataForm.push({ name: 'coupon', value: coupon.trim()});
+    }
+
     $.ajax({
       url: `/checkout`,
       type: 'POST',
@@ -240,8 +245,10 @@ $(document).ready(function () {
     }
     cart = currentCart;
     getQtyProductsCart();
-    if (currentPage === '/cart' || currentPage === '/checkout') {
+    if (currentPage === '/cart') {
       renderCart();
+    } else if (currentPage === '/checkout') {
+      renderCart(true);
     }
   }
 
@@ -280,13 +287,16 @@ $(document).ready(function () {
     $('#count-compare-list').text(compareList.length);
   }
 
-  function renderCart() {
+  function renderCart(isCheckout = false) {
     let renderHtml = '';
     let subTotal = 0;
     if (Object.keys(cart).length == 0) {
-      $('#order-subtotal').text(0);
+      $('#checkout-tax').text(0);
       $('#checkout-subtotal').text(0);
       $('#checkout-total').text(0);
+      $('#order-subtotal').text(0);
+      $('#checkout-coupon').text('');
+      $('#checkout-discount').text(0);
       $('#cart-items').empty().append(`
       <tr>
         <td colspan="4" class="text-center mt-5">Giỏ hàng trống!</td>
@@ -295,44 +305,71 @@ $(document).ready(function () {
     }
 
     for (let productFullId in cart) {
-      renderHtml += `
-      <tr class="align-items-center order-item">
-        <td class="border-top-0 border-bottom px-0 py-6">
-          <div class="d-flex align-items-center">
-            <div class="imgHolder">
-              <img src=${cart[productFullId]['image'] ? cart[productFullId]['image'] : '/dist/images/70x80.png'} width="70px" height="80px" alt="image description" class="img-fluid product-image" />
+      if (!isCheckout) {
+        renderHtml += `
+        <tr class="align-items-center order-item">
+          <td class="border-top-0 border-bottom px-0 py-6">
+            <div class="d-flex align-items-center">
+              <div class="imgHolder">
+                <img src=${cart[productFullId]['image'] ? cart[productFullId]['image'] : '/dist/images/70x80.png'} width="70px" height="80px" alt="image description" class="img-fluid product-image" />
+              </div>
+              <span class="title pl-2">
+                <a href="${cart[productFullId]['link']}" class="product-link" target="_blank">${cart[productFullId]['name']}</a>
+              </span>
             </div>
-            <span class="title pl-2">
-              <a href="${cart[productFullId]['link']}" class="product-link" target="_blank">${cart[productFullId]['name']}</a>
+            <div class="mt-2">
+              <b>Mã SKU</b><span> : ${cart[productFullId]['sku']} </span><br>
+              ${renderAttribute(cart[productFullId]['attribute'])}
+            </div>
+          </td>
+          <td class="fwEbold border-top-0 border-bottom px-0 py-6">
+            <span class="product-price">${utilsHelper.formatNumber(cart[productFullId]['price'])} VND</span>
+          </td>
+          <td class="border-top-0 border-bottom px-0 py-6"> 
+            <span class="jcf-number">
+              <input type="number" placeholder="1" class="product-qty jcf-real-element" value="${cart[productFullId]['qty']}">
+              <span class="jcf-btn-inc product-qty-inc" data-full-id="${productFullId}"></span>
+              <span class="jcf-btn-dec product-qty-desc" data-full-id="${productFullId}"></span>
             </span>
-          </div>
-          <div class="mt-2">
-            <b>Mã SKU</b><span> : ${cart[productFullId]['sku']} </span><br>
-            ${renderAttribute(cart[productFullId]['attribute'])}
-          </div>
-        </td>
-        <td class="fwEbold border-top-0 border-bottom px-0 py-6">
-          <span class="product-price">${utilsHelper.formatNumber(cart[productFullId]['price'])} VND</span>
-        </td>
-        <td class="border-top-0 border-bottom px-0 py-6"> 
-          <span class="jcf-number">
-            <input type="number" placeholder="1" class="product-qty jcf-real-element" value="${cart[productFullId]['qty']}">
-            <span class="jcf-btn-inc product-qty-inc" data-full-id="${productFullId}"></span>
-            <span class="jcf-btn-dec product-qty-desc" data-full-id="${productFullId}"></span>
-          </span>
-        </td>
-        <td class="fwEbold border-top-0 border-bottom px-0 py-6">
-          <span class="product-total-price">${utilsHelper.formatNumber(cart[productFullId]['price'] * cart[productFullId]['qty'])} VND</span>
-          <a href="javascript:void(0);" class="fas fa-times float-right remove-order-item" data-full-id="${productFullId}"></a>
-        </td>
-      </tr>`
+          </td>
+          <td class="fwEbold border-top-0 border-bottom px-0 py-6">
+            <span class="product-total-price">${utilsHelper.formatNumber(cart[productFullId]['price'] * cart[productFullId]['qty'])} VND</span>
+            <a href="javascript:void(0);" class="fas fa-times float-right remove-order-item" data-full-id="${productFullId}"></a>
+          </td>
+        </tr>`
+      } else {
+        renderHtml += `
+        <tr class="align-items-center order-item">
+          <td class="border-top-0 border-bottom px-0 py-6">
+            <div class="d-flex align-items-center">
+              <div class="imgHolder">
+                <img src=${cart[productFullId]['image'] ? cart[productFullId]['image'] : '/dist/images/70x80.png'} width="70px" height="80px" alt="image description" class="img-fluid product-image" />
+              </div>
+              <span class="title pl-2">
+                <a href="${cart[productFullId]['link']}" class="product-link" target="_blank">${cart[productFullId]['name']}</a>
+              </span>
+            </div>
+            <div class="mt-2">
+              <b>Mã SKU</b><span> : ${cart[productFullId]['sku']} </span><br>
+              ${renderAttribute(cart[productFullId]['attribute'])}
+            </div>
+          </td>
+          <td class="fwEbold border-top-0 border-bottom px-0 py-6">
+            <span class="product-price">${utilsHelper.formatNumber(cart[productFullId]['price'])} VND</span>
+          </td>
+          <td class="border-top-0 border-bottom px-0 py-6 text-center"> 
+            <span class="product-qty">${cart[productFullId]['qty']}</span>
+          </td>
+          <td class="fwEbold border-top-0 border-bottom px-0 py-6 text-center">
+            <span class="product-total-price">${utilsHelper.formatNumber(cart[productFullId]['price'] * cart[productFullId]['qty'])} VND</span>
+          </td>
+        </tr>`
+      }
       subTotal += cart[productFullId]['qty'] * cart[productFullId]['price']
     }
-    $('#order-subtotal').text(utilsHelper.formatNumber(subTotal));
     $('#checkout-subtotal').text(utilsHelper.formatNumber(subTotal));
-    $('#checkout-total').text(utilsHelper.formatNumber(subTotal));
     $('#cart-items').empty().append(renderHtml);
-
+    renderTotal();
   }
 
   function renderAttribute(attributes) {
@@ -359,5 +396,71 @@ $(document).ready(function () {
     localStorageModel.remove('cart')
     getQtyProductsCart();
   }
+
+  // subTotal + tax - discount
+  function renderTotal() {
+    let subTotal = 0;
+    let tax = 0;
+    let discount = 0;
+
+    // subTotal
+    subTotal = utilsHelper.convertStringToNumber($('#checkout-subtotal').text());
+
+    // vat
+    const vatValue = $('#checkout-tax').data('vat');
+    if (vatValue > 0) {
+      tax = Math.ceil(subTotal * parseInt(vatValue) / 100);
+      $('#checkout-tax').text(utilsHelper.formatNumber(tax));
+    }
+
+    //discount
+    discount = utilsHelper.convertStringToNumber($('#checkout-discount').text());
+    
+    $('#checkout-total').text(utilsHelper.formatNumber(subTotal + tax - discount));
+    $('#order-subtotal').text(utilsHelper.formatNumber(subTotal + tax - discount));
+  }
+
+  $('#button-apply-coupon').on('click', function (e) {
+    const coupon = $('input[name="coupon_code"]').val();
+    if (coupon.trim() === '') {
+      toastr.warning('Vui lòng nhập mã giảm giá');
+      return;
+    }
+    const subTotal = utilsHelper.convertStringToNumber($('#checkout-subtotal').text());
+    const messages = [
+      'Đã áp dụng mã giảm giá',
+      'Không tìm thấy mã giảm giá này!',
+      'Rất tiếc, đã hết lượt áp dụng',
+      'Mã giảm chưa được kích hoạt',
+      'Mã giảm giá đã hết thời gian áp dụng'
+    ];
+
+    // check coupon
+    $.ajax({
+      url: `/coupons/check`,
+      type: 'POST',
+      loading: true,
+      data: {
+        coupon,
+        subTotal
+      },
+      success: function (response) {
+        if (response.data) {
+          const r = response.data.r;
+          if (r == 0) {
+            toastr.success(messages[response.data.r]);
+            $('#checkout-coupon').text(coupon);
+            $('#checkout-discount').text(utilsHelper.formatNumber(response.data.discount));
+            renderTotal();
+          } else {
+            toastr.warning(messages[response.data.r]);
+          }
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        toastr.error(jqXHR.responseJSON.userMsg);
+      }
+    });
+  });
 })
 

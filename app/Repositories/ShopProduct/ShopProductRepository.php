@@ -125,6 +125,8 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         return $this->model::with('category')
         ->with('promotion')
         ->with('images')
+        ->with('supplier')
+        ->with('brand')
         ->with(['attributes' => function($query) {
             $query->select('id','name', 'code', 'attribute_group_id', 'product_id', 'add_price')
             ->with(['shopAttributeGroup' => function($q) {
@@ -168,6 +170,15 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         return DB::table('shop_products')->where('id', $productId)->update(
             [
                 'view' => DB::raw('view + 1')
+            ]
+        );
+    }
+
+    public function minusQty($id, $qty)
+    {
+        return DB::table('shop_products')->where('id', $id)->update(
+            [
+                'stock' => DB::raw("stock - $qty")
             ]
         );
     }

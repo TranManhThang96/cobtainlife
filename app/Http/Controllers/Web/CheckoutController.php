@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Web;
 use App\Enums\Constant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\CheckoutRequest;
+use App\Models\ShopCoupon;
 use App\Services\DistrictService;
 use App\Services\ProvinceService;
+use App\Services\ShopConfigService;
+use App\Services\ShopCouponService;
 use App\Services\ShopCustomerService;
 use App\Services\ShopProductService;
 use App\Services\WardService;
@@ -30,7 +33,9 @@ class CheckoutController extends Controller
         ShopProductService $shopProductService,
         ShopOrderService $shopOrderService,
         ShopOrderDetailService $shopOrderDetailService,
-        ShopCustomerService $shopCustomerService
+        ShopCustomerService $shopCustomerService,
+        ShopConfigService $shopConfigService,
+        ShopCouponService $shopCouponService
     )
     {
         $this->provinceService = $provinceService;
@@ -40,6 +45,8 @@ class CheckoutController extends Controller
         $this->shopOrderService = $shopOrderService;
         $this->shopOrderDetailService = $shopOrderDetailService;
         $this->shopCustomerService = $shopCustomerService;
+        $this->shopConfigService = $shopConfigService;
+        $this->shopCouponService = $shopCouponService;
         $this->agent = new Agent();
     }
 
@@ -79,6 +86,8 @@ class CheckoutController extends Controller
         $data = $request->all();
         $subTotal = 0;
         $tax = 0;
+        $discount = 0;
+
         $products = json_decode($request->cart, true);
         if (count($products) == 0) {
             return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Không có sản phẩm nào!');
@@ -110,8 +119,28 @@ class CheckoutController extends Controller
         }
         $data['cart'] = $orderProducts ?? [];
         $data['subTotal'] = $subTotal;
+
+        // tax
+        $allConfigs = $this->shopConfigService->all();
+        $configs = (object) array_column($allConfigs->toArray(), null, 'key');
+        if (isset($configs->order_default_vat)) {
+            $vat = $configs->order_default_vat['value'];
+            $tax = ceil($subTotal * $vat / 100);
+        }
         $data['tax'] = $tax;
-        $data['totalPrice'] = $subTotal + $tax;
+
+        // discount
+        if ($request->coupon) {
+            $couponCode = $request->coupon;
+            $data['coupon_code'] = $couponCode;
+            $checked = $this->shopCouponService->checkCoupon($couponCode, $subTotal);
+            if ($checked['r'] == 0) {
+                $discount = $checked['discount'];
+            }
+        }
+        $data['discount'] = $discount;
+
+        $data['totalPrice'] = $subTotal + $tax - $discount;
         $request->session()->put('cart', $data);
         return $this->apiSendSuccess(route('web.checkout-confirm'), Response::HTTP_OK, '');
     }
@@ -163,7 +192,7 @@ class CheckoutController extends Controller
                     'customer_id' => $customerId,
                     'subtotal' => session('cart')['subTotal'],
                     'shipping' => 0,
-                    'discount' => 0,
+                    'discount' => session('cart')['discount'],
                     'tax' => session('cart')['tax'],
                     'total' => session('cart')['totalPrice'],
                     'received' => 0,
@@ -176,13 +205,17 @@ class CheckoutController extends Controller
                     'email' => session('cart')['email'],
                     'phone' => session('cart')['phone'],
                     'comment' => session('cart')['comment'],
-                    'payment_method' => Constant::PAYMENT_CASH_VALUE,
+                    'payment_method' => Constant::PAYMENT_SHIPCODE_VALUE,
                     'shipping_method' => Constant::SHIPPING_STANDARD_VALUE,
                     'user_agent' => $request->userAgent(),
                     'device_type' => $this->agent->device(),
                     'ip_address' => $request->getClientIp(),
                 ];
+                if (isset(session('cart')['coupon_code'])) {
+                    $orderData['coupon_code'] = session('cart')['coupon_code'];
+                }
                 $orderInserted = $this->shopOrderService->store($orderData);
+                $qtyProducts = [];
                 // insert order detail
                 foreach (session('cart')['cart'] as $product) {
                     $orderProducts[] = [
@@ -196,8 +229,25 @@ class CheckoutController extends Controller
                         'created_at' => new \DateTime(),
                         'updated_at' => new \DateTime(),
                     ];
+                    $productId = $product['product_id'];
+                    if (isset($qtyProducts[$productId])) {
+                        $qtyProducts[$productId] = $qtyProducts[$productId] + $product['qty'];
+                    } else {
+                        $qtyProducts[$productId] = $product['qty'];
+                    }
                 }
                 $this->shopOrderDetailService->insert($orderProducts);
+
+                // trừ số lượng sản phẩm
+                if (count($qtyProducts) > 0) {
+                    $this->shopProductService->minusQty($qtyProducts);
+                }
+
+                // tăng số lượng áp dụng coupon
+                if (isset(session('cart')['coupon_code'])) {
+                    $this->shopCouponService->applyCoupon(session('cart')['coupon_code']);
+                }
+
                 DB::commit();
                 $request->session()->forget('cart');
                 return $this->apiSendSuccess(null, Response::HTTP_OK, 'Tạo đơn hàng thành công!');

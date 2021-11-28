@@ -300,8 +300,8 @@ class ShopOrderController extends Controller
     {
         return [
             [
-                'value' => Constant::PAYMENT_CASH_VALUE,
-                'label' => Constant::PAYMENT_CASH_VALUE 
+                'value' => Constant::PAYMENT_SHIPCODE_VALUE,
+                'label' => Constant::PAYMENT_SHIPCODE_VALUE 
             ],
             // [
             //     'value' => Constant::PAYMENT_VNPAY_BASIC_VALUE,
