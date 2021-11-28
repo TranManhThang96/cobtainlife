@@ -46,7 +46,7 @@ class Constant extends BaseEnum
     const SHIPPING_STANDARD_LABEL = 'ShippingStandard';
 
     // [order] payment method
-    const PAYMENT_CASH_VALUE = 'Cash';
+    const PAYMENT_SHIPCODE_VALUE = 'ShipCode';
     const PAYMENT_CASH_LABEL = 'Thanh toán tiền mặt';
     const PAYMENT_VNPAY_BASIC_VALUE = 'VnpayBasic';
     const PAYMENT_VNPAY_BASIC_LABEL = 'VnpayBasic';

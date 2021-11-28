@@ -36,4 +36,21 @@ class ShopCouponRepository extends RepositoryAbstract implements ShopCouponRepos
     {
         return $this->model::find($id);
     }
+
+    public function findByCode($code)
+    {
+        return $this->model::where('code', $code)->first();
+    }
+
+    public function applyCoupon($couponCode)
+    {
+        $coupon =  $this->model::where('code', $couponCode)->first();
+        if ($coupon) {
+            $attributes = [
+                'applied' => $coupon['applied'] + 1
+            ];
+            return $coupon->update($attributes);
+        }
+        return false;
+    }
 }

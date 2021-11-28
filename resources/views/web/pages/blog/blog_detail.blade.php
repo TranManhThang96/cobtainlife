@@ -78,13 +78,13 @@
                     <i class="fab fa-facebook-f btn-social" data-href="https://facebook.com/sharer/sharer.php?u={{urlencode(route('web.blog.show', ['blog' => $news->alias]))}}"aria-hidden="true"></i>
                 </li>
                 <li class="mr-4">
-                <i class="fab fa-google-plus btn-social" data-href="https://plus.google.com/share?url={{route('web.blog.show', ['blog' => $news->alias])}}" aria-hidden="true"></i>
+                    <i class="fab fa-google-plus btn-social" data-href="https://plus.google.com/share?url={{urlencode(route('web.blog.show', ['blog' => $news->alias]))}}" aria-hidden="true"></i>
                 </li>
                 <li class="mr-4">
-                    <i class="fab fa-twitter btn-social" data-href="https://twitter.com/intent/tweet?text={{$news->alias}}&url={{route('web.blog.show', ['blog' => $news->alias])}}" aria-hidden="true"></i>
+                    <i class="fab fa-twitter btn-social" data-href="https://twitter.com/intent/tweet?text={{$news->alias}}&url={{urlencode(route('web.blog.show', ['blog' => $news->alias]))}}" aria-hidden="true"></i>
                 </li>
                 <li class="mr-4">
-                    <i class="fab fa-linkedin btn-social" data-href="https://www.linkedin.com/shareArticle/?mini=true&url={{route('web.blog.show', ['blog' => $news->alias])}}&title={{$news->title}}&summary={{$news->alias}}&source={{route('web.blog.show', ['blog' => $news->alias])}}" aria-hidden="true"></i>
+                    <i class="fab fa-linkedin btn-social" data-href="https://www.linkedin.com/sharing/share-offsite/?url={{urlencode(route('web.blog.show', ['blog' => $news->alias]))}}" aria-hidden="true"></i>
                 </li>
             </ul>
         </div>

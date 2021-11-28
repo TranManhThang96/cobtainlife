@@ -117,6 +117,10 @@ class ShopPaymentStatusController extends Controller
     public function destroy($id)
     {
         $paymentStatus = $this->shopPaymentStatusService->find($id);
+        if ($id == 1) {
+            return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Không thể xóa trạng thái mặc định!');
+        }
+        
         if ($paymentStatus->orders_count > 0) {
             return $this->apiSendError(null, Response::HTTP_BAD_REQUEST, 'Không thể xóa trạng thái vì có đơn hàng!');
         }

@@ -105,7 +105,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-12 col-md-6 text-right mt-3">
+            <div class="col-12 col-md-6 text-right">
                 <table class="table box table-bordered" id="showTotal">
                     <tbody>
                         <tr class="showTotal">
@@ -117,7 +117,19 @@
                         <tr class="showTotal">
                             <th>Thuế</th>
                             <td style="text-align: right;" id="checkout-tax">
-                                {{session('cart')['tax']}}
+                                {{number_format(session('cart')['tax'], 0)}}
+                            </td>
+                        </tr>
+                        <tr class="showTotal">
+                            <th>Mã giảm giá</th>
+                            <td style="text-align: right;" id="checkout-coupon">
+                                {{session('cart')['coupon_code'] ?? ''}}
+                            </td>
+                        </tr>
+                        <tr class="showTotal">
+                            <th>Giảm giá</th>
+                            <td style="text-align: right;" id="checkout-discount">
+                                {{number_format(session('cart')['discount'], 0)}}
                             </td>
                         </tr>
                         <tr class="showTotal" style="background: #f5f3f3; font-weight: bold;">

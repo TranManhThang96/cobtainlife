@@ -18,6 +18,7 @@ class ShopOrder extends Model
         'customer_id',
         'subtotal',
         'shipping',
+        'coupon_code',
         'discount',
         'tax',
         'total',

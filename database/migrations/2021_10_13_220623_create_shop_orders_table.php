@@ -18,6 +18,7 @@ class CreateShopOrdersTable extends Migration
             $table->integer('customer_id')->nullable();
             $table->integer('subtotal')->default(0)->comment('tiền hàng');
             $table->integer('shipping')->default(0)->comment('vận chuyển cơ bản');
+            $table->string('coupon_code')->nullable()->comment('Mã giảm giá');
             $table->integer('discount')->default(0)->comment('giảm giá');
             $table->integer('tax')->default(0)->comment('tiền thuế');
             $table->integer('total')->default(0)->comment('tổng tiền');

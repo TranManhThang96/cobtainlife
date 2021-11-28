@@ -38,7 +38,7 @@ $(document).ready(function () {
   }
 
   $('.btn-social').click(function () {
-    window.open($(this).data('href'), '_blank')
+    window.open($(this).data('href'), 'Social', 'toolbar=0,status=0,resizable=yes,height=400,width=600,top=300,left=100')
   })
 
   $('.comment-rating a.star').mouseenter(function () {

@@ -41,7 +41,7 @@
                 @include('admin.pages.configs.components.store')
             </div>
             <div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
-                Order
+                @include('admin.pages.configs.components.order')  
             </div>
             <div class="tab-pane fade" id="pills-email" role="tabpanel" aria-labelledby="pills-email-tab">
                 @include('admin.pages.configs.components.email')

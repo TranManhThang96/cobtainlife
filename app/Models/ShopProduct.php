@@ -69,7 +69,7 @@ class ShopProduct extends Model
 
     public function supplier()
     {
-        return $this->belongsTo(\App\Models\ShopCategory::class, 'category_id', 'id');
+        return $this->belongsTo(\App\Models\ShopSupplier::class, 'supplier_id', 'id');
     }
 
     public function promotion()
