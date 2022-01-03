@@ -29,6 +29,7 @@ class ShopConfigRequest extends FormRequest
             'store_instagram_url' => 'nullable|url',
             'store_youtube_url' => 'nullable|url',
             'store_email' => 'nullable|email',
+            'order_default_vat' => 'nullable|numeric|between:0,100',
         ];
     }
 
@@ -40,6 +41,7 @@ class ShopConfigRequest extends FormRequest
             'store_instagram_url.url' => 'Vui lòng nhập đúng định dạng url.',
             'store_youtube_url.url' => 'Vui lòng nhập đúng định dạng url.',
             'store_email.email' => 'Vui lòng nhập đúng định dạng email.',
+            'order_default_vat.between' => 'Thuế đơn hàng có giá trị từ 0 đến 100.',
         ];
     }
 }

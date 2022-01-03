@@ -56,11 +56,11 @@ class ShopProductAttributeService extends BaseService
     {
         if (is_array($productAttributes)) {
             $productAttributesInsert = [];
-            foreach ($productAttributes as $attributeGroupId=>$productAttribute) {
+            foreach ($productAttributes as $attributeGroupId => $productAttribute) {
                 $arrCheck = [];
                 $arrName = $productAttribute['name'];
                 $arrAddPrice = $productAttribute['add_price'];
-                foreach($arrName as $k=>$name) {
+                foreach ($arrName as $k => $name) {
                     if (!empty($name) && !in_array($name, $arrCheck)) {
                         $arrCheck[] = ucwords(strtolower($name));
                         $productAttributesInsert[] = [
@@ -68,7 +68,7 @@ class ShopProductAttributeService extends BaseService
                             'code' => Str::slug($name, '-'),
                             'attribute_group_id' => $attributeGroupId,
                             'product_id' => $productId,
-                            'add_price' =>$arrAddPrice[$k] ?? 0,
+                            'add_price' => convertStringToNumber($arrAddPrice[$k]) ?? 0,
                             'status' => 1,
                             'sort' => 1,
                             'created_by' => $createdBy,

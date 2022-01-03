@@ -18,6 +18,13 @@
     </section>
     <!-- twoColumns -->
     <div class="twoColumns container pt-lg-23 pb-lg-20 pt-md-16 pb-md-4 pt-10 pb-4">
+        <div class="row view-filters mb-3 d-none">
+            <div class="col-lg-10 col-md-8 col-sm-6 filter-group">
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 clear-filter">
+                <span id="clear-filter-button">Xóa bộ lọc</span>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 col-lg-9 order-lg-3" id="product-render-data">
                 <!-- content -->
@@ -33,40 +40,91 @@
                                 <input type="search" class="form-control" placeholder="Tìm kiếm sản phẩm..." name="q" id="frm-search-query">
                                 <button class="position-absolute" id="btn-search-product"><i class="icon-search"></i></button>
                             </fieldset>
-                            <input type="hidden" name="sort_by" value="" id="frm-search-sort-by"/>
-                            <input type="hidden" name="order_by" value="" id="frm-search-order-by"/>
-                            <input type="hidden" name="page" value="1" id="frm-search-page"/>
-                            <input type="hidden" name="category_id" value="" id="frm-search-category-id"/>
-                            <input type="hidden" name="price_from" value="" id="frm-search-price-from"/>
-                            <input type="hidden" name="price_to" value="" id="frm-search-price-to"/>
                         </form>
                     </section>
                     <!-- widget -->
                     <section class="widget overflow-hidden mb-9">
                         <h3 class="headingVII fwEbold text-uppercase mb-5">Danh mục</h3>
                         <ul class="list-unstyled categoryList mb-0">
+                            <li class="mb-5 overflow-hidden">
+                                <a href="javascript:void(0);">Cửa hàng</a>
+                            </li>
                             @foreach($categories as $category)
-                                <li class="mb-5 overflow-hidden sort-category" data-id="{{$category->id}}">
-                                    <a href="javascript:void(0);">{{$category->title}} 
-                                        <span class="num border float-right">{{$category->products_count ?? 0}}</span>
-                                    </a>
-                                </li>
+                                @if($category->in_store)
+                                    <li class="mb-5 overflow-hidden sort-category pl-5" data-id="{{$category->id}}" data-title="{{$category->title}}">
+                                        <a href="javascript:void(0);">{{$category->title}} 
+                                            <span class="num border float-right">{{$category->products_count ?? 0}}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
+
+                            @foreach($categories as $category)
+                                @if(!$category->in_store)
+                                    <li class="mb-5 overflow-hidden sort-category" data-id="{{$category->id}}" data-title="{{$category->title}}">
+                                        <a href="javascript:void(0);">{{$category->title}} 
+                                            <span class="num border float-right">{{$category->products_count ?? 0}}</span>
+                                        </a>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                     </section>
                     <!-- widget -->
                     <section class="widget mb-9">
                         <h3 class="headingVII fwEbold text-uppercase mb-6">Lọc theo giá</h3>
-                        <!-- filter ranger form -->
-                        <form action="javascript:void(0);" class="filter-ranger-form">
-                            <div id="slider-range"></div>
-                            <input type="hidden" id="amount1" name="amount1">
-                            <input type="hidden" id="amount2" name="amount2">
-                            <div class="get-results-wrap d-flex align-items-center justify-content-between">
-                                <button type="button" class="btn btnTheme btn-shop fwEbold md-round px-3 pt-1 pb-2 text-uppercase" id="btn-filter-price">Lọc</button>
-                                <p id="amount" class="mb-0"></p>
-                            </div>
-                        </form>
+                        <div class="filter-group filter-group-price">
+                            @foreach(\App\Enums\Constant::PRICE_FILTER as $priceFilterItem)
+                                <div class="filter-item" data-min="{{$priceFilterItem['min']}}" data-max="{{$priceFilterItem['max'] ?? 0}}">
+                                    <span class="filter-item-label">{{$priceFilterItem['title']}}</span>
+                                    <div class="filter-item-checked"></div>
+                                    <span class="icon-checked">✓</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </section>
+
+                    <!-- widget -->
+                    <section class="widget mb-9">
+                        <h3 class="headingVII fwEbold text-uppercase mb-6">Độ ẩm</h3>
+                        <div class="filter-group filter-group-humidity">
+                            @foreach(\App\Enums\Constant::HUMIDITY as $humidityFilterItem)
+                                <div class="filter-item" data-value="{{$humidityFilterItem['value']}}">
+                                    <span class="filter-item-label">{{$humidityFilterItem['title']}}</span>
+                                    <div class="filter-item-checked"></div>
+                                    <span class="icon-checked">✓</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </section>
+
+
+                    <!-- widget -->
+                    <section class="widget mb-9">
+                        <h3 class="headingVII fwEbold text-uppercase mb-6">Ánh sáng</h3>
+                        <div class="filter-group filter-group-light">
+                            @foreach(\App\Enums\Constant::LIGHT as $lightFilterItem)
+                                <div class="filter-item" data-value="{{$lightFilterItem['value']}}">
+                                    <span class="filter-item-label">{{$lightFilterItem['title']}}</span>
+                                    <div class="filter-item-checked"></div>
+                                    <span class="icon-checked">✓</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </section>
+
+                    <!-- widget -->
+                    <section class="widget mb-9">
+                        <h3 class="headingVII fwEbold text-uppercase mb-6">Lượng nước</h3>
+                        <div class="filter-group filter-group-water">
+                            @foreach(\App\Enums\Constant::WATER as $waterFilterItem)
+                                <div class="filter-item" data-value="{{$waterFilterItem['value']}}">
+                                    <span class="filter-item-label">{{$waterFilterItem['title']}}</span>
+                                    <div class="filter-item-checked"></div>
+                                    <span class="icon-checked">✓</span>
+                                </div>
+                            @endforeach
+                        </div>
                     </section>
                     <!-- widget -->
                     <section class="widget mb-9">
@@ -96,19 +154,6 @@
                         </ul>
                     </section>
                     <!-- widget -->
-                    <section class="widget mb-9">
-                        <h3 class="headingVII fwEbold text-uppercase mb-5">tags</h3>
-                        <ul class="list-unstyled tagNavList d-flex flex-wrap mb-0">
-                            <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Plant</a></li>
-                            <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Floor</a></li>
-                            <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Indoor</a></li>
-                            <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Green</a></li>
-                            <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Healthy</a></li>
-                            <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Cactus</a></li>
-                            <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">House plant</a></li>
-                            <li class="text-center"><a href="javascript:void(0);" class="md-round d-block">Office tree</a></li>
-                        </ul>
-                    </section>
                 </aside>
             </div>
         </div>

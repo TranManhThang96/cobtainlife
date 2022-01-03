@@ -314,7 +314,7 @@
 		@endforeach
 	</div>
 </section>
-<div class="container-fluid px-xl-20 px-lg-10">
+<div class="container-fluid px-xl-20 px-lg-10" style="height: 540px;">
 	<!-- testimonailBlock -->
 	<section class="testimonailBlock bgCover py-xl-24 py-lg-20 py-md-16 py-10" style="background-image: url({{$configs->client_say_background ? asset('storage'.$configs->client_say_background['value']) : asset('dist/images/1720x560.png')}})">
 		<header class="col-12 mainHeader mb-9 text-center">
