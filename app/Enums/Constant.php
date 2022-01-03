@@ -54,4 +54,84 @@ class Constant extends BaseEnum
     const PAYMENT_PAYPAL_EXPRESS_LABEL = 'PaypalExpress';
     const PAYMENT_MOMO_BASIC_VALUE = 'MomoBasic';
     const PAYMENT_MOMO_BASIC_LABEL = 'MOMO payment basic';
+
+    // [humidity - do am]
+    const HUMIDITY = [
+        'low' => [
+            'title' => 'Thấp',
+            'value' => 1
+        ],
+        'medium' => [
+            'title' => 'Vừa',
+            'value' => 2
+        ],
+        'high' => [
+            'title' => 'Cao',
+            'value' => 3
+        ]
+    ];
+
+    // [light- anh sang]
+    const LIGHT = [
+        'low' => [
+            'title' => 'Ít',
+            'value' => 1,
+        ],
+        'medium' => [
+            'title' => 'Vừa',
+            'value' => 2,
+        ],
+        'low' => [
+            'title' => 'Nhiều',
+            'value' => 3,
+        ],
+    ];
+
+    // [water - luong nuoc]
+    const WATER = [
+        'very_low' => [
+            'title' => 'Rất ít',
+            'value' => 1
+        ],
+        'low' => [
+            'title' => 'Ít',
+            'value' => 2
+        ],
+        'medium' => [
+            'title' => 'Vừa',
+            'value' => 3
+        ],
+        'high' => [
+            'title' => 'Nhiều',
+            'value' => 4
+        ],
+    ];
+
+    // [price filter]
+    const PRICE_FILTER = [
+        [
+            'title' => '0 - 200,000',
+            'min' => 0,
+            'max' => 200000
+        ],
+        [
+            'title' => '200,000 - 500,000',
+            'min' => 200000,
+            'max' => 500000
+        ],
+        [
+            'title' => '500,000 - 1,000,000',
+            'min' => 500000,
+            'max' => 1000000
+        ],
+        [
+            'title' => '1,000,000 - 2,000,000',
+            'min' => 1000000,
+            'max' => 2000000
+        ],
+        [
+            'title' => 'Trên 2 triệu',
+            'min' => 2000000,
+        ],
+    ];
 }

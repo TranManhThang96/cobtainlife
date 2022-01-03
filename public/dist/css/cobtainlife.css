@@ -145,7 +145,7 @@ a {
 }
 
 .bg-dark {
-  background: #313538;
+  background: #5ba515 !important;
 }
 
 .bgCover {
@@ -2238,7 +2238,7 @@ a {
 }
 
 #header .headerHolderCol {
-  background: #313538;
+  background: #5ba515;
 }
 
 #header .headerHolderCol .tel {

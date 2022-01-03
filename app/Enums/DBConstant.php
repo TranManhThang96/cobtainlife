@@ -26,4 +26,20 @@ class DBConstant extends BaseEnum
     // status
     const ON = 1;
     const OFF = 0;
+
+    // [humidity - do am]
+    const LOW_HUMIDITY = 1;
+    const MEDIUM_HUMIDITY = 2;
+    const HIGH_HUMIDITY = 3;
+
+    // [light- anh sang]
+    const LOW_LIGHT = 1;
+    const MEDIUM_LIGHT = 2;
+    const HIGH_LIGHT = 3;
+
+    // [water - luong nuoc]
+    const VERY_LOW_WATER = 1;
+    const LOW_WATER = 2;
+    const MEDIUM_WATER = 3;
+    const HIGH_WATER = 4;
 }

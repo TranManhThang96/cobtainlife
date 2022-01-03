@@ -44,9 +44,12 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         $orderBy = $request->order_by ?? 'DESC';
         $perPage = $request->per_page ?? Constant::DEFAULT_PER_PAGE;
         $categoryId = $request->category_id ?? '';
-        $priceFrom = $request->price_from ?? null;
-        $priceTo = $request->price_to ?? null;
+        $min = $request->min ?? null;
+        $max = $request->max ?? null;
         $ids = $request->ids ?? null;
+        $humidity = $request->humidity ?? null;
+        $light = $request->light ?? null;
+        $water = $request->water ?? null;
 
         return $this->model
             ->with('category')
@@ -56,12 +59,22 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
                 return $query->where('name', 'like', "%$q%")->orWhere('sku', 'like', "%$q%");
             })->when($categoryId, function ($query, $categoryId) {
                 return $query->where('category_id', '=', $categoryId);
-            })->when($priceFrom, function ($query, $priceFrom) {
-                return $query->where('price', '>=', $priceFrom);
+            })->when($min, function ($query, $min) {
+                return $query->where('price', '>=', $min);
             })
-            ->when($priceTo, function ($query, $priceTo) {
-                return $query->where('price', '<=', $priceTo);
-            })->when($ids, function ($query, $ids) {
+            ->when($max, function ($query, $max) {
+                return $query->where('price', '<=', $max);
+            })
+            ->when($humidity, function ($query, $humidity) {
+                return $query->where('humidity', '=', $humidity);
+            })
+            ->when($light, function ($query, $light) {
+                return $query->where('light', '=', $light);
+            })
+            ->when($water, function ($query, $water) {
+                return $query->where('water', '=', $water);
+            })
+            ->when($ids, function ($query, $ids) {
                 return $query->where('id', 'IN', $ids);
             })->orderBy($sortBy, $orderBy)
             ->paginate($perPage);
@@ -71,9 +84,12 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
     {
         $q = $request->q ?? '';
         $categoryId = $request->category_id ?? '';
-        $priceFrom = $request->price_from ?? null;
-        $priceTo = $request->price_to ?? null;
+        $min = $request->min ?? null;
+        $max = $request->max ?? null;
         $ids = $request->ids ?? null;
+        $humidity = $request->humidity ?? null;
+        $light = $request->light ?? null;
+        $water = $request->water ?? null;
 
         return $this->model
             ->with('category')
@@ -83,11 +99,20 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
                 return $query->where('name', 'like', "%$q%")->orWhere('sku', 'like', "%$q%");
             })->when($categoryId, function ($query, $categoryId) {
                 return $query->where('category_id', '=', $categoryId);
-            })->when($priceFrom, function ($query, $priceFrom) {
-                return $query->where('price', '>=', $priceFrom);
+            })->when($min, function ($query, $min) {
+                return $query->where('price', '>=', $min);
             })
-            ->when($priceTo, function ($query, $priceTo) {
-                return $query->where('price', '<=', $priceTo);
+            ->when($humidity, function ($query, $humidity) {
+                return $query->where('humidity', '=', $humidity);
+            })
+            ->when($light, function ($query, $light) {
+                return $query->where('light', '=', $light);
+            })
+            ->when($water, function ($query, $water) {
+                return $query->where('water', '=', $water);
+            })
+            ->when($max, function ($query, $max) {
+                return $query->where('price', '<=', $max);
             })->when($ids, function ($query, $ids) {
                 return $query->whereIn('id', $ids);
             })->get();

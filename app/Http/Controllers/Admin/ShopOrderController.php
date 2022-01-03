@@ -16,6 +16,7 @@ use App\Services\ShopProductService;
 use App\Services\ShopShippingStatusService;
 use App\Services\ShopTaxService;
 use App\Services\WardService;
+use App\Services\ShopConfigService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,8 @@ class ShopOrderController extends Controller
         ShopShippingStatusService $shopShippingStatusService,
         ShopProductService $shopProductService,
         ShopTaxService $shopTaxService,
-        ShopCustomerService $shopCustomerService
+        ShopCustomerService $shopCustomerService,
+        ShopConfigService $shopConfigService
     )
     {
         $this->districtService = $districtService;
@@ -49,6 +51,7 @@ class ShopOrderController extends Controller
         $this->shopProductService = $shopProductService;
         $this->shopTaxService = $shopTaxService;
         $this->shopCustomerService = $shopCustomerService;
+        $this->shopConfigService = $shopConfigService;
     }
 
     /**
@@ -60,7 +63,9 @@ class ShopOrderController extends Controller
     {
         $orders = $this->shopOrderService->index($request);
         $listOrderStatus = $this->shopOrderStatusService->all();
-        return view('admin.pages.orders.index', compact('orders', 'listOrderStatus'));
+        $allConfigs = $this->shopConfigService->all();
+        $configs = (object) array_column($allConfigs->toArray(), null, 'key');
+        return view('admin.pages.orders.index', compact('orders', 'listOrderStatus', 'configs'));
     }
 
     /**
