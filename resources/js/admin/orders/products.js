@@ -1,6 +1,7 @@
 var taxPercent = 10;
 
 $(document).ready(function () {
+  taxPercent = $('#order-default-tax').val();
   $('#add-product-order').click(function() {
     let uuid = Date.now();
     const trHiddenOrderDetail = $('#order-detail-hidden');

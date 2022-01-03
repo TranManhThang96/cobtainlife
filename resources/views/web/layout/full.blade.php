@@ -32,6 +32,13 @@
 <body>
 	<!-- pageWrapper -->
 	<div id="pageWrapper">
+		<div class="bg-loader">
+			<div class="loader">
+				<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+			</div>
+		</div>
+		<!-- loading -->
+
         <!-- header -->
         @include('web.layout.base._header')
 

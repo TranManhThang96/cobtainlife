@@ -1,4 +1,4 @@
-let pageLoadingElement = $('.page-loading');
+let pageLoadingElement = $('.bg-loader');
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': window.$('meta[name="csrf-token"]').attr('content')

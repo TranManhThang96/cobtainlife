@@ -129,7 +129,7 @@ $(document).ready(function () {
       </div>
       <div class="col-6">
         <div class="input-group">
-          <input type="number" name="attributes[${attributeGroupId}][add_price][]" value="0" class="form-control rounded-0 input-sm" placeholder="Thêm tiền" />
+          <input type="text" name="attributes[${attributeGroupId}][add_price][]" value="0" class="form-control rounded-0 input-sm" placeholder="Thêm tiền" data-type="currency"/>
           <span title="Remove" class="btn btn-flat btn-danger remove-attribute">
             <i class="fa fa-times"></i>
           </span>
