@@ -1,36 +1,89 @@
 $(document).ready(function () {
+  // page, sort_by, order_by, 
+  let filters = {};
+  let viewFilters = {};
+  renderUIFilters();
   $(document).on('click', '.sort-option', function(e) {
     e.preventDefault();
     const sort = $(this).data('sort');
     const sortBy = sort.split('-')[0];
     const orderBy = sort.split('-')[1];
     $('#sortGroup').text($(this).text());
-    $('#frm-search-price-from').val('');
-    $('#frm-search-price-to').val('');
-    $('#frm-search-sort-by').val(sortBy);
-    $('#frm-search-order-by').val(orderBy);
+    filters['sort_by'] = sortBy;
+    filters['order_by'] = orderBy;
     getLists();
   })
 
   $('.sort-category').click(function() {
     const categoryId = $(this).data('id');
-    $('#frm-search-category-id').val(categoryId);
+    filters['category_id'] = categoryId;
+    viewFilters['category'] = {
+      'type': 'category',
+      'label': 'Danh mục',
+      'value': $(this).data('title')
+    }
     getLists();
   })
 
-  $('#btn-search-product').click(function() {;
+  $('#btn-search-product').click(function() {
+    const query = $('#frm-search-query').val();
+    filters['q'] = query;
+    viewFilters['q'] = {
+      'type': 'q',
+      'label': 'Tìm kiếm',
+      'value': query
+    }
     getLists();
   })
 
-  $('#btn-filter-price').click(function() {
-    $('#frm-search-sort-by').val('');
-    $('#frm-search-order-by').val('');
-    $('#frm-search-page').val(1);
-    $('#frm-search-category-id').val('');
-    $('#frm-search-category-id').val('');
-    $('#frm-search-query').val('');
-    $('#frm-search-price-from').val(convertStringToNumber($('#amount1').val()));
-    $('#frm-search-price-to').val(convertStringToNumber($('#amount2').val()));
+  $(document).on('click', '.filter-group-price .filter-item:not(.active)', function (e) {
+    $('.filter-group-price .filter-item').removeClass('active');
+    $(this).addClass('active');
+    const min = $(this).data('min');
+    const max = $(this).data('max');
+    filters['min'] = min;
+    filters['max'] = max;
+    viewFilters['price'] = {
+      'type': 'price',
+      'label': 'Giá',
+      'value': $(this).find('.filter-item-label').text()
+    }
+    getLists();
+  })
+
+  $(document).on('click', '.filter-group-humidity .filter-item:not(.active)', function (e) {
+    $('.filter-group-humidity .filter-item').removeClass('active');
+    $(this).addClass('active');
+    filters['humidity'] = $(this).data('value');
+    viewFilters['humidity'] = {
+      'type': 'humidity',
+      'label': 'Độ ẩm',
+      'value': $(this).find('.filter-item-label').text()
+    }
+    getLists();
+  })
+
+  $(document).on('click', '.filter-group-light .filter-item:not(.active)', function (e) {
+    $('.filter-group-light .filter-item').removeClass('active');
+    $(this).addClass('active');
+    filters['light'] = $(this).data('value');
+    viewFilters['light'] = {
+      'type': 'light',
+      'label': 'Ánh sáng',
+      'value': $(this).find('.filter-item-label').text()
+    }
+    getLists();
+  })
+
+  $(document).on('click', '.filter-group-water .filter-item:not(.active)', function (e) {
+    $('.filter-group-water .filter-item').removeClass('active');
+    $(this).addClass('active');
+    filters['water'] = $(this).data('value');
+    viewFilters['water'] = {
+      'type': 'water',
+      'label': 'Lượng nước',
+      'value': $(this).find('.filter-item-label').text()
+    }
     getLists();
   })
 
@@ -49,6 +102,36 @@ $(document).ready(function () {
     changePage(page, '/products/search', isNext, isPrev);
   });
 
+  $(document).on('click', '#clear-filter-button', function(e) {
+    filters = {};
+    viewFilters = {};
+    $('.filter-group .filter-item').removeClass('active');
+    $('#frm-search-query').val('');
+    getLists();
+  })
+
+  $(document).on('click', '.view-filters .filter-item', function() {
+    const type = $(this).data('type');
+    if (type === 'q') {
+      $('#frm-search-query').val('');
+      delete viewFilters[type];
+      delete filters[type];
+    } else if (type === 'category') {
+      delete viewFilters['category'];
+      delete filters['category_id'];
+    } else if (type === 'price') {
+      delete viewFilters['price'];
+      delete filters['min'];
+      delete filters['max'];
+      $(`.filter-group-${type} .filter-item`).removeClass('active');
+    } else {
+      delete viewFilters[type];
+      delete filters[type];
+      $(`.filter-group-${type} .filter-item`).removeClass('active');
+    }
+    getLists();
+  })
+
   changePage = (page, url = null, isNext = false, isPrev = false) => {
     // clean uri if has query string
     let uri = window.location.href.toString();
@@ -58,7 +141,7 @@ $(document).ready(function () {
     }
   
     if (page && !isNaN(page)) {
-      $('#frm-search input[name="page"]').val(page);
+      filters['page'] = page;
     } else {
       let pageCurrent = 1;
       pageCurrent = parseInt($('.page-link-item.active .page-link').text());
@@ -66,11 +149,11 @@ $(document).ready(function () {
       if (isNext) {
         let pageMax = $('.page-link-item:last').prev().children().text();
         if (pageMax > pageCurrent) {
-          $('#frm-search input[name="page"]').val(pageCurrent + 1);
+          filters['page'] = pageCurrent + 1;
         }
       } else if (isPrev) {
         if (pageCurrent > 1) {
-          $('#frm-search input[name="page"]').val(pageCurrent - 1);
+          filters['page'] = pageCurrent - 1;
         }
       }
     }
@@ -84,12 +167,12 @@ $(document).ready(function () {
       let clean_uri = uri.substring(0, uri.indexOf("?"));
       window.history.replaceState({}, document.title, clean_uri);
     }
-  
+    renderUIFilters();
     $.ajax({
       type: 'GET',
       url: url,
       loading: true,
-      data: $('#frm-search').serialize(),
+      data: filters,
     }).then(function (xhr) {
       $('#product-render-data').html(xhr.data);
       if (typeof successFunc === 'function') {
@@ -103,14 +186,21 @@ $(document).ready(function () {
     });
   };
 
-  function convertStringToNumber(n) {
-    // format number 1,234,567 to 1234567
-    try {
-      n = n + '';
-      n = n.replace(/\,/g,''); // 1125, but a string, so convert it to number
-      return parseInt(n,10);
-    } catch (e) {
-      return 0;
+  function renderUIFilters() {
+    if (Object.keys(viewFilters).length === 0) {
+      $('.view-filters').addClass('d-none');
+      return;
     }
+    let viewHtml = '';
+    for (const [key, value] of Object.entries(viewFilters)) {
+      viewHtml +=
+      `<div class="filter-item active" data-type="${key}">
+        <span class="filter-item-label">${value.label}: ${value.value}</span>
+        <div class="filter-item-checked"></div>
+        <span class="icon-checked">X</span>
+      </div>`
+    }
+    $('.view-filters .filter-group').empty().append(viewHtml);
+    $('.view-filters').removeClass('d-none');
   }
 })

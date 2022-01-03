@@ -134,6 +134,64 @@
             </div>
 
             <div class="form-group row">
+                <label for="product-sku" class="col-sm-2 text-right font-weight-bold">Độ ẩm</label>
+                <div class="col-sm-10">
+                    @foreach(\App\Enums\Constant::HUMIDITY as $humidityItem)
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input 
+                                type="radio" 
+                                id="humidity-{{$humidityItem['value']}}" 
+                                name="humidity" 
+                                class="custom-control-input" 
+                                value="{{$humidityItem['value']}}" 
+                                {{(old('humidity') ?? $product->humidity) == $humidityItem['value'] ? 'checked' : ''}} 
+                            />
+                            <label class="custom-control-label" for="humidity-{{$humidityItem['value']}}">{{$humidityItem['title']}}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="product-sku" class="col-sm-2 text-right font-weight-bold">Ánh sáng</label>
+                <div class="col-sm-10">
+                    @foreach(\App\Enums\Constant::LIGHT as $lightItem)
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input 
+                                type="radio" 
+                                id="light-{{$lightItem['value']}}" 
+                                name="light" 
+                                class="custom-control-input" 
+                                value="{{$lightItem['value']}}" 
+                                {{(old('light') ?? $product->light) == $lightItem['value'] ? 'checked' : ''}} 
+                            />
+                            <label class="custom-control-label" for="light-{{$lightItem['value']}}">{{$lightItem['title']}}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="product-sku" class="col-sm-2 text-right font-weight-bold">Lượng nước</label>
+                <div class="col-sm-10">
+                    @foreach(\App\Enums\Constant::WATER as $waterItem)
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input 
+                                type="radio" 
+                                id="water-{{$waterItem['value']}}" 
+                                name="water" 
+                                class="custom-control-input" 
+                                value="{{$waterItem['value']}}" 
+                                {{(old('water') ?? $product->water) == $waterItem['value'] ? 'checked' : ''}} 
+                            />
+                            <label class="custom-control-label" for="water-{{$waterItem['value']}}">{{$waterItem['title']}}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label for="product-brand" class="col-sm-2 text-right font-weight-bold">
                     Nhãn hàng (<a href="{{route('admin.brands.create')}}"><i class="fa fa-link" aria-hidden="true"></i></a>)
                 </label>
@@ -446,7 +504,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="input-group">
-                                                        <input type="number" name="{{'attributes['.$attribute['attribute_group_id'].'][add_price][]'}}" value="{{$attribute['add_price']}}" class="form-control rounded-0 input-sm" placeholder="Thêm tiền" />
+                                                        <input type="text" name="{{'attributes['.$attribute['attribute_group_id'].'][add_price][]'}}" value="{{number_format($attribute['add_price'], 0)}}" class="form-control rounded-0 input-sm" placeholder="Thêm tiền" data-type="currency" />
                                                         <span title="Remove" class="btn btn-flat btn-danger remove-attribute">
                                                             <i class="fa fa-times"></i>
                                                         </span>

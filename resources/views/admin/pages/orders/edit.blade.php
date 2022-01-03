@@ -221,7 +221,7 @@
                     </div>
 
 
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label for="order-tax-option" class="col-sm-4 text-right font-weight-bold">
                             Tiền thuế (tính theo đơn hàng)
                         </label>
@@ -235,7 +235,8 @@
                             </select>
                             <x-custom-error field="tax_option" />
                         </div>
-                    </div>
+                    </div> -->
+                    <input type="hidden" id="order-default-tax" value="{{$configs->order_default_vat['value'] ?? 0}}" />
                 </div>
             </div>
 

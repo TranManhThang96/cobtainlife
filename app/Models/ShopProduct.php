@@ -39,6 +39,9 @@ class ShopProduct extends Model
         'new_arrival',
         'hot',
         'sort',
+        'humidity',
+        'light',
+        'water',
         'created_by',
         'updated_by'
     ];

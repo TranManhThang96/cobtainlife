@@ -26,7 +26,7 @@
             <td>{{$customer->email}}</td>
             <td>
                 <span class="badge text-white bg-{{$customer->type == 1 ? 'success' : 'info'}}">
-                    {{$customer->type == 1 ? 'Đăng ký' : 'Liên hệ'}}
+                    {{$customer->type == 1 ? 'Liên hệ' : 'Đăng ký'}}
                 </span>
             </td>
             <td>
