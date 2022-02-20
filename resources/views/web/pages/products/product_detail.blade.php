@@ -121,13 +121,13 @@
         <div class="col-12">
             <!-- paggSlider -->
             <div class="paggSlider">
-                <div>
-                    @foreach($product->images as $productImg)
-                    <div class="imgBlock">
-                        <img src="{{asset('storage'.$productImg->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/170x190.png')}}"' width="170px" height="190px">
+                @foreach($product->images as $productImg)
+                    <div>
+                        <div class="imgBlock">
+                            <img src="{{asset('storage'.$productImg->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/170x190.png')}}"' width="170px" height="190px" class="img-fluid">
+                        </div>
                     </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
