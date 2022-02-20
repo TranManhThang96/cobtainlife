@@ -6,7 +6,7 @@ $(document).ready(function () {
   $('.select-tags').select2({
     placeholder: "",
     tags: true,
-    tokenSeparators: [',', ' ']
+    tokenSeparators: [',']
   });
 
   $('#province-id').on('select2:select', function (e) {

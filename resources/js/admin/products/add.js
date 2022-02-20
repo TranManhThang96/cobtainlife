@@ -6,7 +6,7 @@ $(document).ready(function () {
   $('.select-tags').select2({
     placeholder: "",
     tags: true,
-    tokenSeparators: [',', ' ']
+    tokenSeparators: [',']
   });
 
   // add sub image

@@ -170,7 +170,7 @@
                 </label>
                 <div class="col-sm-10">
                     <select class="custom-select custom-select-2 mr-sm-2 select-brand" name="brand_id">
-                        <option selected value="#">Chọn nhãn hàng</option>
+                        <option selected value="">Chọn nhãn hàng</option>
                         @if(isset($brands)) 
                             @foreach($brands as $brand)
                                 <option value="{{$brand['id']}}" {{old('brand_id') == $brand['id'] ? 'selected' : ''}}>{{$brand['name']}}</option>
@@ -186,7 +186,7 @@
                 </label>
                 <div class="col-sm-10">
                     <select class="custom-select custom-select-2 mr-sm-2 select-supplier" name="supplier_id">
-                        <option selected value="#">Chọn nhà cung cấp</option>
+                        <option selected value="">Chọn nhà cung cấp</option>
                         @if(isset($suppliers)) 
                             @foreach($suppliers as $supplier)
                                 <option value="{{$supplier['id']}}" {{old('supplier_id') == $supplier['id'] ? 'selected' : ''}}>{{$supplier['name']}}</option>
@@ -260,7 +260,7 @@
                 <div class="col-sm-10">
                     <div class="input-group">
                         <select class="custom-select custom-select-2 mr-sm-2 select-weight-class" name="weight_class">
-                            <option selected value="#">Chọn đơn vị khối lượng </option>
+                            <option selected value="">Chọn đơn vị khối lượng </option>
                             @if(isset($weightClasses)) 
                                 @foreach($weightClasses as $weightClass)
                                     <option value="{{$weightClass['name']}}" {{old('weight_class') == $weightClass['name'] ? 'selected' : ''}}>{{$weightClass['description']}}</option>
@@ -294,7 +294,7 @@
                 </label>
                 <div class="col-sm-10">
                     <select class="custom-select custom-select-2 mr-sm-2 select-weight-class" name="length_class">
-                        <option selected value="#">Chọn đơn vị kích thước</option>
+                        <option selected value="">Chọn đơn vị kích thước</option>
                         @if(isset($lengthClasses)) 
                             @foreach($lengthClasses as $lengthClass)
                                 <option value="{{$lengthClass['name']}}" {{old('length_class') == $lengthClass['name'] ? 'selected' : ''}}>{{$lengthClass['description']}}</option>
