@@ -48,7 +48,7 @@
             </td>
             <td>{{$category['sort']}}</td>
             <td>
-                <a href="#">{{$category['products_count']}}</a>
+                <a href="{{route('admin.products.index', ['category_id' => $category['id']])}}">{{$category['products_count']}}</a>
             </td>
             <td>{{date('d/m/Y H:i:s', strtotime($category['created_at']))}}</td>
             <td>{{date('d/m/Y H:i:s', strtotime($category['updated_at']))}}</td>
