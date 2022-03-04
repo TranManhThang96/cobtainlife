@@ -61,7 +61,7 @@
 				<span class="icon icon-van"></span>
 				<div class="alignLeft pl-2">
 					<strong class="headingV fwEbold d-block mb-1">Free shipping order</strong>
-					<p class="m-0">On orders over $100</p>
+					<p class="m-0">On orders within 2 km</p>
 				</div>
 			</div>
 		</div>
@@ -80,8 +80,8 @@
 			<div class="contactListColumn border bg-lightGray overflow-hidden py-xl-5 py-md-3 py-2 px-xl-4 px-md-2 px-3 d-flex">
 				<span class="icon icon-recycle"></span>
 				<div class="alignLeft pl-2">
-					<strong class="headingV fwEbold d-block mb-1">Return &amp; exchange</strong>
-					<p class="m-0">Free return within 3 days</p>
+					<strong class="headingV fwEbold d-block mb-1">Exchange</strong>
+					<p class="m-0">Free exchange within day</p>
 				</div>
 			</div>
 		</div>

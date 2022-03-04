@@ -145,10 +145,9 @@ if (!function_exists('readDateTime')) {
         try {
             $datetime = new DateTime($dateTime);
             return $datetime->format($type);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return '';
         }
-        
     }
 }
 
@@ -170,6 +169,8 @@ if (!function_exists('getMonth')) {
             '12' => 'December',
         ];
 
+        $month = '0' . $month;
+        $month =  substr($month, -2);
         if (key_exists($month, $months)) {
             return $months[$month];
         }

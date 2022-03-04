@@ -108,7 +108,7 @@
                         <a href="javascript:void(0);">{{$product->category->title}}</a>
                     </li>
                     <li class="mb-2">Nhà cung cấp:
-                        <a href="javascript:void(0);">{{$product->supplier->name ?? 'kk'}}</a>
+                        <a href="javascript:void(0);">{{$product->supplier->name ?? ''}}</a>
                     </li>
                     <li>Nhãn hiệu:
                         <a href="javascript:void(0);">{{$product->brand->name ?? ''}}</a>
