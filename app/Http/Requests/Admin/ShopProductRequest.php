@@ -24,7 +24,7 @@ class ShopProductRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'name' => Str::lower($this->name)
+            // 'name' => Str::lower($this->name)
         ]);
     }
 
@@ -41,10 +41,10 @@ class ShopProductRequest extends FormRequest
                 return [];
             case 'POST':
                 return [
-                    'name' => ['required', Rule::unique('shop_products')->ignore($this->name)],
+                    'name' => ['required', Rule::unique('shop_products')->ignore($this->name)->whereNull('deleted_at')],
                     'image' => 'required|string',
                     'description' => 'string|nullable',
-                    'category_id' => 'required|numeric',
+                    'categories' => 'required|array',
                     'content' => 'required',
                     'cost' => 'nullable',
                     'price' => 'nullable',
@@ -57,10 +57,10 @@ class ShopProductRequest extends FormRequest
                 ];
             case 'PUT':
                 return [
-                    'name' => ['required', Rule::unique('shop_products')->ignore($this->id)],
+                    'name' => ['required', Rule::unique('shop_products')->ignore($this->id)->whereNull('deleted_at')],
                     'image' => 'required|string',
                     'description' => 'string|nullable',
-                    'category_id' => 'required|numeric',
+                    'categories' => 'required|array',
                     'content' => 'required',
                     'cost' => 'nullable',
                     'price' => 'nullable',

@@ -43,8 +43,8 @@ class ShopCustomerRequest extends FormRequest
             case 'POST':
                 return [
                     'name' => ['required'],
-                    'phone' => ['required', Rule::unique('shop_customers')->ignore($this->phone)],
-                    'email' => ['nullable', 'email', Rule::unique('shop_customers')->ignore($this->email)],
+                    'phone' => ['required', Rule::unique('shop_customers')->ignore($this->phone)->whereNull('deleted_at')],
+                    'email' => ['nullable', 'email', Rule::unique('shop_customers')->ignore($this->email)->whereNull('deleted_at')],
                     'province_id' => 'nullable|numeric',
                     'district_id' => 'nullable|numeric',
                     'ward_id' => 'nullable|numeric',
@@ -54,8 +54,8 @@ class ShopCustomerRequest extends FormRequest
             case 'PUT':
                 return [
                     'name' => ['required'],
-                    'phone' => ['required', Rule::unique('shop_customers')->ignore($this->id)],
-                    'email' => ['nullable', 'email', Rule::unique('shop_customers')->ignore($this->id)],
+                    'phone' => ['required', Rule::unique('shop_customers')->ignore($this->id)->whereNull('deleted_at')],
+                    'email' => ['nullable', 'email', Rule::unique('shop_customers')->ignore($this->id)->whereNull('deleted_at')],
                     'province_id' => 'nullable|numeric',
                     'district_id' => 'nullable|numeric',
                     'ward_id' => 'nullable|numeric',

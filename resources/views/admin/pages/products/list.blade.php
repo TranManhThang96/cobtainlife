@@ -28,7 +28,11 @@
             </td>
             <td>{{$product['name']}}</td>
             <td>
-                <span>{{$product['category']['title']}}<span>
+                @foreach($product->categories as $category)
+                    <span class="product-category {{request()->category_id == $category['id'] ? 'product-category-searched' : ''}}">
+                        {{$category->title}}
+                    </span>
+                @endforeach
                 <p class="pt-2">
                     <b>SKU: </b>
                     <span>{{$product['sku']}}</span>
@@ -56,11 +60,11 @@
                 </span>
             </td>
             <td>
-                <a class="btn btn-dark btn-sm" href="{{route('web.products.show', ['product' => $product->alias])}}" target="_blank">Xem</a>
-                <a class="btn btn-cyan btn-sm"
+                <a class="btn btn-dark btn-sm mb-1" href="{{route('web.products.show', ['product' => $product->alias])}}" target="_blank">Xem</a>
+                <a class="btn btn-cyan btn-sm mb-1"
                         href="{{route('admin.products.edit', ['product' => $product['id']])}}">Sửa
                 </a>
-                <button type="button" class="btn btn-danger btn-sm btn-delete-product"
+                <button type="button" class="btn btn-danger btn-sm btn-delete-product mb-1"
                         data-product-id="{{$product['id']}}">Xóa</button>
             </td>
         </tr>

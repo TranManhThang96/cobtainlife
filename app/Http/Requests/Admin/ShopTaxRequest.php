@@ -24,7 +24,7 @@ class ShopTaxRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'name' => Str::lower($this->name)
+            // 'name' => Str::lower($this->name)
         ]);
     }
 
@@ -42,12 +42,12 @@ class ShopTaxRequest extends FormRequest
             case 'POST':
                 return [
                     'name' => ['required', Rule::unique('shop_tax')->ignore($this->name)],
-                    'value' => ['required', 'numeric', 'max: 100', Rule::unique('shop_tax')->ignore($this->value)],
+                    'value' => ['required', 'numeric', 'max: 100', Rule::unique('shop_tax')->ignore($this->value)->whereNull('deleted_at')],
                 ];
             case 'PUT':
                 return [
                     'name' => ['required', Rule::unique('shop_tax')->ignore($this->id)],
-                    'value' => ['required', 'numeric', Rule::unique('shop_tax')->ignore($this->id)],
+                    'value' => ['required', 'numeric', Rule::unique('shop_tax')->ignore($this->id)->whereNull('deleted_at')],
                 ];
             case 'PATCH':
             default:
