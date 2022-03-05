@@ -50,14 +50,15 @@
                     Danh mục <span class="text-danger">(*)</span>
                 </label>
                 <div class="col-sm-10">
-                    <select class="custom-select custom-select-2 mr-sm-2 select-category" name="category_id">
+                    <select class="custom-select custom-select-2 mr-sm-2 select-category" name="categories[]" multiple>
                         @if(isset($categories)) 
                             @foreach($categories as $category)
-                                <option value="{{$category['id']}}" {{old('category_id', $product->category_id) == $category['id'] ? 'selected' : ''}}>{{$category['label']}}</option>
-                            @endforeach 
+                                <option
+                                    value="{{$category['id']}}" {{in_array($category['id'], old('categories') ?? $product->categories->pluck('id')->toArray()) ? 'selected' : ''}}>{{$category['label']}}</option>
+                            @endforeach
                         @endif
                     </select>
-                    <x-custom-error field="category_id"/>
+                    <x-custom-error field="categories"/>
                 </div>
             </div>
 
@@ -97,7 +98,6 @@
                                             <input type="text" name="sub_images[]" class="form-control" id="{{'sub-image-'.$img['id']}}" value="{{$img['image']}}"/>
                                         </div>
                                         <div class="input-group-append">
-                                            <span class="btn btn-primary lfm" data-input="{{'sub-image-'.$img['id']}}" data-preview="{{'preview-sub-image-'.$img['id']}}" data-type="product"> <i class="fas fa-image"></i> Chọn hình </span>
                                             <span title="Remove" class="btn btn-flat btn-danger remove-sub-image"><i class="fa fa-times"></i></span>
                                         </div>
                                     </div>

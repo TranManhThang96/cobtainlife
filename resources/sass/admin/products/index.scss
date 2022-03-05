@@ -4,4 +4,37 @@
       width: 175px !important;
     }
   }
+
+  #data-table {
+    table {
+      tbody {
+        tr {
+          td {
+            .product-category {
+              background-color: #2255a4 !important;
+              border-color: #2255a4 !important;
+              color: #fff !important;
+              border: 1px solid #aaa;
+              border-radius: 4px;
+              box-sizing: border-box;
+              display: inline-block;
+              margin-right: 5px;
+              margin-top: 5px;
+              padding: 0 8px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              vertical-align: bottom;
+              white-space: nowrap;
+            }
+  
+            .product-category-searched {
+              color: #fff !important;
+              background-color: #b54120 !important;
+              border-color: #aa3d1e !important;
+            }
+          }
+        }
+      }
+    }
+}
   

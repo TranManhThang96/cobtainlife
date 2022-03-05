@@ -11,20 +11,36 @@ $(document).ready(function () {
 
   // add sub image
   $('#add-sub-image').click(function () {
-    let uuid = Date.now();
-    let newRowImage = `
-    <div class="row sub-image mx-0 mt-3 image-product">
-      <div class="input-group">
-        <div class="custom-file">
-          <input type="text" name="sub_images[]" class="form-control" id="sub-image-${uuid}" />
-        </div>
-        <div class="input-group-append">
-          <span class="btn btn-primary lfm" data-input="sub-image-${uuid}" data-preview="preview-sub-image-${uuid}" data-type="product"> <i class="fas fa-image"></i> Chọn hình </span>
-          <span title="Remove" class="btn btn-flat btn-danger remove-sub-image"><i class="fa fa-times"></i></span>
-        </div>
-      </div>
-    </div>`
-    $('.group-image').append(newRowImage);
+    let route_prefix = '/filemanager';
+
+    window.open(route_prefix + '?type=' + 'image' || 'file', 'FileManager', 'width=900,height=600');
+    window.SetUrl = function (items) {
+      let filePaths = items.map(function (item) {
+        return item.url;
+      });
+
+      for(let key in filePaths) {
+        const filePath = filePaths[key];
+        let uuid = Date.now() + '' + key;
+        let filePathShort = filePath.split('storage');
+        let newRowImage = `
+            <div class="row sub-image mx-0 mt-3 image-product">
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="text" value="${filePathShort[1]}" name="sub_images[]" class="form-control" id="sub-image-${uuid}" />
+                </div>
+                <div class="input-group-append">
+                  <span title="Remove" class="btn btn-flat btn-danger remove-sub-image"><i class="fa fa-times"></i></span>
+                </div>
+              </div>
+              <div id="preview-sub-image-${uuid}" class="img-holder mt-3">
+                <img src="${filePath}">
+              </div>
+            </div>
+        `
+        $('.group-image').append(newRowImage);
+      }
+    }
   })
 
   // remove sub image

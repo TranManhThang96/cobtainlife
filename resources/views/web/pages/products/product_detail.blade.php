@@ -105,7 +105,13 @@
                 </ul>
                 <ul class="list-unstyled productInfoDetail mb-0">
                     <li class="mb-2">Danh mục:
-                        <a href="javascript:void(0);">{{$product->category->title}}</a>
+                        <a href="javascript:void(0);">
+                            @foreach($product->categories as $category)
+                                <span class="product-category mr-2">
+                                    {{$category->title}}
+                                </span>
+                            @endforeach
+                        </a>
                     </li>
                     <li class="mb-2">Nhà cung cấp:
                         <a href="javascript:void(0);">{{$product->supplier->name ?? ''}}</a>
