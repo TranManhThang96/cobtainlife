@@ -44,18 +44,18 @@
             </div>
 
             <div class="form-group row">
-                <label for="product-category" class="col-sm-2 text-right font-weight-bold">
+                <label for="product-categories" class="col-sm-2 text-right font-weight-bold">
                     Danh mục <span class="text-danger">(*)</span>
                 </label>
                 <div class="col-sm-10">
-                    <select class="custom-select custom-select-2 mr-sm-2 select-category" name="category_id">
+                    <select class="custom-select custom-select-2 mr-sm-2 select-category" id="product-categories" name="categories[]" multiple="multiple">
                         @if(isset($categories)) 
                             @foreach($categories as $category)
-                                <option value="{{$category['id']}}" {{old('category_id') == $category['id'] ? 'selected' : ''}}>{{$category['label']}}</option>
+                                <option value="{{$category['id']}}" {{in_array($category['id'], old('categories') ?? []) ? 'selected' : ''}}>{{$category['label']}}</option>
                             @endforeach 
                         @endif
                     </select>
-                    <x-custom-error field="category_id"/>
+                    <x-custom-error field="categories"/>
                 </div>
             </div>
 

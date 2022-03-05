@@ -51,4 +51,20 @@ $(document).ready(function () {
     $('#frm-search input[name="order_by"]').val(order_by);
     getLists('/products/search');
   })
+
+  //change page
+  $(document).on('click', '.page-item .page-link', function (e) {
+    e.preventDefault();
+    let page = $(this).text();
+    const type = $(this).data('type');
+    let isNext = false, isPrev = false;
+    if (type) {
+      isNext = type == 'next';
+      isPrev = type == 'prev';
+    }
+    if (isNext || isPrev) {
+      page = '';
+    }
+    changePage(page, '/products/search', isNext, isPrev);
+  });
 })

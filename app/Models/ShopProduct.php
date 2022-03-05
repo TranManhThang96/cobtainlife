@@ -23,7 +23,6 @@ class ShopProduct extends Model
         'description',
         'content',
         'sku',
-        'category_id',
         'brand_id',
         'supplier_id',
         'price',
@@ -62,9 +61,14 @@ class ShopProduct extends Model
        });
     }
 
-    public function category()
+    // public function category()
+    // {
+    //     return $this->belongsTo(\App\Models\ShopCategory::class, 'category_id', 'id');
+    // }
+
+    public function categories()
     {
-        return $this->belongsTo(\App\Models\ShopCategory::class, 'category_id', 'id');
+        return $this->belongsToMany(\App\Models\ShopCategory::class, 'shop_product_category', 'product_id' ,'category_id');
     }
 
     public function brand()

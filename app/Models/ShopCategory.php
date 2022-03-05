@@ -49,9 +49,14 @@ class ShopCategory extends Model
         return $date->format('Y/m/d H:i:s');
     }
 
+    // public function products()
+    // {
+    //     return $this->hasMany(\App\Models\ShopProduct::class, 'category_id', 'id');
+    // }
+    
     public function products()
     {
-        return $this->hasMany(\App\Models\ShopProduct::class, 'category_id', 'id');
+        return $this->belongsToMany(\App\Models\ShopProduct::class, 'shop_product_category', 'category_id' ,'product_id');
     }
 
     public function categories()
