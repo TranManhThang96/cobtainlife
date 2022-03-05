@@ -52,13 +52,15 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         $water = $request->water ?? null;
 
         return $this->model
-            ->with('category')
+            ->with('categories:id,title,alias')
             ->with('promotion')
             ->withCount('attributes')
             ->when($q, function ($query, $q) {
                 return $query->where('name', 'like', "%$q%")->orWhere('sku', 'like', "%$q%");
             })->when($categoryId, function ($query, $categoryId) {
-                return $query->where('category_id', '=', $categoryId);
+                return $query->whereHas('categories', function ($q) use ($categoryId) {
+                    $q->where('id', '=', $categoryId);
+                });
             })->when($min, function ($query, $min) {
                 return $query->where('price', '>=', $min);
             })
@@ -92,13 +94,15 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         $water = $request->water ?? null;
 
         return $this->model
-            ->with('category')
+            ->with('categories:id,title,alias')
             ->with('promotion')
             ->withCount('attributes')
             ->when($q, function ($query, $q) {
                 return $query->where('name', 'like', "%$q%")->orWhere('sku', 'like', "%$q%");
             })->when($categoryId, function ($query, $categoryId) {
-                return $query->where('category_id', '=', $categoryId);
+                return $query->whereHas('categories', function ($q) use ($categoryId) {
+                    $q->where('id', '=', $categoryId);
+                });
             })->when($min, function ($query, $min) {
                 return $query->where('price', '>=', $min);
             })
@@ -130,7 +134,7 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         $sortBy = $request->sort_by ?? 'view';
         $orderBy = $request->order_by ?? 'DESC';
         $limit = $request->limit ?? 5;
-        return $this->model::with('category')->with('promotion')->withCount('attributes')->orderBy($sortBy, $orderBy)->skip(0)->take($limit)->get();
+        return $this->model::with('categories')->with('promotion')->withCount('attributes')->orderBy($sortBy, $orderBy)->skip(0)->take($limit)->get();
     }
 
     public function getBestSellerProducts($request)
@@ -138,7 +142,7 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         $sortBy = $request->sort_by ?? 'view';
         $orderBy = $request->order_by ?? 'DESC';
         $limit = $request->limit ?? 4;
-        return $this->model::with('category')->with('promotion')->withCount('attributes')->orderBy($sortBy, $orderBy)->skip(0)->take($limit)->get();
+        return $this->model::with('categories')->with('promotion')->withCount('attributes')->orderBy($sortBy, $orderBy)->skip(0)->take($limit)->get();
     }
 
     public function getNewArrivalProducts($request)
@@ -146,7 +150,7 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
         $sortBy = $request->sort_by ?? 'updated_at';
         $orderBy = $request->order_by ?? 'DESC';
         $limit = $request->limit ?? 4;
-        return $this->model::with('category')
+        return $this->model::with('categories')
             ->with('promotion')
             ->withCount('attributes')
             ->orderBy($sortBy, $orderBy)
@@ -157,7 +161,7 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
 
     public function find($id)
     {
-        return $this->model::with('category')
+        return $this->model::with('categories')
             ->with('promotion')
             ->with('images')
             ->with(['attributes' => function ($query) {
@@ -170,7 +174,7 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
 
     public function findByAlias($alias)
     {
-        return $this->model::with('category')
+        return $this->model::with('categories')
             ->with('promotion')
             ->with('images')
             ->with('supplier')
@@ -188,13 +192,15 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
             ->first();
     }
 
-    public function relatedProducts($productId, $categoryId = null, $limit = 4)
+    public function relatedProducts($productId, $categories = [], $limit = 4)
     {
         $products =  $this->model::select('id', 'alias', 'name', 'image', 'price')
             ->with('promotion')
             ->where('id', '<>', $productId)
-            ->when($categoryId, function ($query, $categoryId) {
-                return $query->where('category_id', '=', $categoryId);
+            ->when($categories, function ($query, $categories) {
+                return $query->whereHas('categories', function ($q) use ($categories) {
+                    $q->whereIn('id', $categories);
+                });
             })->orderBy('view', 'DESC')
             ->skip(0)->take($limit)
             ->get();
@@ -229,5 +235,27 @@ class ShopProductRepository extends RepositoryAbstract implements ShopProductRep
                 'stock' => DB::raw("stock - $qty")
             ]
         );
+    }
+
+    public function create(array $attributes)
+    {
+        $productCreated = $this->model->create($attributes);
+        if (!empty($productCreated->id) && $attributes['categories']) {
+            $productCreated->categories()->sync($attributes['categories']);
+        }
+        return $productCreated;
+    }
+
+    public function update($id, $attributes)
+    {
+        $product = $this->model->find($id);
+        if ($product) {
+            $isUpdated = $product->update($attributes);
+            if ($attributes['categories']) {
+                $product->categories()->sync($attributes['categories']);
+            }
+            return $isUpdated;
+        }
+        return false;
     }
 }

@@ -24,7 +24,7 @@ class NewsRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'title' => Str::lower($this->title)
+            // 'title' => Str::lower($this->title)
         ]);
     }
 
@@ -41,14 +41,14 @@ class NewsRequest extends FormRequest
                 return [];
             case 'POST':
                 return [
-                    'title' => ['required', 'string', Rule::unique('shop_news')->ignore($this->title)],
+                    'title' => ['required', 'string', Rule::unique('shop_news')->ignore($this->title)->whereNull('deleted_at')],
                     'image' => 'required|string',
                     'content' => 'required',
                     'description' => 'required'
                 ];
             case 'PUT':
                 return [
-                    'title' => ['required', 'string', Rule::unique('shop_news')->ignore($this->id)],
+                    'title' => ['required', 'string', Rule::unique('shop_news')->ignore($this->id)->whereNull('deleted_at')],
                     'image' => 'required|string',
                     'content' => 'required',
                     'description' => 'required'

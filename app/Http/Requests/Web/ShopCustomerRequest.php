@@ -27,14 +27,14 @@ class ShopCustomerRequest extends FormRequest
     {
         if (isset($this->type) && ($this->type) == 1) {
             return [
-                'email' => ['required', 'email', Rule::unique('shop_customer_subscribes')->ignore($this->email)],
+                'email' => ['required', 'email', Rule::unique('shop_customer_subscribes')->ignore($this->email)->whereNull('deleted_at')],
                 'name' => 'required',
                 'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
                 'content' => 'required'
             ];
         }
         return [
-            'email' => ['required', 'email', Rule::unique('shop_customer_subscribes')->ignore($this->email)],
+            'email' => ['required', 'email', Rule::unique('shop_customer_subscribes')->ignore($this->email)->whereNull('deleted_at')],
         ];
     }
 

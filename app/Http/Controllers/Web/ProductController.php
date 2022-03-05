@@ -112,7 +112,7 @@ class ProductController extends Controller
             $product['attributes_groups'] = collect($product['attributes'])->groupBy('attribute_group_id')->toArray();
         }
         $product['promotionValid'] = $isPromotionValid;
-        $relatedProducts = $this->shopProductService->relatedProducts($product->id, $product->category_id ?? null);
+        $relatedProducts = $this->shopProductService->relatedProducts($product->id, $product->categories->pluck('id') ?? []);
         if ($relatedProducts) {
             foreach($relatedProducts as &$relatedProduct) {
                 if (!empty($relatedProduct['promotion'])) {

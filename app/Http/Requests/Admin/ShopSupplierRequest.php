@@ -24,7 +24,7 @@ class ShopSupplierRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'name' => Str::lower($this->name)
+            // 'name' => Str::lower($this->name)
         ]);
     }
 
@@ -41,11 +41,11 @@ class ShopSupplierRequest extends FormRequest
                 return [];
             case 'POST':
                 return [
-                    'name' => ['required', Rule::unique('shop_suppliers')->ignore($this->name)],
+                    'name' => ['required', Rule::unique('shop_suppliers')->ignore($this->name)->whereNull('deleted_at')],
                 ];
             case 'PUT':
                 return [
-                    'name' => ['required', Rule::unique('shop_suppliers')->ignore($this->id)],
+                    'name' => ['required', Rule::unique('shop_suppliers')->ignore($this->id)->whereNull('deleted_at')],
                 ];
             case 'PATCH':
             default:
