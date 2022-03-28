@@ -9,7 +9,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}"/>
 	<link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
 	<!-- set the page title -->
-	<title>Cobtainlife</title>
+	<title>@yield('title', 'Cobtainlife')</title>
 	<!-- include the site Google Fonts stylesheet -->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700%7CRoboto:300,400,500,700,900&display=swap" rel="stylesheet">
 	<!-- include the site bootstrap stylesheet -->

@@ -1,5 +1,7 @@
 @extends('web.layout.full')
 
+@section('title', 'Sản phẩm')
+
 @section('content')
     <!-- introBannerHolder -->
     <section class="introBannerHolder d-flex w-100 bgCover" style="background-image: url({{$configs->store_background['value'] ? asset('storage'.$configs->store_background['value']) : asset('dist/images/1920x300.png')}});">
