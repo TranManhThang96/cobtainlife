@@ -1,5 +1,7 @@
 @extends('web.layout.full')
 
+@section('title', $product->name ?? '')
+
 @section('content')
 
 <!-- introBannerHolder -->
@@ -24,11 +26,16 @@
     <div class="row mb-6">
         <div class="col-12 col-lg-6 order-lg-1">
             <!-- productSliderImage -->
-            <div class="productSliderImage mb-lg-0 mb-4">
-                <div>
-                    <img src="{{asset('storage'.$product->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/570x635.png')}}"' width="570px" height="635px">
-                </div>
-            </div>
+            <ul id="imageGallery">
+                <li data-thumb="{{asset('storage'.$product->image)}}" data-src="{{asset('storage'.$product->image)}}">
+                    <img src="{{asset('storage'.$product->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/570x635.png')}}"'>
+                </li>
+                @foreach($product->images as $productImg)
+                    <li data-thumb="{{asset('storage'.$productImg->image)}}" data-src="{{asset('storage'.$productImg->image)}}">
+                        <img src="{{asset('storage'.$productImg->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/170x190.png')}}"'>
+                    </li>
+                @endforeach
+            </ul>
         </div>
         <div class="col-12 col-lg-6 order-lg-3">
             <!-- productTextHolder -->
@@ -120,20 +127,6 @@
                         <a href="javascript:void(0);">{{$product->brand->name ?? ''}}</a>
                     </li>
                 </ul>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <!-- paggSlider -->
-            <div class="paggSlider">
-                @foreach($product->images as $productImg)
-                    <div>
-                        <div class="imgBlock">
-                            <img src="{{asset('storage'.$productImg->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/170x190.png')}}"' width="170px" height="190px" class="img-fluid">
-                        </div>
-                    </div>
-                @endforeach
             </div>
         </div>
     </div>
@@ -300,11 +293,12 @@
 @endsection
 
 @section('css')
-<link href="{{asset('css/web/products/detail.css')}}" rel="stylesheet">
-</link>
+<link href="{{asset('css/web/products/detail.css')}}" rel="stylesheet"></link>
+<link href="{{asset('assets/extra-libs/lightslider/dist/css/lightslider.min.css')}}" rel="stylesheet"></link>
 @endsection
 
 @section('script')
-    <script src="{{asset('assets/extra-libs/nameBadges/jquery.nameBadges.js')}}" rel="stylesheet"></script>
-    <script src="{{asset('js/web/products/detail.js')}}" rel="stylesheet"></script>
+    <script src="{{asset('assets/extra-libs/nameBadges/jquery.nameBadges.js')}}"></script>
+    <script src="{{asset('assets/extra-libs/lightslider/dist/js/lightslider.min.js')}}"></script>
+    <script src="{{asset('js/web/products/detail.js')}}"></script>
 @endsection
