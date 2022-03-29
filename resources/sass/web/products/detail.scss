@@ -1,6 +1,6 @@
-.productTextHolder  {
+.productTextHolder {
     .sizeList {
-        input[type='radio'] {
+        input[type="radio"] {
             position: fixed;
             left: 0;
             top: 0;
@@ -11,30 +11,41 @@
                     .fake-input {
                         background: #5ba515;
                         &:before {
-							opacity: 1;
-						}
+                            opacity: 1;
+                        }
                     }
                 }
             }
             + {
-				.fake-input {
-					&:before {
-						content: '';
-						width: 10px;
-						height: 6px;
-						position: absolute;
-						top: 50%;
-						left: 30%;
-						border: 3px solid #fff;
-						border-width: 0 0 3px 3px;
-						opacity: 0;
-						-webkit-transform: rotate(-45deg);
-						-ms-transform: rotate(-45deg);
-						transform: rotate(-45deg);
-						margin: -4px 0 -5px;
-					}
-				}
-			}
+                .fake-input {
+                    &:before {
+                        content: "";
+                        width: 10px;
+                        height: 6px;
+                        position: absolute;
+                        top: 50%;
+                        left: 30%;
+                        border: 3px solid #fff;
+                        border-width: 0 0 3px 3px;
+                        opacity: 0;
+                        -webkit-transform: rotate(-45deg);
+                        -ms-transform: rotate(-45deg);
+                        transform: rotate(-45deg);
+                        margin: -4px 0 -5px;
+                    }
+                }
+            }
         }
+    }
+}
+
+#imageGallery {
+    .image-item {
+		img {
+			width: 100%;
+			height: auto;
+			max-height: 25rem;
+			object-fit: cover;
+		}
     }
 }
