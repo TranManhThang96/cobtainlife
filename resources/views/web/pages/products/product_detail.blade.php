@@ -27,11 +27,11 @@
         <div class="col-12 col-lg-6 order-lg-1">
             <!-- productSliderImage -->
             <ul id="imageGallery">
-                <li data-thumb="{{asset('storage'.$product->image)}}" data-src="{{asset('storage'.$product->image)}}">
+                <li class="image-item" data-thumb="{{asset('storage'.$product->image)}}" data-src="{{asset('storage'.$product->image)}}">
                     <img src="{{asset('storage'.$product->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/570x635.png')}}"'>
                 </li>
                 @foreach($product->images as $productImg)
-                    <li data-thumb="{{asset('storage'.$productImg->image)}}" data-src="{{asset('storage'.$productImg->image)}}">
+                    <li class="image-item" data-thumb="{{asset('storage'.$productImg->image)}}" data-src="{{asset('storage'.$productImg->image)}}">
                         <img src="{{asset('storage'.$productImg->image)}}" alt="{{$product->name}}" onerror='this.src="{{asset('dist/images/170x190.png')}}"'>
                     </li>
                 @endforeach
